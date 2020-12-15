@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded">
+        <div class="overflow-hidden shadow rounded h-full">
             <div class="bg-cover bg-center h-56 p-4" style="background-image: url(https://wallpaperaccess.com/full/161199.jpg)">
                 <div class="flex justify-end">
                     <svg class="h-6 w-6 text-white fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -8,9 +8,9 @@
                     </svg>
                 </div>
             </div>
-            <div class="p-4">
+            <div class="bg-white p-4 rounded-t-lg mt--10">
                 <div class="flex items-center">
-                    <div class="bg-cover bg-center w-8 h-8 rounded-full mr-3" style="background-image: url(https://www.pngitem.com/pimgs/m/41-415019_profile-man-male-free-picture-male-avatar-clipart.png)"></div>
+                    <div class="bg-cover bg-center w-8 h-8 rounded-full mr-3 border-solid border-2 border-black" style="background-image: url(https://www.pngitem.com/pimgs/m/41-415019_profile-man-male-free-picture-male-avatar-clipart.png)"></div>
                     <p class="uppercase tracking-wide text-sm font-bold text-gray-700">Post Author • 4h ago</p>
                 </div>
                 <p class="text-3xl text-gray-900">This is the post title!</p>
@@ -28,5 +28,7 @@ export default {
 </script>
 
 <style scoped>
-
+    .mt--10 {
+        margin-top: -10px;
+    }
 </style>
