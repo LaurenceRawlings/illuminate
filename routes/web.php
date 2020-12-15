@@ -21,6 +21,10 @@ Route::get('/', function () {
     return Inertia\Inertia::render('Posts');
 })->name('posts');
 
+Route::get('/news', function () {
+    return Inertia\Inertia::render('News');
+})->name('news');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');
 })->name('dashboard');

@@ -19,6 +19,12 @@
                                 Posts
                             </jet-nav-link>
                         </div>
+
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <jet-nav-link :href="route('news')" :active="route().current('news')">
+                                News
+                            </jet-nav-link>
+                        </div>
                     </div>
 
                     <!-- Settings Dropdown -->
@@ -118,11 +124,17 @@
 
             <!-- Responsive Navigation Menu -->
             <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
-                <!-- <div class="pt-2 pb-3 space-y-1">-->
-                <!--     <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">-->
-                <!--         Dashboard-->
-                <!--     </jet-responsive-nav-link>-->
-                <!-- </div>-->
+                <div class="pt-2 pb-3 space-y-1">
+                    <jet-responsive-nav-link :href="route('posts')" :active="route().current('posts')">
+                        Posts
+                    </jet-responsive-nav-link>
+                </div>
+
+                <div class="pt-2 pb-3 space-y-1">
+                    <jet-responsive-nav-link :href="route('news')" :active="route().current('news')">
+                        News
+                    </jet-responsive-nav-link>
+                </div>
 
                 <!-- Responsive Settings Options -->
                 <div class="pt-4 pb-1 border-t border-gray-200" v-if="$page.user">
