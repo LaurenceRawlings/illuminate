@@ -11,12 +11,12 @@ class Profile extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     public function post()
     {
-        return $this->hasOne('App\Models\Post');
+        return $this->hasOne(Post::class);
     }
 
     protected $fillable = [

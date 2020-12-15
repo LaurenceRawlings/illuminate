@@ -20,17 +20,17 @@ class User extends Authenticatable
 
     public function profile()
     {
-        return $this->hasOne('App\Models\Profile');
+        return $this->hasOne(Profile::class);
     }
 
     public function posts()
     {
-        return $this->hasMany('App\Models\Post');
+        return $this->hasMany(Post::class);
     }
 
     public function comments()
     {
-        return $this->hasMany('App\Models\Comment');
+        return $this->hasMany(Comment::class);
     }
 
     /**
