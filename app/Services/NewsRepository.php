@@ -4,6 +4,8 @@
 namespace App\Services;
 
 
+use Carbon\Carbon;
+use Carbon\Traits\Timestamp;
 use Illuminate\Support\Facades\Http;
 
 class NewsRepository
@@ -19,7 +21,7 @@ class NewsRepository
     }
 
     public function posts() {
-        if (now() - $this->lastUpdated > $this->updateInterval) {
+        if ($this->lastUpdated->diffInHours(now()) > $this->updateInterval) {
             $this->updatePosts();
         }
 

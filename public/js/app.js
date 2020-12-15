@@ -3549,6 +3549,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
+/* harmony import */ var _Components_Post__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Post */ "./resources/js/Components/Post.vue");
 //
 //
 //
@@ -3564,9 +3565,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
+    AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
+    Post: _Components_Post__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: {
+    posts: Array
   }
 });
 
@@ -48666,10 +48672,27 @@ var render = function() {
     },
     [
       _vm._v(" "),
-      _c("div", {
-        staticClass:
-          "mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto px-4"
-      })
+      _c(
+        "div",
+        {
+          staticClass:
+            "mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto px-4"
+        },
+        _vm._l(_vm.posts, function(post) {
+          return _c("post", {
+            key: post.id,
+            attrs: {
+              title: "post.title",
+              author: "post.user",
+              description: "post.description",
+              time: "post.createdAt",
+              "thumbnail-url": "post.thumbnail",
+              url: ""
+            }
+          })
+        }),
+        1
+      )
     ]
   )
 }
