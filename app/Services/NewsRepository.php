@@ -13,7 +13,7 @@ class NewsRepository
     private $apiKey;
     private $posts;
     private $lastUpdated;
-    private $updateInterval = 10800000; // 3 hours
+    private $updateInterval = 3; // 3 hours
 
     public function __construct($apiKey) {
         $this->apiKey = $apiKey;
