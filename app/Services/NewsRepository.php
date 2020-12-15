@@ -11,6 +11,7 @@ class NewsRepository
     private $apiKey;
     private $posts;
     private $lastUpdated;
+    private $updateInterval = 10800000; // 3 hours
 
     public function __construct($apiKey) {
         $this->apiKey = $apiKey;
@@ -18,11 +19,11 @@ class NewsRepository
     }
 
     public function posts() {
-        if (now() - $this->lastUpdated > 10800000) {
+        if (now() - $this->lastUpdated > $this->updateInterval) {
             $this->updatePosts();
         }
 
-        return $this->posts();
+        return $this->posts;
     }
 
     private function updatePosts()
