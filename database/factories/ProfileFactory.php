@@ -2,7 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProfileFactory extends Factory
@@ -22,7 +24,11 @@ class ProfileFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'user_id' => User::factory(),
+            'bio' => $this->faker->sentence($nbWords = 20, $variableNbWords = true),
+            'featured_article' => Post::inRandomOrder()->first()->id,
+            'status_text' => $this->faker->word(),
+            'status_emoji' => $this->faker->emoji(),
         ];
     }
 }
