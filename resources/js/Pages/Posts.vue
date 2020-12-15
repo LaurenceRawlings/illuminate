@@ -7,7 +7,7 @@
         </template>
 
         <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto px-4">
-            <post v-for="post in posts" :key="post.id" :title="post.title" :author="post.user_id" :description="post.description" :time="post.created_at" :thumbnailurl="post.thumbnail" url="" />
+            <post v-for="post in posts" :key="post.id" :title="post.title" :author="post.user_name" :description="post.description" :time="post.created_at" :thumbnailurl="post.thumbnail" :authorpictureurl="post.user_photo" />
         </div>
     </app-layout>
 </template>

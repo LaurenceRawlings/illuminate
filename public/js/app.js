@@ -45497,8 +45497,7 @@ var render = function() {
             [
               _c("div", { staticClass: "flex items-center" }, [
                 _c("div", {
-                  staticClass:
-                    "bg-cover bg-center w-8 h-8 rounded-full mr-3 border-solid border-2 border-black",
+                  staticClass: "bg-cover bg-center w-8 h-8 rounded-full mr-3",
                   style: _vm.icon
                 }),
                 _vm._v(" "),
@@ -48773,11 +48772,11 @@ var render = function() {
             key: post.id,
             attrs: {
               title: post.title,
-              author: post.user_id,
+              author: post.user_name,
               description: post.description,
               time: post.created_at,
               thumbnailurl: post.thumbnail,
-              url: ""
+              authorpictureurl: post.user_photo
             }
           })
         }),
