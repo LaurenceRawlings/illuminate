@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
-Route::get('/', function () {
-    return Inertia\Inertia::render('Posts');
-})->name('posts');
+Route::get('/', [PostController::class, 'index'])->name('posts');
 
 Route::get('/news', [NewsController::class, 'index'])->name('news');
 

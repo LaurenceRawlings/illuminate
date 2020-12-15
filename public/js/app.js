@@ -1997,8 +1997,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['title', 'description', 'author', 'time', 'url', 'thumbnailurl'],
+  props: ['title', 'description', 'author', 'time', 'url', 'thumbnailurl', 'authorpictureurl'],
   computed: {
     thumbnail: function thumbnail() {
       return {
@@ -2007,7 +2009,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     icon: function icon() {
       return {
-        'background-image': 'url(https://www.pngitem.com/pimgs/m/41-415019_profile-man-male-free-picture-male-avatar-clipart.png)'
+        'background-image': 'url(' + this.authorpictureurl + ')'
       };
     }
   }
@@ -3585,6 +3587,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     posts: Array
+  },
+  methods: {
+    favicon: function favicon(url) {
+      url = new URL(url);
+      return "".concat(url.protocol, "//").concat(url.hostname, "/favicon.ico");
+    }
   }
 });
 
@@ -3621,6 +3629,9 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     AppLayout: _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
     Post: _Components_Post__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  props: {
+    posts: Array
   }
 });
 
@@ -45468,39 +45479,51 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "overflow-hidden shadow rounded h-full" }, [
-      _c("div", {
-        staticClass: "bg-cover bg-center h-56 p-4",
-        style: _vm.thumbnail
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "bg-white p-4 rounded-t-lg mt--10" }, [
-        _c("div", { staticClass: "flex items-center" }, [
+    _c(
+      "a",
+      {
+        attrs: { href: _vm.url, target: "_blank", rel: "noopener noreferrer" }
+      },
+      [
+        _c("div", { staticClass: "overflow-hidden shadow rounded h-full" }, [
           _c("div", {
-            staticClass:
-              "bg-cover bg-center w-8 h-8 rounded-full mr-3 border-solid border-2 border-black",
-            style: _vm.icon
+            staticClass: "bg-cover bg-center h-56 p-4",
+            style: _vm.thumbnail
           }),
           _vm._v(" "),
           _c(
-            "p",
-            {
-              staticClass:
-                "uppercase tracking-wide text-sm font-bold text-gray-700"
-            },
-            [_vm._v(_vm._s(_vm.author) + " • " + _vm._s(_vm.time))]
+            "div",
+            { staticClass: "bg-white p-4 rounded-t-lg mt--10 h-full" },
+            [
+              _c("div", { staticClass: "flex items-center" }, [
+                _c("div", {
+                  staticClass:
+                    "bg-cover bg-center w-8 h-8 rounded-full mr-3 border-solid border-2 border-black",
+                  style: _vm.icon
+                }),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    staticClass:
+                      "uppercase tracking-wide text-sm font-bold text-gray-700"
+                  },
+                  [_vm._v(_vm._s(_vm.author) + " • " + _vm._s(_vm.time))]
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-2xl text-gray-900" }, [
+                _vm._v(_vm._s(_vm.title))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-gray-700" }, [
+                _vm._v(_vm._s(_vm.description))
+              ])
+            ]
           )
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-3xl text-gray-900" }, [
-          _vm._v(_vm._s(_vm.title))
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "text-gray-700" }, [
-          _vm._v(_vm._s(_vm.description))
         ])
-      ])
-    ])
+      ]
+    )
   ])
 }
 var staticRenderFns = []
@@ -48678,12 +48701,13 @@ var render = function() {
           return _c("post", {
             key: post.id,
             attrs: {
-              title: "post.title",
-              author: "post.user",
-              description: "post.description",
-              time: "post.createdAt",
-              thumbnailurl: "post.thumbnail",
-              url: ""
+              title: post.title,
+              author: post.source.name,
+              description: post.description,
+              time: post.publishedAt,
+              thumbnailurl: post.urlToImage,
+              url: post.url,
+              authorpictureurl: _vm.favicon(post.url)
             }
           })
         }),
@@ -48744,19 +48768,19 @@ var render = function() {
           staticClass:
             "mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto px-4"
         },
-        [
-          _c("post", {
+        _vm._l(_vm.posts, function(post) {
+          return _c("post", {
+            key: post.id,
             attrs: {
-              title: "This is the post title!",
-              author: "Post Author",
-              description:
-                "This is the posts description to summarise the post.",
-              time: "4h ago",
-              thumbnailurl: "https://wallpaperaccess.com/full/161199.jpg",
+              title: post.title,
+              author: post.user_id,
+              description: post.description,
+              time: post.created_at,
+              thumbnailurl: post.thumbnail,
               url: ""
             }
           })
-        ],
+        }),
         1
       )
     ]

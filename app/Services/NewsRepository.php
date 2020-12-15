@@ -4,8 +4,6 @@
 namespace App\Services;
 
 
-use Carbon\Carbon;
-use Carbon\Traits\Timestamp;
 use Illuminate\Support\Facades\Http;
 
 class NewsRepository
@@ -33,6 +31,7 @@ class NewsRepository
         $response = Http::withHeaders([
             'X-Api-Key' => $this->apiKey,
         ])->get('https://newsapi.org/v2/top-headlines', [
+            'country' => 'gb',
             'category' => 'technology',
             'pageSize' => 100,
         ]);

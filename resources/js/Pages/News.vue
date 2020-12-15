@@ -7,7 +7,7 @@
         </template>
 
         <div class="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto px-4">
-            <post v-for="post in posts" :key="post.id" title="post.title" author="post.user" description="post.description" time="post.createdAt" thumbnailurl="post.thumbnail" url="" />
+            <post v-for="post in posts" :key="post.id" :title="post.title" :author="post.source.name" :description="post.description" :time="post.publishedAt" :thumbnailurl="post.urlToImage" :url="post.url" :authorpictureurl="favicon(post.url)" />
         </div>
     </app-layout>
 </template>
@@ -24,6 +24,13 @@
         props: {
             posts: Array,
         },
+        methods: {
+            favicon(url) {
+                url = new URL(url);
+
+                return `${url.protocol}//${url.hostname}/favicon.ico`
+            }
+        }
     }
 </script>
 
