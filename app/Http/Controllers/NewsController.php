@@ -2,26 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\InertiaPaginator;
 use App\Services\NewsRepository;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Inertia\Inertia;
-use Inertia\Response;
 
 class NewsController extends Controller
 {
-    private $newsRepository;
-
-    public function __construct(NewsRepository $newsRepository)
+    public function index(Request $request, NewsRepository $newsRepository)
     {
-        $this->newsRepository = $newsRepository;
-    }
+        $page = ($request->has('page')) ? intval($request->page) : 1;
+        $collection = collect($newsRepository->posts());
+        $posts = new LengthAwarePaginator(
+            array_values($collection->forPage($page, 12)->toArray()),
+            $collection->count(),
+            12,
+            $page
+        );
 
-    public function index(): Response
-    {
-        $posts = $this->newsRepository->posts();
+        $paginatedLinks = InertiaPaginator::paginationLinks($posts);
 
         return Inertia::render('News', [
-            'posts' => $posts
+            'posts' => $posts,
+            'paginated_links' => $paginatedLinks
         ]);
     }
 }

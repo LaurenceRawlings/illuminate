@@ -15,13 +15,13 @@ class NewsRepository
 
     public function __construct($apiKey) {
         $this->apiKey = $apiKey;
-        $this->updatePosts();
     }
 
     public function posts() {
-        if ($this->lastUpdated->diffInHours(now()) > $this->updateInterval) {
+        if (!$this->lastUpdated || !$this->posts || $this->lastUpdated->diffInHours(now()) > $this->updateInterval) {
             $this->updatePosts();
         }
+
 
         return $this->posts;
     }
