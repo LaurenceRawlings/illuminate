@@ -27,10 +27,9 @@ class InertiaPaginator
             if(is_array($urlsArray)) {
                 foreach ($urlsArray as $pageNumber => $link) {
                     $currentPage = $lengthAwarePaginator->currentPage();
-                    $currentUrl = url()->current().$link;
                     $n[] = [
                         'pageNumber' => $pageNumber,
-                        'url' => $currentUrl,
+                        'url' => $link,
                         'indexKey' => $i,
                         'type' => 'URLS',
                         'isCurrentPage' => $currentPage === $pageNumber,

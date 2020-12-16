@@ -18,8 +18,10 @@ class NewsController extends Controller
             array_values($collection->forPage($page, 12)->toArray()),
             $collection->count(),
             12,
-            $page
+            $page,
         );
+
+        $posts->setPath(url()->current());
 
         $paginatedLinks = InertiaPaginator::paginationLinks($posts);
 
