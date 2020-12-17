@@ -3213,6 +3213,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -47908,11 +47921,9 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _vm.$page.user
-              ? _c(
-                  "div",
-                  { staticClass: "pt-4 pb-1 border-t border-gray-200" },
-                  [
+            _c("div", { staticClass: "pt-4 pb-1 border-t border-gray-200" }, [
+              _vm.$page.user
+                ? _c("div", [
                     _c("div", { staticClass: "flex items-center px-4" }, [
                       _c("div", { staticClass: "flex-shrink-0" }, [
                         _c("img", {
@@ -47955,7 +47966,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                        Profile\n                    "
+                              "\n                            Profile\n                        "
                             )
                           ]
                         ),
@@ -47973,7 +47984,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                        API Tokens\n                    "
+                                  "\n                            API Tokens\n                        "
                                 )
                               ]
                             )
@@ -47996,7 +48007,7 @@ var render = function() {
                               { attrs: { as: "button" } },
                               [
                                 _vm._v(
-                                  "\n                            Logout\n                        "
+                                  "\n                                Logout\n                            "
                                 )
                               ]
                             )
@@ -48018,7 +48029,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                            Manage Team\n                        "
+                                    "\n                                Manage Team\n                            "
                                   )
                                 ]
                               ),
@@ -48036,7 +48047,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                            Team Settings\n                        "
+                                    "\n                                Team Settings\n                            "
                                   )
                                 ]
                               ),
@@ -48051,7 +48062,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                            Create New Team\n                        "
+                                    "\n                                Create New Team\n                            "
                                   )
                                 ]
                               ),
@@ -48068,7 +48079,7 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "\n                            Switch Teams\n                        "
+                                    "\n                                Switch Teams\n                            "
                                   )
                                 ]
                               ),
@@ -48143,9 +48154,32 @@ var render = function() {
                       ],
                       2
                     )
-                  ]
-                )
-              : _vm._e()
+                  ])
+                : _c("div", { staticClass: "ml-3 relative" }, [
+                    _c(
+                      "a",
+                      { staticClass: "mr-4", attrs: { href: "/login" } },
+                      [
+                        _vm._v(
+                          "\n                        Login\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { attrs: { href: "/register" } },
+                      [
+                        _c("jet-button", [
+                          _vm._v(
+                            "\n                            Register\n                        "
+                          )
+                        ])
+                      ],
+                      1
+                    )
+                  ])
+            ])
           ]
         )
       ]),
