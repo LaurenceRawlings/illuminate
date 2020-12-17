@@ -15,8 +15,9 @@ class PostController extends Controller
         $posts = Post::query()->orderByDesc('created_at')->paginate(12);
 
         foreach ($posts as $post) {
-            $post->user_name = User::find($post->user_id)->name;
-            $post->user_photo = User::find($post->user_id)->profile_photo_path;
+            $post->user_name = User::query()->find($post->user_id)->name;
+            $post->user_photo = User::query()->find($post->user_id)->profile_photo_path;
+            $post->published = $post->created_at->diffForHumans();
         }
 
         $paginatedLinks = InertiaPaginator::paginationLinks($posts);

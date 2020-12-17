@@ -48979,7 +48979,7 @@ var render = function() {
                   title: post.title,
                   author: post.user_name,
                   description: post.description,
-                  time: post.created_at,
+                  time: post.published,
                   thumbnailurl: post.thumbnail,
                   authorpictureurl: post.user_photo
                 }
