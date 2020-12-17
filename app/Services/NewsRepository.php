@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Models\NewsPost;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 
 class NewsRepository
@@ -18,6 +19,8 @@ class NewsRepository
 
     public function update()
     {
+        $globalSettings = App::make(GlobalSettings::class);
+
         $response = Http::withHeaders([
             'X-Api-Key' => $this->apiKey,
         ])->get('https://newsapi.org/v2/top-headlines', [
@@ -38,5 +41,7 @@ class NewsRepository
                 'published_at' => Carbon::parse($newsPost['publishedAt']),
             ))->save();
         }
+
+        $globalSettings->set('lastUpdated', now());
     }
 }

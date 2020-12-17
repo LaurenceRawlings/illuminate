@@ -14,7 +14,6 @@ class SettingSeeder extends Seeder
      */
     public function run()
     {
-        (new Setting())->fill(array('key' => 'lastUpdated', 'value' => now()))->save();
         (new Setting())->fill(array('key' => 'updateInterval', 'value' => '3'))->save();
     }
 }

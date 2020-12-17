@@ -32,4 +32,14 @@ class GlobalSettings
     {
         return $this->settings[$key];
     }
+
+    public function set (string $key, string $value) {
+        if ($this->has($key)) {
+            $setting = Setting::query()->find($key);
+            $setting->value = $value;
+            $setting->save();
+        } else {
+            (new Setting())->fill(array('key' => $key, 'value' => $value))->save();
+        }
+    }
 }
