@@ -2975,7 +2975,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_DropdownLink__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/DropdownLink */ "./resources/js/Jetstream/DropdownLink.vue");
 /* harmony import */ var _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/NavLink */ "./resources/js/Jetstream/NavLink.vue");
 /* harmony import */ var _Jetstream_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/ResponsiveNavLink */ "./resources/js/Jetstream/ResponsiveNavLink.vue");
-/* harmony import */ var _Components_HeaderGreeting__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/HeaderGreeting */ "./resources/js/Components/HeaderGreeting.vue");
+/* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
+/* harmony import */ var _Components_HeaderGreeting__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/HeaderGreeting */ "./resources/js/Components/HeaderGreeting.vue");
 //
 //
 //
@@ -3201,6 +3202,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -3214,7 +3227,8 @@ __webpack_require__.r(__webpack_exports__);
     JetDropdownLink: _Jetstream_DropdownLink__WEBPACK_IMPORTED_MODULE_2__["default"],
     JetNavLink: _Jetstream_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"],
     JetResponsiveNavLink: _Jetstream_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_4__["default"],
-    AppHeader: _Components_HeaderGreeting__WEBPACK_IMPORTED_MODULE_5__["default"]
+    AppHeader: _Components_HeaderGreeting__WEBPACK_IMPORTED_MODULE_6__["default"],
+    JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
@@ -47437,12 +47451,12 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm.$page.user
-              ? _c(
-                  "div",
-                  { staticClass: "hidden sm:flex sm:items-center sm:ml-6" },
-                  [
-                    _c(
+            _c(
+              "div",
+              { staticClass: "hidden sm:flex sm:items-center sm:ml-6" },
+              [
+                _vm.$page.user
+                  ? _c(
                       "div",
                       { staticClass: "ml-3 relative" },
                       [
@@ -47764,9 +47778,32 @@ var render = function() {
                       ],
                       1
                     )
-                  ]
-                )
-              : _vm._e(),
+                  : _c("div", { staticClass: "ml-3 relative" }, [
+                      _c(
+                        "a",
+                        { staticClass: "mr-4", attrs: { href: "/login" } },
+                        [
+                          _vm._v(
+                            "\n                            Login\n                        "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        { attrs: { href: "/register" } },
+                        [
+                          _c("jet-button", [
+                            _vm._v(
+                              "\n                                Register\n                            "
+                            )
+                          ])
+                        ],
+                        1
+                      )
+                    ])
+              ]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "-mr-2 flex items-center sm:hidden" }, [
               _c(

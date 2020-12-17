@@ -28,8 +28,8 @@
                     </div>
 
                     <!-- Settings Dropdown -->
-                    <div class="hidden sm:flex sm:items-center sm:ml-6" v-if="$page.user">
-                        <div class="ml-3 relative">
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <div class="ml-3 relative" v-if="$page.user">
                             <jet-dropdown align="right" width="48">
                                 <template #trigger>
                                     <button v-if="$page.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
@@ -107,6 +107,17 @@
                                     </form>
                                 </template>
                             </jet-dropdown>
+                        </div>
+
+                        <div class="ml-3 relative" v-else>
+                            <a href="/login" class="mr-4">
+                                Login
+                            </a>
+                            <a href="/register">
+                                <jet-button>
+                                    Register
+                                </jet-button>
+                            </a>
                         </div>
                     </div>
 
@@ -229,6 +240,7 @@
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
+    import JetButton from "@/Jetstream/Button";
 
     import AppHeader from "@/Components/HeaderGreeting";
 
@@ -240,6 +252,7 @@
             JetNavLink,
             JetResponsiveNavLink,
             AppHeader,
+            JetButton,
         },
 
         data() {
