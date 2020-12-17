@@ -1,10 +1,10 @@
 <template>
     <app-layout>
-<!--        <template #header>-->
-<!--            <h2 class="font-semibold text-xl text-gray-800 leading-tight">-->
-<!--                Latest Posts-->
-<!--            </h2>-->
-<!--        </template>-->
+        <template #header>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Latest Posts
+            </h2>
+        </template>
 
         <div class="my-12 max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -21,21 +21,16 @@
 </template>
 
 <script>
-    import AppLayout from '@/Layouts/AppLayout'
-    import Post from "@/Components/Post";
-    import PaginationLinks from "@/Components/PaginationLinks";
+import AppLayout from '@/Layouts/AppLayout'
 
-    export default {
-        components: {
-            AppLayout,
-            Post,
-            PaginationLinks,
-        },
-        props: {
-            posts: Object,
-            paginated_links: Array,
-        },
-    }
+export default {
+    components: {
+        AppLayout,
+    },
+    props: {
+        post: Object,
+    },
+}
 </script>
 
 <style scoped>
