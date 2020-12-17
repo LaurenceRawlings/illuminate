@@ -4,29 +4,19 @@
 namespace App\Services;
 
 
+use App\Models\NewsPost;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 
 class NewsRepository
 {
     private $apiKey;
-    private $posts;
-    private $lastUpdated;
-    private $updateInterval = 3; // 3 hours
 
     public function __construct($apiKey) {
         $this->apiKey = $apiKey;
     }
 
-    public function posts() {
-        if (!$this->lastUpdated || !$this->posts || $this->lastUpdated->diffInHours(now()) > $this->updateInterval) {
-            $this->updatePosts();
-        }
-
-
-        return $this->posts;
-    }
-
-    private function updatePosts()
+    public function update()
     {
         $response = Http::withHeaders([
             'X-Api-Key' => $this->apiKey,
@@ -36,7 +26,17 @@ class NewsRepository
             'pageSize' => 100,
         ]);
 
-        $this->posts = $response->json('articles');
-        $this->lastUpdated = now();
+        NewsPost::query()->whereNotNull('id')->delete();
+
+        foreach ($response->json('articles') as $newsPost) {
+            (new NewsPost())->fill(array(
+                'source' => $newsPost['source']['name'],
+                'title' => $newsPost['title'],
+                'description' => $newsPost['description'],
+                'thumbnail' => $newsPost['urlToImage'],
+                'url' => $newsPost['url'],
+                'published_at' => Carbon::parse($newsPost['publishedAt']),
+            ))->save();
+        }
     }
 }

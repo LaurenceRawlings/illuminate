@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsPostController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostController::class, 'index'])->name('posts');
 
-Route::get('/news', [NewsController::class, 'index'])->name('news');
+Route::get('/news', [NewsPostController::class, 'index'])->name('news');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');

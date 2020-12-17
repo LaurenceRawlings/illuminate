@@ -48891,10 +48891,10 @@ var render = function() {
                 key: post.id,
                 attrs: {
                   title: post.title,
-                  author: post.source.name,
+                  author: post.source,
                   description: post.description,
-                  time: post.publishedAt,
-                  thumbnailurl: post.urlToImage,
+                  time: post.published,
+                  thumbnailurl: post.thumbnail,
                   url: post.url,
                   authorpictureurl: _vm.favicon(post.url)
                 }
