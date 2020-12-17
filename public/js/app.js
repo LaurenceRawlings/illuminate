@@ -3226,6 +3226,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -47575,6 +47583,18 @@ var render = function() {
                                       ]
                                     ),
                                     _vm._v(" "),
+                                    _c(
+                                      "jet-dropdown-link",
+                                      {
+                                        attrs: { href: _vm.route("dashboard") }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                    Dashboard\n                                "
+                                        )
+                                      ]
+                                    ),
+                                    _vm._v(" "),
                                     _vm.$page.jetstream.hasApiFeatures
                                       ? _c(
                                           "jet-dropdown-link",
@@ -47785,7 +47805,7 @@ var render = function() {
                             ],
                             null,
                             false,
-                            1697464311
+                            3485150509
                           )
                         })
                       ],
@@ -47967,6 +47987,21 @@ var render = function() {
                           [
                             _vm._v(
                               "\n                            Profile\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "jet-responsive-nav-link",
+                          {
+                            attrs: {
+                              href: _vm.route("dashboard"),
+                              active: _vm.route().current("dashboard")
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Dashboard\n                        "
                             )
                           ]
                         ),
