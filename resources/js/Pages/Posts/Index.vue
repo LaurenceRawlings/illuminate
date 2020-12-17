@@ -8,7 +8,9 @@
 
         <div class="my-12 max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <post v-for="post in posts.data" :key="post.id" :title="post.title" :author="post.user_name" :description="post.description" :time="post.published" :thumbnailurl="post.thumbnail" :authorpictureurl="post.user_photo" />
+                <inertia-link v-for="post in posts.data" :key="post.id" :href="route('posts.show', post.id)">
+                    <post :title="post.title" :author="post.user_name" :description="post.description" :time="post.published" :thumbnailurl="post.thumbnail" :authorpictureurl="post.user_photo" />
+                </inertia-link>
             </div>
 
             <pagination-links

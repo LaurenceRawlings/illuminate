@@ -20,8 +20,12 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/', [PostController::class, 'index'])->name('posts');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/news', [NewsPostController::class, 'index'])->name('news');
+
+Route::get('/news', [NewsPostController::class, 'index'])->name('news');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia\Inertia::render('Dashboard');

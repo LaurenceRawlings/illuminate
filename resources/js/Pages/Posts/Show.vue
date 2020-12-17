@@ -1,22 +1,21 @@
 <template>
     <app-layout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Latest Posts
-            </h2>
-        </template>
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                    <div class="bg-cover bg-center h-96 p-4" :style="thumbnail"></div>
 
-        <div class="my-12 max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <post v-for="post in posts.data" :key="post.id" :title="post.title" :author="post.user_name" :description="post.description" :time="post.published" :thumbnailurl="post.thumbnail" :authorpictureurl="post.user_photo" />
+                    <div class="py-4 px-24">
+                        <h2 class="text-4xl font-bold">{{ post.title }}</h2>
+
+                        <h3 class="text-2xl font-semibold mb-4">{{ post.description }}</h3>
+
+                        <p class="text-lg">{{ post.body }}</p>
+                    </div>
+                </div>
             </div>
-
-            <pagination-links
-                :urls_array="paginated_links"
-                :previous_page_url="posts.prev_page_url"
-                :next_page_url="posts.next_page_url">
-            </pagination-links>
         </div>
+
     </app-layout>
 </template>
 
@@ -30,6 +29,18 @@ export default {
     props: {
         post: Object,
     },
+    computed: {
+        thumbnail() {
+            return {
+                'background-image': 'url(' + this.post.thumbnail + ')',
+            }
+        },
+        icon() {
+            return {
+                'background-image': 'url(' + this.post.user_photo + ')',
+            }
+        }
+    }
 }
 </script>
 

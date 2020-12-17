@@ -2046,12 +2046,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['title', 'description', 'author', 'time', 'url', 'thumbnailurl', 'authorpictureurl'],
+  props: ['title', 'description', 'author', 'time', 'thumbnailurl', 'authorpictureurl'],
   computed: {
     thumbnail: function thumbnail() {
       return {
@@ -3678,6 +3674,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -3714,6 +3712,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AppLayout */ "./resources/js/Layouts/AppLayout.vue");
 /* harmony import */ var _Components_Post__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Post */ "./resources/js/Components/Post.vue");
 /* harmony import */ var _Components_PaginationLinks__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/PaginationLinks */ "./resources/js/Components/PaginationLinks.vue");
+//
+//
 //
 //
 //
@@ -3784,7 +3784,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3792,6 +3791,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     post: Object
+  },
+  computed: {
+    thumbnail: function thumbnail() {
+      return {
+        'background-image': 'url(' + this.post.thumbnail + ')'
+      };
+    },
+    icon: function icon() {
+      return {
+        'background-image': 'url(' + this.post.user_photo + ')'
+      };
+    }
   }
 });
 
@@ -45797,51 +45808,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "a",
-      {
-        attrs: { href: _vm.url, target: "_blank", rel: "noopener noreferrer" }
-      },
-      [
-        _c("div", { staticClass: "overflow-hidden shadow rounded h-full" }, [
-          _c("div", {
-            staticClass: "bg-cover bg-center h-56 p-4",
-            style: _vm.thumbnail
-          }),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "bg-white p-4 rounded-t-lg mt--10 h-full" },
-            [
-              _c("div", { staticClass: "flex items-center" }, [
-                _c("div", {
-                  staticClass: "bg-cover bg-center w-8 h-8 rounded-full mr-3",
-                  style: _vm.icon
-                }),
-                _vm._v(" "),
-                _c(
-                  "p",
-                  {
-                    staticClass:
-                      "uppercase tracking-wide text-sm font-bold text-gray-700"
-                  },
-                  [_vm._v(_vm._s(_vm.author) + " • " + _vm._s(_vm.time))]
-                )
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-2xl text-gray-900" }, [
-                _vm._v(_vm._s(_vm.title))
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "text-gray-700" }, [
-                _vm._v(_vm._s(_vm.description))
-              ])
-            ]
-          )
-        ])
-      ]
-    )
+  return _c("div", { staticClass: "overflow-hidden shadow rounded h-full" }, [
+    _c("div", {
+      staticClass: "bg-cover bg-center h-56 p-4",
+      style: _vm.thumbnail
+    }),
+    _vm._v(" "),
+    _c("div", { staticClass: "bg-white p-4 rounded-t-lg mt--10 h-full" }, [
+      _c("div", { staticClass: "flex items-center" }, [
+        _c("div", {
+          staticClass: "bg-cover bg-center w-8 h-8 rounded-full mr-3",
+          style: _vm.icon
+        }),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass:
+              "uppercase tracking-wide text-sm font-bold text-gray-700"
+          },
+          [_vm._v(_vm._s(_vm.author) + " • " + _vm._s(_vm.time))]
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-2xl text-gray-900" }, [
+        _vm._v(_vm._s(_vm.title))
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-gray-700" }, [
+        _vm._v(_vm._s(_vm.description))
+      ])
+    ])
   ])
 }
 var staticRenderFns = []
@@ -49093,20 +49090,32 @@ var render = function() {
                 "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
             },
             _vm._l(_vm.posts.data, function(post) {
-              return _c("post", {
-                key: post.id,
-                attrs: {
-                  title: post.title,
-                  author: post.source,
-                  description: post.description,
-                  time: post.published,
-                  thumbnailurl: post.thumbnail,
-                  url: post.url,
-                  authorpictureurl: _vm.favicon(post.url)
-                }
-              })
+              return _c(
+                "a",
+                {
+                  key: post.id,
+                  attrs: {
+                    href: post.url,
+                    target: "_blank",
+                    rel: "noopener noreferrer"
+                  }
+                },
+                [
+                  _c("post", {
+                    attrs: {
+                      title: post.title,
+                      author: post.source,
+                      description: post.description,
+                      time: post.published,
+                      thumbnailurl: post.thumbnail,
+                      authorpictureurl: _vm.favicon(post.url)
+                    }
+                  })
+                ],
+                1
+              )
             }),
-            1
+            0
           ),
           _vm._v(" "),
           _c("pagination-links", {
@@ -49155,17 +49164,26 @@ var render = function() {
             staticClass: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
           },
           _vm._l(_vm.posts.data, function(post) {
-            return _c("post", {
-              key: post.id,
-              attrs: {
-                title: post.title,
-                author: post.user_name,
-                description: post.description,
-                time: post.published,
-                thumbnailurl: post.thumbnail,
-                authorpictureurl: post.user_photo
-              }
-            })
+            return _c(
+              "inertia-link",
+              {
+                key: post.id,
+                attrs: { href: _vm.route("posts.show", post.id) }
+              },
+              [
+                _c("post", {
+                  attrs: {
+                    title: post.title,
+                    author: post.user_name,
+                    description: post.description,
+                    time: post.published,
+                    thumbnailurl: post.thumbnail,
+                    authorpictureurl: post.user_photo
+                  }
+                })
+              ],
+              1
+            )
           }),
           1
         ),
@@ -49204,68 +49222,36 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "app-layout",
-    {
-      scopedSlots: _vm._u([
-        {
-          key: "header",
-          fn: function() {
-            return [
-              _c(
-                "h2",
-                {
-                  staticClass:
-                    "font-semibold text-xl text-gray-800 leading-tight"
-                },
-                [_vm._v("\n            Latest Posts\n        ")]
-              )
-            ]
-          },
-          proxy: true
-        }
-      ])
-    },
-    [
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "my-12 max-w-7xl mx-auto px-4" },
-        [
-          _c(
-            "div",
-            {
-              staticClass:
-                "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-            },
-            _vm._l(_vm.posts.data, function(post) {
-              return _c("post", {
-                key: post.id,
-                attrs: {
-                  title: post.title,
-                  author: post.user_name,
-                  description: post.description,
-                  time: post.published,
-                  thumbnailurl: post.thumbnail,
-                  authorpictureurl: post.user_photo
-                }
-              })
+  return _c("app-layout", [
+    _c("div", { staticClass: "py-12" }, [
+      _c("div", { staticClass: "max-w-7xl mx-auto sm:px-6 lg:px-8" }, [
+        _c(
+          "div",
+          { staticClass: "bg-white overflow-hidden shadow-xl sm:rounded-lg" },
+          [
+            _c("div", {
+              staticClass: "bg-cover bg-center h-96 p-4",
+              style: _vm.thumbnail
             }),
-            1
-          ),
-          _vm._v(" "),
-          _c("pagination-links", {
-            attrs: {
-              urls_array: _vm.paginated_links,
-              previous_page_url: _vm.posts.prev_page_url,
-              next_page_url: _vm.posts.next_page_url
-            }
-          })
-        ],
-        1
-      )
-    ]
-  )
+            _vm._v(" "),
+            _c("div", { staticClass: "py-4 px-24" }, [
+              _c("h2", { staticClass: "text-4xl font-bold" }, [
+                _vm._v(_vm._s(_vm.post.title))
+              ]),
+              _vm._v(" "),
+              _c("h3", { staticClass: "text-2xl font-semibold mb-4" }, [
+                _vm._v(_vm._s(_vm.post.description))
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-lg" }, [
+                _vm._v(_vm._s(_vm.post.body))
+              ])
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

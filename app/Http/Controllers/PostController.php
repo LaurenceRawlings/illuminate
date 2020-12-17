@@ -58,11 +58,19 @@ class PostController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function show($id)
     {
-        //
+        $post = Post::query()->find($id);
+
+        $post->user_name = User::query()->find($post->user_id)->name;
+        $post->user_photo = User::query()->find($post->user_id)->profile_photo_path;
+        $post->published = $post->created_at->diffForHumans();
+
+        return Inertia::render('Posts/Show', [
+            'post' => $post,
+        ]);
     }
 
     /**
