@@ -27,6 +27,7 @@
 
 <script>
 import AppLayout from '@/Layouts/AppLayout'
+import computed from "@/Shared/computed";
 
 export default {
     components: {
@@ -35,18 +36,7 @@ export default {
     props: {
         post: Object,
     },
-    computed: {
-        thumbnail() {
-            return {
-                'background-image': 'url(' + this.post.thumbnail + ')',
-            }
-        },
-        icon() {
-            return {
-                'background-image': 'url(' + this.post.user_photo + ')',
-            }
-        }
-    }
+    computed: {...computed},
 }
 </script>
 
