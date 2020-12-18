@@ -5,7 +5,13 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="bg-cover bg-center h-96 p-4" :style="thumbnail"></div>
 
-                    <div class="py-4 px-24">
+                    <div class="px-24 bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
+                        <div class="py-6">
+                            {{ post.user_name }}
+                        </div>
+                    </div>
+
+                    <div class="px-24 pb-24 pt-12">
                         <h2 class="text-4xl font-bold">{{ post.title }}</h2>
 
                         <h3 class="text-2xl font-semibold mb-4">{{ post.description }}</h3>

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/', [PostController::class, 'index'])->name('posts');
+Route::get('/write', [PostController::class, 'create'])->name('write');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/news', [NewsPostController::class, 'index'])->name('news');

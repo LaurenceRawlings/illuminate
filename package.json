@@ -25,5 +25,9 @@
         "tailwindcss": "^1.8.0",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "jquery": "^3.5.1",
+        "vue-trumbowyg": "^3.6.2"
     }
 }

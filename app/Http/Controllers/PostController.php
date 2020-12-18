@@ -36,11 +36,11 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Inertia\Response
      */
     public function create()
     {
-        //
+        return Inertia::render('Posts/Edit', []);
     }
 
     /**
@@ -62,7 +62,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::query()->find($id);
+        $post = Post::query()->findOrFail($id);
 
         $post->user_name = User::query()->find($post->user_id)->name;
         $post->user_photo = User::query()->find($post->user_id)->profile_photo_path;
