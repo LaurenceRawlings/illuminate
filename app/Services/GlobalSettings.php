@@ -35,7 +35,7 @@ class GlobalSettings
 
     public function set (string $key, string $value) {
         if ($this->has($key)) {
-            Setting::query()->find($key, 'key')->update(array('value' => $value));
+            Setting::query()->where('key', '=', $key)->first()->update(array('value' => $value));
         } else {
             (new Setting())->fill(array('key' => $key, 'value' => $value))->save();
         }
