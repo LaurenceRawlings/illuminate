@@ -54,6 +54,13 @@
                 <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
                 <jet-input-error :message="form.error('email')" class="mt-2" />
             </div>
+
+            <!-- Username -->
+            <div class="col-span-6 sm:col-span-4">
+                <jet-label for="username" value="Username" />
+                <jet-input id="username" type="text" class="mt-1 block w-full" v-model="form.username" />
+                <jet-input-error :message="form.error('username')" class="mt-2" />
+            </div>
         </template>
 
         <template #actions>
@@ -96,6 +103,7 @@
                     '_method': 'PUT',
                     name: this.user.name,
                     email: this.user.email,
+                    username: this.user.username,
                     photo: null,
                 }, {
                     bag: 'updateProfileInformation',

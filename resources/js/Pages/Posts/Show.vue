@@ -18,7 +18,7 @@
 
                         <h3 class="text-2xl font-semibold mb-4">{{ post.description }}</h3>
 
-                        <div v-html="post.body" class="trumbowyg-editor trumbowyg-reset-css"></div>
+                        <div v-html="post.body" class="trumbowyg-editor trumbowyg-reset-css body"></div>
                     </div>
                 </div>
             </div>
@@ -49,5 +49,7 @@ export default {
 </script>
 
 <style scoped>
-
+    .trumbowyg-editor {
+        @apply p-0;
+    }
 </style>

@@ -177,16 +177,6 @@ export default {
 }
 </script>
 
-<style>
-    pre {
-        display: inline-block;
-        width: 100%;
-        vertical-align: top;
-        font-family: monospace;
-        font-size: 0.9em;
-        padding: 0.5em;
-        white-space: pre;
-        background-color: #eee;
-        overflow-x: auto;
-    }
+<style scoped>
+
 </style>

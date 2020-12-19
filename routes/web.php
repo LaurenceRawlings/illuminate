@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NewsPostController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,8 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/write', [PostController:
 
 
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+Route::get('/user/{user}', [UserController::class, 'show'])->name('user.show');
 
 Route::get('/news', [NewsPostController::class, 'index'])->name('news');
 

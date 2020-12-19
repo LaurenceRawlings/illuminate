@@ -18,3 +18,15 @@
 *::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+.trumbowyg-editor pre {
+    vertical-align: top;
+    white-space: pre;
+    @apply p-2;
+    @apply bg-gray-300;
+    @apply overflow-auto;
+    @apply font-mono;
+    @apply w-full;
+    @apply inline-block;
+    @apply rounded;
+}
