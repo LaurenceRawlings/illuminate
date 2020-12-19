@@ -28,8 +28,8 @@ class NewsPostController extends Controller
             $newsPost->published = $newsPost->published_at->diffForHumans();
         }
 
-        return Inertia::render('News', [
-            'posts' => $newsPosts,
+        return Inertia::render('News/Index', [
+            'newsPosts' => $newsPosts,
             'paginated_links' => $paginatedLinks
         ]);
     }

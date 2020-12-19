@@ -18,7 +18,7 @@
 
 <script>
     import ApiTokenManager from './ApiTokenManager'
-    import AppLayout from '@/Layouts/AppLayout'
+    import AppLayout from '@/Shared/Layouts/AppLayout'
     import JetSectionBorder from '@/Jetstream/SectionBorder'
 
     export default {

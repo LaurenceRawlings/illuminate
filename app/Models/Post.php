@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Helpers\Utils;
+use App\Traits\HasThumbnail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
@@ -9,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class Post extends Model
 {
     use HasFactory;
+    use HasThumbnail;
 
     public function user()
     {
@@ -20,11 +23,8 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function getThumbnailUrlAttribute()
-    {
-        return $this->thumbnail
-            ? Storage::disk('public')->url($this->thumbnail)
-            : '/img/placeholder.png';
+    public function getViewsFormattedAttribute() {
+        return Utils::formatViewCount($this->views);
     }
 
     protected $fillable = [
@@ -45,5 +45,6 @@ class Post extends Model
      */
     protected $appends = [
         'thumbnail_url',
+        'views_formatted',
     ];
 }

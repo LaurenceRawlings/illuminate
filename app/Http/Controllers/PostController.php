@@ -6,6 +6,7 @@ use App\Helpers\InertiaPaginator;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Mews\Purifier\Facades\Purifier;
 
@@ -75,7 +76,7 @@ class PostController extends Controller
             'body' => $body
         ]);
 
-        return back();
+        return Redirect::route('posts');
     }
 
     /**
@@ -88,8 +89,12 @@ class PostController extends Controller
     {
         $post = Post::query()->findOrFail($id);
 
+        $post->forceFill([
+            'views' => $post->views + 1,
+        ])->save();
+
         $post->user_name = User::query()->find($post->user_id)->name;
-        $post->user_photo = User::query()->find($post->user_id)->profile_photo_path;
+        $post->user_photo = User::query()->find($post->user_id)->profile_photo_url;
         $post->published = $post->created_at->diffForHumans();
 
         return Inertia::render('Posts/Show', [

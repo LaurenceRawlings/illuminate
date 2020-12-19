@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import AppLayout from '@/Layouts/AppLayout'
+    import AppLayout from '@/Shared/Layouts/AppLayout'
     import Welcome from '@/Jetstream/Welcome'
 
     export default {

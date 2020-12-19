@@ -4,7 +4,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <form autocomplete="off">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                        <div class="bg-cover bg-center h-96 p-4" :style="thumbnail(thumbnailPreview ? thumbnailPreview : 'img/placeholder.png')">
+                        <div class="bg-cover bg-center h-96 p-4" :style="backgroundImage(thumbnailPreview ? thumbnailPreview : 'img/placeholder.png')">
                             <input type="file" class="hidden"
                                    ref="thumbnail"
                                    @change="updateThumbnail">
@@ -47,10 +47,11 @@
 </template>
 
 <script>
-import AppLayout from '@/Layouts/AppLayout';
+import AppLayout from '@/Shared/Layouts/AppLayout';
 import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import JetInput from "@/Jetstream/Input";
+import methods from "@/Shared/methods";
 
 import Trumbowyg from 'vue-trumbowyg';
 import 'trumbowyg/dist/ui/trumbowyg.css';
@@ -138,20 +139,13 @@ export default {
                 body: null,
             }, {
                 bag: 'createPost',
-                resetOnSuccess: true,
+                resetOnSuccess: false,
             })
         }
     },
-    computed: {
-    },
 
     methods: {
-        thumbnail(url) {
-            return {
-                'background-image': 'url(' + url + ')',
-            }
-        },
-
+        ...methods,
         createPost() {
             if (this.thumbnailPreview) {
                 this.form.thumbnail = this.$refs.thumbnail.files[0]

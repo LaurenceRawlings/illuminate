@@ -3,7 +3,7 @@
         <div class="my-12 max-w-7xl mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <inertia-link v-for="post in posts.data" :key="post.id" :href="route('posts.show', post.id)">
-                    <post :title="post.title" :author="post.user_name" :description="post.description" :time="post.published" :thumbnailurl="post.thumbnail" :authorpictureurl="post.user_photo" />
+                    <post-card :post="post" />
                 </inertia-link>
             </div>
 
@@ -17,14 +17,14 @@
 </template>
 
 <script>
-    import AppLayout from '@/Layouts/AppLayout'
-    import Post from "@/Components/Post";
-    import PaginationLinks from "@/Components/PaginationLinks";
+    import AppLayout from '@/Shared/Layouts/AppLayout'
+    import PostCard from "@/Pages/Posts/PostCard";
+    import PaginationLinks from "@/Shared/Components/PaginationLinks";
 
     export default {
         components: {
             AppLayout,
-            Post,
+            PostCard,
             PaginationLinks,
         },
         props: {

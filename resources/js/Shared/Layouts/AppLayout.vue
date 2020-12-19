@@ -275,7 +275,7 @@
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
     import JetButton from "@/Jetstream/Button";
 
-    import AppHeader from "@/Components/HeaderGreeting";
+    import AppHeader from "@/Shared/Components/HeaderGreeting";
 
     export default {
         components: {
