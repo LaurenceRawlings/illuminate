@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->text('title');
             $table->text('description');
             $table->longText('body');
-            $table->string('thumbnail');
+            $table->string('thumbnail')->nullable();
             $table->bigInteger('views');
             $table->timestamps();
         });

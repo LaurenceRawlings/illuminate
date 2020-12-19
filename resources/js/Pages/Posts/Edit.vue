@@ -2,17 +2,45 @@
     <app-layout>
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="bg-cover bg-center h-96 p-4" :style=""></div>
+                <form autocomplete="off">
+                    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                        <div class="bg-cover bg-center h-96 p-4" :style="thumbnail(thumbnailPreview ? thumbnailPreview : 'img/placeholder.png')">
+                            <input type="file" class="hidden"
+                                   ref="thumbnail"
+                                   @change="updateThumbnail">
 
-                    <div class="px-24 bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
-                        <div class="py-6">
-                            {{ $page.user.name }}
+                            <jet-secondary-button type="button" @click.native.prevent="selectNewThumbnail">
+                                Change Thumbnail
+                            </jet-secondary-button>
+
+                            <jet-secondary-button type="button" class="ml-2" @click.native.prevent="removeThumbnail">
+                                Remove Thumbnail
+                            </jet-secondary-button>
                         </div>
-                    </div>
 
-                    <trumbowyg v-model="content" :config="config" class="form-control" name="content"></trumbowyg>
-                </div>
+                        <div class="flex items-center px-24 bg-gray-200 bg-opacity-25">
+                            <div class="mr-2">
+                                <img :src="$page.user.profile_photo_url" alt="Current Profile Photo" class="rounded-full h-10 w-10 object-cover">
+                            </div>
+
+                            <div class="py-6">
+                                {{ $page.user.name }}
+                            </div>
+
+                            <jet-button class="ml-auto" @click.native.prevent="createPost">
+                                Publish
+                            </jet-button>
+                        </div>
+
+
+                        <div class="px-24 pt-6 pb-24">
+                            <jet-input id="title" type="text" class="text-4xl mb-2 font-bold block w-full" v-model="form.title" placeholder="Title" />
+                            <jet-input id="description" type="text" class="text-2xl mb-2 font-semibold block w-full" v-model="form.description" placeholder="Description" />
+                            <trumbowyg v-model="form.body" :config="config" class="form-control" name="content"></trumbowyg>
+                        </div>
+
+                    </div>
+                </form>
             </div>
         </div>
     </app-layout>
@@ -20,7 +48,9 @@
 
 <script>
 import AppLayout from '@/Layouts/AppLayout';
-import computed from "@/Shared/computed";
+import JetButton from "@/Jetstream/Button";
+import JetSecondaryButton from "@/Jetstream/SecondaryButton";
+import JetInput from "@/Jetstream/Input";
 
 import Trumbowyg from 'vue-trumbowyg';
 import 'trumbowyg/dist/ui/trumbowyg.css';
@@ -43,10 +73,12 @@ export default {
     components: {
         AppLayout,
         Trumbowyg,
+        JetButton,
+        JetSecondaryButton,
+        JetInput,
     },
     data () {
         return {
-            content: null,
             config: {
                 resetCss: true,
                 tagsToRemove: ['script', 'link'],
@@ -96,13 +128,71 @@ export default {
                         urlPropertyName: 'data.link'
                     }
                 },
-            }
+            },
+            thumbnailPreview: null,
+            form: this.$inertia.form({
+                '_method': 'POST',
+                thumbnail: null,
+                title: null,
+                description: null,
+                body: null,
+            }, {
+                bag: 'createPost',
+                resetOnSuccess: true,
+            })
         }
     },
-    computed: {...computed},
+    computed: {
+    },
+
+    methods: {
+        thumbnail(url) {
+            return {
+                'background-image': 'url(' + url + ')',
+            }
+        },
+
+        createPost() {
+            if (this.thumbnailPreview) {
+                this.form.thumbnail = this.$refs.thumbnail.files[0]
+            }
+
+            this.form.post(route('posts.store'), {
+                preserveScroll: true
+            });
+        },
+
+        selectNewThumbnail() {
+            this.$refs.thumbnail.click();
+        },
+
+        updateThumbnail() {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+                this.thumbnailPreview = e.target.result;
+            };
+
+            reader.readAsDataURL(this.$refs.thumbnail.files[0]);
+        },
+
+        removeThumbnail() {
+            this.thumbnailPreview = 'img/placeholder.png'
+        },
+    },
 }
 </script>
 
-<style scoped>
-
+<style>
+    pre {
+        display: inline-block;
+        width: 100%;
+        vertical-align: top;
+        font-family: monospace;
+        font-size: 0.9em;
+        padding: 0.5em;
+        white-space: pre;
+        background-color: #eee;
+        overflow-x: auto;
+    }
 </style>

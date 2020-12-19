@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/', [PostController::class, 'index'])->name('posts');
-Route::middleware(['auth:sanctum', 'verified'])->get('/write', [PostController::class, 'create'])->name('write');
+Route::middleware(['auth:sanctum', 'verified'])->get('/write', [PostController::class, 'create'])->name('posts.create');
+Route::middleware(['auth:sanctum', 'verified'])->post('/write', [PostController::class, 'store'])->name('posts.store');
 
 
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');

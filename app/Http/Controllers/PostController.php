@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Mews\Purifier\Facades\Purifier;
 
 class PostController extends Controller
 {
@@ -21,7 +22,7 @@ class PostController extends Controller
 
         foreach ($posts as $post) {
             $post->user_name = User::query()->find($post->user_id)->name;
-            $post->user_photo = User::query()->find($post->user_id)->profile_photo_path;
+            $post->user_photo = User::query()->find($post->user_id)->profile_photo_url;
             $post->published = $post->created_at->diffForHumans();
         }
 
@@ -47,11 +48,34 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'thumbnail' => 'image|mimes:png,jpg,jpeg|max:4096|nullable',
+            'title' => 'required',
+            'description' => 'required',
+            'body' => 'required'
+        ]);
+
+
+        $thumbnail = $validatedData['thumbnail'];
+
+        if ($thumbnail) {
+            $imageName = $thumbnail->store('post-thumbnails/'.$request->user()->id, 'public');
+        }
+
+        $body = Purifier::clean($validatedData['body']);
+
+        $request->user()->posts()->create([
+            'thumbnail' => $thumbnail ? $imageName : null,
+            'title' => $validatedData['title'],
+            'description' => $validatedData['description'],
+            'body' => $body
+        ]);
+
+        return back();
     }
 
     /**
