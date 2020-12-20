@@ -1,6 +1,8 @@
 /node_modules
 /public/hot
 /public/storage
+/public/css
+/public/js
 /storage/*.key
 /vendor
 .env
@@ -254,3 +256,4 @@ test/
 dist/
 
 # End of https://www.toptal.com/developers/gitignore/api/laravel,phpstorm+all,node,vue,vuejs
+/public/css/

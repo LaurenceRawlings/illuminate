@@ -49,7 +49,6 @@ class NewsRepository
 
     private function favicon($url)
     {
-        $url = parse_url($url);
-        return $url['scheme'].'://'.$url['host'].'/'.'favicon.ico';
+        return 'https://www.google.com/s2/favicons?sz=128&domain_url='.$url;
     }
 }
