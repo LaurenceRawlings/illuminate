@@ -18,11 +18,6 @@ class GlobalSettings
         }
     }
 
-    public function has(string $key)
-    {
-        return array_key_exists($key, $this->settings);
-    }
-
     public function contains(string $value)
     {
         return in_array($value, $this->settings);
@@ -33,11 +28,17 @@ class GlobalSettings
         return $this->settings[$key];
     }
 
-    public function set (string $key, string $value) {
+    public function set(string $key, string $value)
+    {
         if ($this->has($key)) {
             Setting::query()->where('key', '=', $key)->first()->update(array('value' => $value));
         } else {
             (new Setting())->fill(array('key' => $key, 'value' => $value))->save();
         }
+    }
+
+    public function has(string $key)
+    {
+        return array_key_exists($key, $this->settings);
     }
 }

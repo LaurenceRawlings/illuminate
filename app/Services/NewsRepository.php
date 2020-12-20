@@ -8,13 +8,13 @@ use App\Models\NewsPost;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\URL;
 
 class NewsRepository
 {
     private $apiKey;
 
-    public function __construct($apiKey) {
+    public function __construct($apiKey)
+    {
         $this->apiKey = $apiKey;
     }
 
@@ -49,6 +49,6 @@ class NewsRepository
 
     private function favicon($url)
     {
-        return 'https://www.google.com/s2/favicons?sz=128&domain_url='.$url;
+        return 'https://www.google.com/s2/favicons?sz=128&domain_url=' . $url;
     }
 }

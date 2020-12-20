@@ -26,7 +26,7 @@ class PostFactory extends Factory
             'user_id' => User::factory(),
             'title' => $this->faker->sentence($nbWords = 10, $variableNbWords = true),
             'description' => $this->faker->sentence($nbWords = 15, $variableNbWords = true),
-            'body' =>  $this->faker->paragraphs($nb = 10, $asText = true),
+            'body' => $this->faker->paragraphs($nb = 10, $asText = true),
             'thumbnail' => $this->faker->imageUrl($width = 640, $height = 480),
             'views' => $this->faker->numberBetween($min = 0, $max = 10000),
         ];

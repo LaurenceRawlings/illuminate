@@ -9,6 +9,18 @@ class Profile extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'bio',
+        'featured_article',
+        'status_text',
+        'status_emoji',
+    ];
+    protected $attributes = [
+        'bio' => 'Hello 👋',
+        'status_text' => 'Happy',
+        'status_emoji' => '🙂',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -18,17 +30,4 @@ class Profile extends Model
     {
         return $this->hasOne(Post::class);
     }
-
-    protected $fillable = [
-        'bio',
-        'featured_article',
-        'status_text',
-        'status_emoji',
-    ];
-
-    protected $attributes = [
-        'bio' => 'Hello 👋',
-        'status_text' => 'Happy',
-        'status_emoji' => '🙂',
-    ];
 }

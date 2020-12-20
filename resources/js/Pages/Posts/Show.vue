@@ -3,11 +3,12 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="bg-cover bg-center h-96 p-4" :style="backgroundImage(post.thumbnail_url)"></div>
+                    <div :style="backgroundImage(post.thumbnail_url)" class="bg-cover bg-center h-96 p-4"></div>
 
                     <div class="post-container">
                         <div class="flex items-center px-24 bg-gray-200 bg-opacity-25">
-                            <div class="bg-cover bg-center w-10 h-10 rounded-full mr-3" :style="backgroundImage(post.user_photo)"></div>
+                            <div :style="backgroundImage(post.user_photo)"
+                                 class="bg-cover bg-center w-10 h-10 rounded-full mr-3"></div>
 
                             <div class="py-6 font-bold">
                                 {{ post.user_name }}
@@ -19,7 +20,7 @@
 
                             <h3 class="text-2xl font-semibold mb-4">{{ post.description }}</h3>
 
-                            <div v-html="post.body" class="trumbowyg-editor trumbowyg-reset-css body"></div>
+                            <div class="trumbowyg-editor trumbowyg-reset-css body" v-html="post.body"></div>
                         </div>
                     </div>
                 </div>
@@ -51,7 +52,7 @@ export default {
 </script>
 
 <style scoped>
-    .trumbowyg-editor {
-        @apply p-0;
-    }
+.trumbowyg-editor {
+    @apply p-0;
+}
 </style>

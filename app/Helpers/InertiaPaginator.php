@@ -14,7 +14,7 @@ class InertiaPaginator
 
         $window = UrlWindow::make($lengthAwarePaginator);
 
-        $array =  array_filter([
+        $array = array_filter([
             $window['first'],
             is_array($window['slider']) ? '...' : null,
             $window['slider'],
@@ -23,8 +23,8 @@ class InertiaPaginator
         ]);
 
         $i = 1;
-        foreach($array as $index => $urlsArray){
-            if(is_array($urlsArray)) {
+        foreach ($array as $index => $urlsArray) {
+            if (is_array($urlsArray)) {
                 foreach ($urlsArray as $pageNumber => $link) {
                     $currentPage = $lengthAwarePaginator->currentPage();
                     $n[] = [
@@ -36,7 +36,7 @@ class InertiaPaginator
                     ];
                     $i++;
                 }
-            } elseif(is_string($urlsArray)) {
+            } elseif (is_string($urlsArray)) {
                 $n[] = [
                     'url' => $urlsArray,
                     'indexKey' => $i,
@@ -45,7 +45,6 @@ class InertiaPaginator
                 $i++;
             }
         }
-
 
 
         return count($n) === 1 ? null : $n;

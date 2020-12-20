@@ -4,16 +4,19 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <form autocomplete="off">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                        <div class="bg-cover bg-center h-96 p-4" :style="backgroundImage(thumbnailPreview ? thumbnailPreview : 'storage/app-images/default-thumbnail.png')">
-                            <input type="file" class="hidden"
-                                   ref="thumbnail"
+                        <div :style="backgroundImage(thumbnailPreview ? thumbnailPreview : 'storage/app-images/default-thumbnail.png')"
+                             class="bg-cover bg-center h-96 p-4">
+                            <input ref="thumbnail" class="hidden"
+                                   type="file"
                                    @change="updateThumbnail">
 
-                            <jet-secondary-button type="button" class="ml-2 mt-2" @click.native.prevent="selectNewThumbnail">
+                            <jet-secondary-button class="ml-2 mt-2" type="button"
+                                                  @click.native.prevent="selectNewThumbnail">
                                 Change Thumbnail
                             </jet-secondary-button>
 
-                            <jet-secondary-button type="button" class="ml-2 mt-2" @click.native.prevent="removeThumbnail">
+                            <jet-secondary-button class="ml-2 mt-2" type="button"
+                                                  @click.native.prevent="removeThumbnail">
                                 Remove Thumbnail
                             </jet-secondary-button>
                         </div>
@@ -21,7 +24,8 @@
                         <div class="post-container">
                             <div class="flex items-center bg-gray-200 bg-opacity-25">
                                 <div class="mr-2">
-                                    <img :src="$page.user.profile_photo_url" alt="Current Profile Photo" class="rounded-full h-10 w-10 object-cover">
+                                    <img :src="$page.user.profile_photo_url" alt="Current Profile Photo"
+                                         class="rounded-full h-10 w-10 object-cover">
                                 </div>
 
                                 <div class="py-6">
@@ -35,17 +39,20 @@
 
 
                             <div class="pt-6">
-                                <jet-input-error message="Publish failed!" v-if="form.hasErrors('createPost')"/>
-                                <jet-input-error :message="form.error('thumbnail')" />
-                                <jet-input-error :message="form.error('title')" />
-                                <jet-input-error :message="form.error('description')" />
-                                <jet-input-error :message="form.error('body')" />
+                                <jet-input-error v-if="form.hasErrors('createPost')" message="Publish failed!"/>
+                                <jet-input-error :message="form.error('thumbnail')"/>
+                                <jet-input-error :message="form.error('title')"/>
+                                <jet-input-error :message="form.error('description')"/>
+                                <jet-input-error :message="form.error('body')"/>
 
-                                <input id="title" type="text" class="text-4xl font-bold mb-4 input" v-model="form.title" placeholder="Title" />
+                                <input id="title" v-model="form.title" class="text-4xl font-bold mb-4 input" placeholder="Title"
+                                       type="text"/>
 
-                                <input id="description" type="text" class="text-2xl font-semibold mb-8 input" v-model="form.description" placeholder="Description" />
+                                <input id="description" v-model="form.description" class="text-2xl font-semibold mb-8 input"
+                                       placeholder="Description" type="text"/>
 
-                                <trumbowyg v-model="form.body" :config="config" class="form-control" name="content"></trumbowyg>
+                                <trumbowyg v-model="form.body" :config="config" class="form-control"
+                                           name="content"></trumbowyg>
                             </div>
                         </div>
                     </div>
@@ -89,7 +96,7 @@ export default {
         JetInput,
         JetInputError,
     },
-    data () {
+    data() {
         return {
             config: {
                 resetCss: true,
@@ -189,32 +196,32 @@ export default {
 </script>
 
 <style scoped>
-    .input {
-        @apply w-full;
-        @apply block;
-        @apply border-b-2;
-        @apply border-solid;
-    }
+.input {
+    @apply w-full;
+    @apply block;
+    @apply border-b-2;
+    @apply border-solid;
+}
 </style>
 
 <style>
-    .trumbowyg-box, .trumbowyg-editor {
-        @apply border-t-0;
-        @apply border-l-0;
-        @apply border-r-0;
-        @apply border-b-2;
-    }
+.trumbowyg-box, .trumbowyg-editor {
+    @apply border-t-0;
+    @apply border-l-0;
+    @apply border-r-0;
+    @apply border-b-2;
+}
 
-    .trumbowyg-editor, .trumbowyg-textarea {
-        @apply p-0;
-        @apply pt-4;
-    }
+.trumbowyg-editor, .trumbowyg-textarea {
+    @apply p-0;
+    @apply pt-4;
+}
 
-    .trumbowyg-button-pane {
-        @apply rounded;
-    }
+.trumbowyg-button-pane {
+    @apply rounded;
+}
 
-    .trumbowyg-button-pane::after {
-        @apply bg-transparent;
-    }
+.trumbowyg-button-pane::after {
+    @apply bg-transparent;
+}
 </style>

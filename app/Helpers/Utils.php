@@ -16,11 +16,11 @@ class Utils
         if ($views < 1000) {
             $views_format = number_format($views);
         } else if ($views < 1000000) {
-            $views_format = number_format($views / 1000, 1).'K';
+            $views_format = number_format($views / 1000, 1) . 'K';
         } else if ($views < 1000000000) {
-            $views_format = number_format($views / 1000000, 2).'M';
+            $views_format = number_format($views / 1000000, 2) . 'M';
         } else {
-            $views_format = number_format($views / 1000000000, 3).'B';
+            $views_format = number_format($views / 1000000000, 3) . 'B';
         }
 
         return $views_format;

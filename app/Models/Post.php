@@ -6,12 +6,30 @@ use App\Helpers\Utils;
 use App\Traits\HasThumbnail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
     use HasFactory;
     use HasThumbnail;
+
+    protected $fillable = [
+        'title',
+        'description',
+        'body',
+        'thumbnail',
+    ];
+    protected $attributes = [
+        'views' => 0,
+    ];
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'thumbnail_url',
+        'views_formatted',
+    ];
 
     public function user()
     {
@@ -23,28 +41,8 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function getViewsFormattedAttribute() {
+    public function getViewsFormattedAttribute()
+    {
         return Utils::formatViewCount($this->views);
     }
-
-    protected $fillable = [
-        'title',
-        'description',
-        'body',
-        'thumbnail',
-    ];
-
-    protected $attributes = [
-        'views' => 0,
-    ];
-
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'thumbnail_url',
-        'views_formatted',
-    ];
 }

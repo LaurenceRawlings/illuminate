@@ -8,7 +8,8 @@ use Illuminate\Validation\Rule;
 
 trait UsernameValidationRules
 {
-    protected function usernameRules($user = null) {
+    protected function usernameRules($user = null)
+    {
         $forbiddenUsernames = ['read', 'write', 'news', 'dashboard'];
         $baseRules = ['required', 'max:25', 'min:6', 'alpha_dash', Rule::notIn($forbiddenUsernames)];
 
