@@ -7,6 +7,8 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 use Mews\Purifier\Facades\Purifier;
 
@@ -53,26 +55,28 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'thumbnail' => 'image|mimes:png,jpg,jpeg|max:4096|nullable',
-            'title' => 'required',
-            'description' => 'required',
-            'body' => 'required'
-        ]);
+        $input = $request->all();
+
+        Validator::make($input, [
+            'thumbnail' => ['image', 'mimes:png,jpg,jpeg', 'max:4096', 'nullable'],
+            'title' => ['required'],
+            'description' => ['required'],
+            'body' => ['required'],
+        ])->validateWithBag('createPost');
 
 
-        $thumbnail = $validatedData['thumbnail'];
+        $thumbnail = $input['thumbnail'];
 
         if ($thumbnail) {
             $imageName = $thumbnail->store('post-thumbnails/'.$request->user()->id, 'public');
         }
 
-        $body = Purifier::clean($validatedData['body']);
+        $body = Purifier::clean($input['body']);
 
         $request->user()->posts()->create([
             'thumbnail' => $thumbnail ? $imageName : null,
-            'title' => $validatedData['title'],
-            'description' => $validatedData['description'],
+            'title' => $input['title'],
+            'description' => $input['description'],
             'body' => $body
         ]);
 

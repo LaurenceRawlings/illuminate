@@ -4,16 +4,16 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <form autocomplete="off">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                        <div class="bg-cover bg-center h-96 p-4" :style="backgroundImage(thumbnailPreview ? thumbnailPreview : 'img/placeholder.png')">
+                        <div class="bg-cover bg-center h-96 p-4" :style="backgroundImage(thumbnailPreview ? thumbnailPreview : 'storage/app-images/default-thumbnail.png')">
                             <input type="file" class="hidden"
                                    ref="thumbnail"
                                    @change="updateThumbnail">
 
-                            <jet-secondary-button type="button" @click.native.prevent="selectNewThumbnail">
+                            <jet-secondary-button type="button" class="ml-2 mt-2" @click.native.prevent="selectNewThumbnail">
                                 Change Thumbnail
                             </jet-secondary-button>
 
-                            <jet-secondary-button type="button" class="ml-2" @click.native.prevent="removeThumbnail">
+                            <jet-secondary-button type="button" class="ml-2 mt-2" @click.native.prevent="removeThumbnail">
                                 Remove Thumbnail
                             </jet-secondary-button>
                         </div>
@@ -35,8 +35,16 @@
 
 
                             <div class="pt-6">
+                                <jet-input-error message="Publish failed!" v-if="form.hasErrors('createPost')"/>
+                                <jet-input-error :message="form.error('thumbnail')" />
+                                <jet-input-error :message="form.error('title')" />
+                                <jet-input-error :message="form.error('description')" />
+                                <jet-input-error :message="form.error('body')" />
+
                                 <input id="title" type="text" class="text-4xl font-bold mb-4 input" v-model="form.title" placeholder="Title" />
+
                                 <input id="description" type="text" class="text-2xl font-semibold mb-8 input" v-model="form.description" placeholder="Description" />
+
                                 <trumbowyg v-model="form.body" :config="config" class="form-control" name="content"></trumbowyg>
                             </div>
                         </div>
@@ -52,6 +60,7 @@ import AppLayout from '@/Shared/Layouts/AppLayout';
 import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import JetInput from "@/Jetstream/Input";
+import JetInputError from "@/Jetstream/InputError";
 import methods from "@/Shared/methods";
 
 import Trumbowyg from 'vue-trumbowyg';
@@ -78,6 +87,7 @@ export default {
         JetButton,
         JetSecondaryButton,
         JetInput,
+        JetInputError,
     },
     data () {
         return {
@@ -137,10 +147,10 @@ export default {
                 thumbnail: null,
                 title: null,
                 description: null,
-                body: null,
+                body: 'Write your post here...',
             }, {
                 bag: 'createPost',
-                resetOnSuccess: false,
+                resetOnSuccess: true,
             })
         }
     },
@@ -172,7 +182,7 @@ export default {
         },
 
         removeThumbnail() {
-            this.thumbnailPreview = 'img/placeholder.png'
+            this.thumbnailPreview = null;
         },
     },
 }

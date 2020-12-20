@@ -26,7 +26,7 @@
                             </jet-nav-link>
                         </div>
 
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-if="$page.user">
                             <jet-nav-link :href="route('post.create')" :active="route().current('post.create')">
                                 Write
                             </jet-nav-link>
@@ -157,7 +157,7 @@
                     </jet-responsive-nav-link>
                 </div>
 
-                <div class="pt-2 pb-3 space-y-1">
+                <div class="pt-2 pb-3 space-y-1" v-if="$page.user">
                     <jet-responsive-nav-link :href="route('post.create')" :active="route().current('post.create')">
                         Write
                     </jet-responsive-nav-link>

@@ -15,8 +15,6 @@ trait HasThumbnail
             return $this->thumbnail;
         }
 
-        return $this->thumbnail
-            ? Storage::disk('public')->url($this->thumbnail)
-            : '/img/placeholder.png';
+        return Storage::disk('public')->url($this->thumbnail ? $this->thumbnail : 'app-images/default-thumbnail.png');
     }
 }

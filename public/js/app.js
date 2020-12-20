@@ -3294,37 +3294,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Jetstream/Button */ "./resources/js/Jetstream/Button.vue");
 /* harmony import */ var _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Jetstream/SecondaryButton */ "./resources/js/Jetstream/SecondaryButton.vue");
 /* harmony import */ var _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Jetstream/Input */ "./resources/js/Jetstream/Input.vue");
-/* harmony import */ var _Shared_methods__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Shared/methods */ "./resources/js/Shared/methods.js");
-/* harmony import */ var vue_trumbowyg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-trumbowyg */ "./node_modules/vue-trumbowyg/dist/vue-trumbowyg.min.js");
-/* harmony import */ var vue_trumbowyg__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_trumbowyg__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var trumbowyg_dist_ui_trumbowyg_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! trumbowyg/dist/ui/trumbowyg.css */ "./node_modules/trumbowyg/dist/ui/trumbowyg.css");
-/* harmony import */ var trumbowyg_dist_ui_trumbowyg_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_ui_trumbowyg_css__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var trumbowyg_dist_plugins_table_ui_trumbowyg_table_min_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css */ "./node_modules/trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css");
-/* harmony import */ var trumbowyg_dist_plugins_table_ui_trumbowyg_table_min_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_table_ui_trumbowyg_table_min_css__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var trumbowyg_dist_plugins_colors_ui_trumbowyg_colors_min_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css */ "./node_modules/trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css");
-/* harmony import */ var trumbowyg_dist_plugins_colors_ui_trumbowyg_colors_min_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_colors_ui_trumbowyg_colors_min_css__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var trumbowyg_dist_plugins_emoji_ui_trumbowyg_emoji_min_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.min.css */ "./node_modules/trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.min.css");
-/* harmony import */ var trumbowyg_dist_plugins_emoji_ui_trumbowyg_emoji_min_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_emoji_ui_trumbowyg_emoji_min_css__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var trumbowyg_dist_plugins_history_trumbowyg_history_min_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! trumbowyg/dist/plugins/history/trumbowyg.history.min.js */ "./node_modules/trumbowyg/dist/plugins/history/trumbowyg.history.min.js");
-/* harmony import */ var trumbowyg_dist_plugins_history_trumbowyg_history_min_js__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_history_trumbowyg_history_min_js__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var jquery_resizable_dom_dist_jquery_resizable_min_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! jquery-resizable-dom/dist/jquery-resizable.min.js */ "./node_modules/jquery-resizable-dom/dist/jquery-resizable.min.js");
-/* harmony import */ var jquery_resizable_dom_dist_jquery_resizable_min_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(jquery_resizable_dom_dist_jquery_resizable_min_js__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var trumbowyg_dist_plugins_resizimg_trumbowyg_resizimg_min_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! trumbowyg/dist/plugins/resizimg/trumbowyg.resizimg.min.js */ "./node_modules/trumbowyg/dist/plugins/resizimg/trumbowyg.resizimg.min.js");
-/* harmony import */ var trumbowyg_dist_plugins_resizimg_trumbowyg_resizimg_min_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_resizimg_trumbowyg_resizimg_min_js__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var trumbowyg_dist_plugins_table_trumbowyg_table_min_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! trumbowyg/dist/plugins/table/trumbowyg.table.min.js */ "./node_modules/trumbowyg/dist/plugins/table/trumbowyg.table.min.js");
-/* harmony import */ var trumbowyg_dist_plugins_table_trumbowyg_table_min_js__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_table_trumbowyg_table_min_js__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var trumbowyg_dist_plugins_colors_trumbowyg_colors_min_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js */ "./node_modules/trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js");
-/* harmony import */ var trumbowyg_dist_plugins_colors_trumbowyg_colors_min_js__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_colors_trumbowyg_colors_min_js__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var trumbowyg_dist_plugins_emoji_trumbowyg_emoji_min_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! trumbowyg/dist/plugins/emoji/trumbowyg.emoji.min.js */ "./node_modules/trumbowyg/dist/plugins/emoji/trumbowyg.emoji.min.js");
-/* harmony import */ var trumbowyg_dist_plugins_emoji_trumbowyg_emoji_min_js__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_emoji_trumbowyg_emoji_min_js__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var trumbowyg_dist_plugins_pasteembed_trumbowyg_pasteembed_min_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! trumbowyg/dist/plugins/pasteembed/trumbowyg.pasteembed.min.js */ "./node_modules/trumbowyg/dist/plugins/pasteembed/trumbowyg.pasteembed.min.js");
-/* harmony import */ var trumbowyg_dist_plugins_pasteembed_trumbowyg_pasteembed_min_js__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_pasteembed_trumbowyg_pasteembed_min_js__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var trumbowyg_dist_plugins_preformatted_trumbowyg_preformatted_min_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! trumbowyg/dist/plugins/preformatted/trumbowyg.preformatted.min.js */ "./node_modules/trumbowyg/dist/plugins/preformatted/trumbowyg.preformatted.min.js");
-/* harmony import */ var trumbowyg_dist_plugins_preformatted_trumbowyg_preformatted_min_js__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_preformatted_trumbowyg_preformatted_min_js__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var trumbowyg_dist_plugins_indent_trumbowyg_indent_min_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! trumbowyg/dist/plugins/indent/trumbowyg.indent.min.js */ "./node_modules/trumbowyg/dist/plugins/indent/trumbowyg.indent.min.js");
-/* harmony import */ var trumbowyg_dist_plugins_indent_trumbowyg_indent_min_js__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_indent_trumbowyg_indent_min_js__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var trumbowyg_dist_plugins_upload_trumbowyg_upload_min_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js */ "./node_modules/trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js");
-/* harmony import */ var trumbowyg_dist_plugins_upload_trumbowyg_upload_min_js__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_upload_trumbowyg_upload_min_js__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Jetstream/InputError */ "./resources/js/Jetstream/InputError.vue");
+/* harmony import */ var _Shared_methods__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Shared/methods */ "./resources/js/Shared/methods.js");
+/* harmony import */ var vue_trumbowyg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-trumbowyg */ "./node_modules/vue-trumbowyg/dist/vue-trumbowyg.min.js");
+/* harmony import */ var vue_trumbowyg__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_trumbowyg__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var trumbowyg_dist_ui_trumbowyg_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! trumbowyg/dist/ui/trumbowyg.css */ "./node_modules/trumbowyg/dist/ui/trumbowyg.css");
+/* harmony import */ var trumbowyg_dist_ui_trumbowyg_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_ui_trumbowyg_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var trumbowyg_dist_plugins_table_ui_trumbowyg_table_min_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css */ "./node_modules/trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css");
+/* harmony import */ var trumbowyg_dist_plugins_table_ui_trumbowyg_table_min_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_table_ui_trumbowyg_table_min_css__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var trumbowyg_dist_plugins_colors_ui_trumbowyg_colors_min_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css */ "./node_modules/trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css");
+/* harmony import */ var trumbowyg_dist_plugins_colors_ui_trumbowyg_colors_min_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_colors_ui_trumbowyg_colors_min_css__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var trumbowyg_dist_plugins_emoji_ui_trumbowyg_emoji_min_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.min.css */ "./node_modules/trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.min.css");
+/* harmony import */ var trumbowyg_dist_plugins_emoji_ui_trumbowyg_emoji_min_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_emoji_ui_trumbowyg_emoji_min_css__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var trumbowyg_dist_plugins_history_trumbowyg_history_min_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! trumbowyg/dist/plugins/history/trumbowyg.history.min.js */ "./node_modules/trumbowyg/dist/plugins/history/trumbowyg.history.min.js");
+/* harmony import */ var trumbowyg_dist_plugins_history_trumbowyg_history_min_js__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_history_trumbowyg_history_min_js__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var jquery_resizable_dom_dist_jquery_resizable_min_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! jquery-resizable-dom/dist/jquery-resizable.min.js */ "./node_modules/jquery-resizable-dom/dist/jquery-resizable.min.js");
+/* harmony import */ var jquery_resizable_dom_dist_jquery_resizable_min_js__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(jquery_resizable_dom_dist_jquery_resizable_min_js__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var trumbowyg_dist_plugins_resizimg_trumbowyg_resizimg_min_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! trumbowyg/dist/plugins/resizimg/trumbowyg.resizimg.min.js */ "./node_modules/trumbowyg/dist/plugins/resizimg/trumbowyg.resizimg.min.js");
+/* harmony import */ var trumbowyg_dist_plugins_resizimg_trumbowyg_resizimg_min_js__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_resizimg_trumbowyg_resizimg_min_js__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var trumbowyg_dist_plugins_table_trumbowyg_table_min_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! trumbowyg/dist/plugins/table/trumbowyg.table.min.js */ "./node_modules/trumbowyg/dist/plugins/table/trumbowyg.table.min.js");
+/* harmony import */ var trumbowyg_dist_plugins_table_trumbowyg_table_min_js__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_table_trumbowyg_table_min_js__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var trumbowyg_dist_plugins_colors_trumbowyg_colors_min_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js */ "./node_modules/trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js");
+/* harmony import */ var trumbowyg_dist_plugins_colors_trumbowyg_colors_min_js__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_colors_trumbowyg_colors_min_js__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var trumbowyg_dist_plugins_emoji_trumbowyg_emoji_min_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! trumbowyg/dist/plugins/emoji/trumbowyg.emoji.min.js */ "./node_modules/trumbowyg/dist/plugins/emoji/trumbowyg.emoji.min.js");
+/* harmony import */ var trumbowyg_dist_plugins_emoji_trumbowyg_emoji_min_js__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_emoji_trumbowyg_emoji_min_js__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var trumbowyg_dist_plugins_pasteembed_trumbowyg_pasteembed_min_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! trumbowyg/dist/plugins/pasteembed/trumbowyg.pasteembed.min.js */ "./node_modules/trumbowyg/dist/plugins/pasteembed/trumbowyg.pasteembed.min.js");
+/* harmony import */ var trumbowyg_dist_plugins_pasteembed_trumbowyg_pasteembed_min_js__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_pasteembed_trumbowyg_pasteembed_min_js__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var trumbowyg_dist_plugins_preformatted_trumbowyg_preformatted_min_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! trumbowyg/dist/plugins/preformatted/trumbowyg.preformatted.min.js */ "./node_modules/trumbowyg/dist/plugins/preformatted/trumbowyg.preformatted.min.js");
+/* harmony import */ var trumbowyg_dist_plugins_preformatted_trumbowyg_preformatted_min_js__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_preformatted_trumbowyg_preformatted_min_js__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var trumbowyg_dist_plugins_indent_trumbowyg_indent_min_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! trumbowyg/dist/plugins/indent/trumbowyg.indent.min.js */ "./node_modules/trumbowyg/dist/plugins/indent/trumbowyg.indent.min.js");
+/* harmony import */ var trumbowyg_dist_plugins_indent_trumbowyg_indent_min_js__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_indent_trumbowyg_indent_min_js__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var trumbowyg_dist_plugins_upload_trumbowyg_upload_min_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js */ "./node_modules/trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js");
+/* harmony import */ var trumbowyg_dist_plugins_upload_trumbowyg_upload_min_js__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(trumbowyg_dist_plugins_upload_trumbowyg_upload_min_js__WEBPACK_IMPORTED_MODULE_20__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -3380,6 +3381,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -3403,10 +3413,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     AppLayout: _Shared_Layouts_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"],
-    Trumbowyg: vue_trumbowyg__WEBPACK_IMPORTED_MODULE_5___default.a,
+    Trumbowyg: vue_trumbowyg__WEBPACK_IMPORTED_MODULE_6___default.a,
     JetButton: _Jetstream_Button__WEBPACK_IMPORTED_MODULE_1__["default"],
     JetSecondaryButton: _Jetstream_SecondaryButton__WEBPACK_IMPORTED_MODULE_2__["default"],
-    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__["default"]
+    JetInput: _Jetstream_Input__WEBPACK_IMPORTED_MODULE_3__["default"],
+    JetInputError: _Jetstream_InputError__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
@@ -3448,14 +3459,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         thumbnail: null,
         title: null,
         description: null,
-        body: null
+        body: 'Write your post here...'
       }, {
         bag: 'createPost',
-        resetOnSuccess: false
+        resetOnSuccess: true
       })
     };
   },
-  methods: _objectSpread(_objectSpread({}, _Shared_methods__WEBPACK_IMPORTED_MODULE_4__["default"]), {}, {
+  methods: _objectSpread(_objectSpread({}, _Shared_methods__WEBPACK_IMPORTED_MODULE_5__["default"]), {}, {
     createPost: function createPost() {
       if (this.thumbnailPreview) {
         this.form.thumbnail = this.$refs.thumbnail.files[0];
@@ -3480,7 +3491,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       reader.readAsDataURL(this.$refs.thumbnail.files[0]);
     },
     removeThumbnail: function removeThumbnail() {
-      this.thumbnailPreview = 'img/placeholder.png';
+      this.thumbnailPreview = null;
     }
   })
 });
@@ -61853,7 +61864,7 @@ var render = function() {
                   style: _vm.backgroundImage(
                     _vm.thumbnailPreview
                       ? _vm.thumbnailPreview
-                      : "img/placeholder.png"
+                      : "storage/app-images/default-thumbnail.png"
                   )
                 },
                 [
@@ -61867,6 +61878,7 @@ var render = function() {
                   _c(
                     "jet-secondary-button",
                     {
+                      staticClass: "ml-2 mt-2",
                       attrs: { type: "button" },
                       nativeOn: {
                         click: function($event) {
@@ -61885,7 +61897,7 @@ var render = function() {
                   _c(
                     "jet-secondary-button",
                     {
-                      staticClass: "ml-2",
+                      staticClass: "ml-2 mt-2",
                       attrs: { type: "button" },
                       nativeOn: {
                         click: function($event) {
@@ -61954,6 +61966,28 @@ var render = function() {
                   "div",
                   { staticClass: "pt-6" },
                   [
+                    _vm.form.hasErrors("createPost")
+                      ? _c("jet-input-error", {
+                          attrs: { message: "Publish failed!" }
+                        })
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      attrs: { message: _vm.form.error("thumbnail") }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      attrs: { message: _vm.form.error("title") }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      attrs: { message: _vm.form.error("description") }
+                    }),
+                    _vm._v(" "),
+                    _c("jet-input-error", {
+                      attrs: { message: _vm.form.error("body") }
+                    }),
+                    _vm._v(" "),
                     _c("input", {
                       directives: [
                         {
@@ -63859,27 +63893,31 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" },
-                [
-                  _c(
-                    "jet-nav-link",
+              _vm.$page.user
+                ? _c(
+                    "div",
                     {
-                      attrs: {
-                        href: _vm.route("post.create"),
-                        active: _vm.route().current("post.create")
-                      }
+                      staticClass: "hidden space-x-8 sm:-my-px sm:ml-10 sm:flex"
                     },
                     [
-                      _vm._v(
-                        "\n                            Write\n                        "
+                      _c(
+                        "jet-nav-link",
+                        {
+                          attrs: {
+                            href: _vm.route("post.create"),
+                            active: _vm.route().current("post.create")
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            Write\n                        "
+                          )
+                        ]
                       )
-                    ]
+                    ],
+                    1
                   )
-                ],
-                1
-              )
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c(
@@ -64351,23 +64389,25 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "pt-2 pb-3 space-y-1" },
-              [
-                _c(
-                  "jet-responsive-nav-link",
-                  {
-                    attrs: {
-                      href: _vm.route("post.create"),
-                      active: _vm.route().current("post.create")
-                    }
-                  },
-                  [_vm._v("\n                    Write\n                ")]
+            _vm.$page.user
+              ? _c(
+                  "div",
+                  { staticClass: "pt-2 pb-3 space-y-1" },
+                  [
+                    _c(
+                      "jet-responsive-nav-link",
+                      {
+                        attrs: {
+                          href: _vm.route("post.create"),
+                          active: _vm.route().current("post.create")
+                        }
+                      },
+                      [_vm._v("\n                    Write\n                ")]
+                    )
+                  ],
+                  1
                 )
-              ],
-              1
-            ),
+              : _vm._e(),
             _vm._v(" "),
             _c("div", { staticClass: "pt-4 pb-1 border-t border-gray-200" }, [
               _vm.$page.user
