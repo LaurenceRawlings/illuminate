@@ -23,6 +23,7 @@ class NewsPost extends Model
         'thumbnail',
         'url',
         'published_at',
+        'favicon'
     ];
 
     /**

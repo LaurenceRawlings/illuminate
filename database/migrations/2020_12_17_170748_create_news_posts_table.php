@@ -20,6 +20,7 @@ class CreateNewsPostsTable extends Migration
             $table->longText('description')->nullable();
             $table->longText('thumbnail')->nullable();
             $table->longText('url')->nullable();
+            $table->longText('favicon')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });

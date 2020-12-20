@@ -6,7 +6,8 @@ namespace App\Helpers;
 
 class Utils
 {
-    public static function isValidUrl($url): bool {
+    public static function isValidUrl($url): bool
+    {
         return filter_var($url, FILTER_VALIDATE_URL);
     }
 

@@ -3,7 +3,7 @@
         <div class="bg-cover bg-center h-56 p-4" :style="backgroundImage(newsPost.thumbnail_url)"></div>
         <div class="bg-white p-4 rounded-t-lg mt--10 h-full">
             <div class="flex items-center">
-                <div class="bg-cover bg-center w-10 h-10 rounded-full mr-3" :style="backgroundImage(favicon(newsPost.url))"></div>
+                <div class="bg-cover bg-center w-10 h-10 rounded-full mr-3" :style="backgroundImage(newsPost.favicon)"></div>
                 <div>
                     <p class="tracking-wide text-sm font-bold text-gray-700">{{ newsPost.source }}</p>
                     <p class="text-sm text-gray-700">
@@ -26,11 +26,6 @@ export default {
     },
     methods: {
         ...methods,
-        favicon(url) {
-            url = new URL(url);
-
-            return `${url.protocol}//${url.hostname}/favicon.ico`
-        },
     }
 }
 </script>

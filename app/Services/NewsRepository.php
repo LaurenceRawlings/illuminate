@@ -8,6 +8,7 @@ use App\Models\NewsPost;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\URL;
 
 class NewsRepository
 {
@@ -39,9 +40,16 @@ class NewsRepository
                 'thumbnail' => $newsPost['urlToImage'],
                 'url' => $newsPost['url'],
                 'published_at' => Carbon::parse($newsPost['publishedAt']),
+                'favicon' => $this->favicon($newsPost['url']),
             ))->save();
         }
 
         $globalSettings->set('lastUpdated', now());
+    }
+
+    private function favicon($url)
+    {
+        $url = parse_url($url);
+        return $url['scheme'].'://'.$url['host'].'/'.'favicon.ico';
     }
 }

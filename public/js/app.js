@@ -3276,12 +3276,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: {
     newsPost: Object
   },
-  methods: _objectSpread(_objectSpread({}, _Shared_methods__WEBPACK_IMPORTED_MODULE_0__["default"]), {}, {
-    favicon: function favicon(url) {
-      url = new URL(url);
-      return "".concat(url.protocol, "//").concat(url.hostname, "/favicon.ico");
-    }
-  })
+  methods: _objectSpread({}, _Shared_methods__WEBPACK_IMPORTED_MODULE_0__["default"])
 });
 
 /***/ }),
@@ -61791,7 +61786,7 @@ var render = function() {
       _c("div", { staticClass: "flex items-center" }, [
         _c("div", {
           staticClass: "bg-cover bg-center w-10 h-10 rounded-full mr-3",
-          style: _vm.backgroundImage(_vm.favicon(_vm.newsPost.url))
+          style: _vm.backgroundImage(_vm.newsPost.favicon)
         }),
         _vm._v(" "),
         _c("div", [
