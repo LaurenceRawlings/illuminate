@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Helpers\InertiaPaginator;
 use App\Models\Post;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -21,12 +20,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::query()->orderByDesc('created_at')->paginate(12);
-
-        foreach ($posts as $post) {
-            $post->user_name = User::query()->find($post->user_id)->name;
-            $post->user_photo = User::query()->find($post->user_id)->profile_photo_url;
-            $post->published = $post->created_at->diffForHumans();
-        }
 
         $paginatedLinks = InertiaPaginator::paginationLinks($posts);
 
@@ -99,10 +92,6 @@ class PostController extends Controller
         $post->forceFill([
             'views' => $post->views + 1,
         ])->save();
-
-        $post->user_name = User::query()->find($post->user_id)->name;
-        $post->user_photo = User::query()->find($post->user_id)->profile_photo_url;
-        $post->published = $post->created_at->diffForHumans();
 
         return Inertia::render('Posts/Show', [
             'post' => $post,

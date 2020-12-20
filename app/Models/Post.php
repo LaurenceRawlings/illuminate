@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Helpers\Utils;
 use App\Traits\HasThumbnail;
+use App\Traits\HasTimestamp;
+use App\Traits\HasUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +13,8 @@ class Post extends Model
 {
     use HasFactory;
     use HasThumbnail;
+    use HasUser;
+    use HasTimestamp;
 
     protected $fillable = [
         'title',
@@ -29,6 +33,9 @@ class Post extends Model
     protected $appends = [
         'thumbnail_url',
         'views_formatted',
+        'user_name',
+        'user_photo',
+        'timestamp'
     ];
 
     public function user()

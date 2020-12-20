@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Traits\HasThumbnail;
+use App\Traits\HasTimestamp;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,6 +11,7 @@ class NewsPost extends Model
 {
     use HasFactory;
     use HasThumbnail;
+    use HasTimestamp;
 
     /**
      * The attributes that are mass assignable.
@@ -42,5 +44,6 @@ class NewsPost extends Model
      */
     protected $appends = [
         'thumbnail_url',
+        'timestamp',
     ];
 }

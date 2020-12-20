@@ -24,10 +24,6 @@ class NewsPostController extends Controller
         $newsPosts = NewsPost::query()->orderByDesc('published_at')->paginate(12);
         $paginatedLinks = InertiaPaginator::paginationLinks($newsPosts);
 
-        foreach ($newsPosts as $newsPost) {
-            $newsPost->published = $newsPost->published_at->diffForHumans();
-        }
-
         return Inertia::render('News/Index', [
             'newsPosts' => $newsPosts,
             'paginated_links' => $paginatedLinks

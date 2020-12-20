@@ -7,7 +7,7 @@
                 <div>
                     <p class="tracking-wide text-sm font-bold text-gray-700">{{ post.user_name }}</p>
                     <p class="text-sm text-gray-700">
-                        {{ post.views }} views • {{ post.published }}
+                        {{ post.views }} views • {{ post.timestamp }}
                     </p>
                 </div>
             </div>

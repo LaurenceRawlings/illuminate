@@ -24,6 +24,8 @@
                         </div>
                     </div>
                 </div>
+
+                <comment-section />
             </div>
         </div>
     </app-layout>
@@ -32,6 +34,7 @@
 <script>
 import AppLayout from '@/Shared/Layouts/AppLayout'
 import methods from "@/Shared/methods";
+import CommentSection from "@/Shared/Components/CommentSection";
 
 import 'trumbowyg/dist/ui/trumbowyg.css';
 import 'trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css';
@@ -41,6 +44,7 @@ import 'trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.min.css';
 export default {
     components: {
         AppLayout,
+        CommentSection,
     },
     props: {
         post: Object,

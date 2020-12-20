@@ -8,7 +8,7 @@
                 <div>
                     <p class="tracking-wide text-sm font-bold text-gray-700">{{ newsPost.source }}</p>
                     <p class="text-sm text-gray-700">
-                        {{ newsPost.published }}
+                        {{ newsPost.timestamp }}
                     </p>
                 </div>
             </div>
