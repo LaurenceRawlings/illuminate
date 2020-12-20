@@ -7,7 +7,7 @@
                     <div class="flex">
                         <!-- Logo -->
                         <div class="flex-shrink-0 flex items-center">
-                            <inertia-link :href="route('posts')">
+                            <inertia-link :href="route('home')">
                                 <!-- <jet-application-mark class="block h-9 w-auto" /> -->
                                 <app-header />
                             </inertia-link>
@@ -15,8 +15,8 @@
 
                         <!-- Navigation Links -->
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <jet-nav-link :href="route('posts')" :active="route().current('posts')">
-                                Posts
+                            <jet-nav-link :href="route('home')" :active="route().current('home')">
+                                Read
                             </jet-nav-link>
                         </div>
 
@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <jet-nav-link :href="route('posts.create')" :active="route().current('posts.create')">
+                            <jet-nav-link :href="route('post.create')" :active="route().current('post.create')">
                                 Write
                             </jet-nav-link>
                         </div>
@@ -146,8 +146,8 @@
             <!-- Responsive Navigation Menu -->
             <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                 <div class="pt-2 pb-3 space-y-1">
-                    <jet-responsive-nav-link :href="route('posts')" :active="route().current('posts')">
-                        Posts
+                    <jet-responsive-nav-link :href="route('home')" :active="route().current('home')">
+                        Read
                     </jet-responsive-nav-link>
                 </div>
 
@@ -158,7 +158,7 @@
                 </div>
 
                 <div class="pt-2 pb-3 space-y-1">
-                    <jet-responsive-nav-link :href="route('posts.create')" :active="route().current('posts.create')">
+                    <jet-responsive-nav-link :href="route('post.create')" :active="route().current('post.create')">
                         Write
                     </jet-responsive-nav-link>
                 </div>

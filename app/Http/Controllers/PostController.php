@@ -76,17 +76,21 @@ class PostController extends Controller
             'body' => $body
         ]);
 
-        return Redirect::route('posts');
+        return Redirect::route('home');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Inertia\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
+        if (!$request->input('p')) {
+            return Redirect::route('home');
+        }
+
+        $id = $request->input('p');
+
         $post = Post::query()->findOrFail($id);
 
         $post->forceFill([

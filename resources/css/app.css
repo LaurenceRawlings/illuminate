@@ -2,6 +2,10 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+*,*:focus,*:hover{
+    outline:none;
+}
+
 /* Scrollbar */
 *::-webkit-scrollbar {
     width: 10px;
@@ -29,4 +33,42 @@
     @apply w-full;
     @apply inline-block;
     @apply rounded;
+}
+
+.post-container > div {
+    @apply px-2;
+}
+
+.post-container {
+    @apply pb-2;
+}
+
+@media (min-width: 640px) {
+    .post-container > div {
+        @apply px-4;
+    }
+
+    .post-container {
+        @apply pb-4;
+    }
+}
+
+@media  (min-width: 768px) {
+    .post-container > div {
+        @apply px-14;
+    }
+
+    .post-container {
+        @apply pb-14;
+    }
+}
+
+@media (min-width: 1024px) {
+    .post-container > div {
+        @apply px-24;
+    }
+
+    .post-container {
+        @apply pb-24;
+    }
 }

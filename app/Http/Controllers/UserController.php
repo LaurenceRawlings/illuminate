@@ -14,9 +14,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Inertia\Response
      */
-    public function show($id)
+    public function show($username)
     {
-        $user = User::query()->findOrFail($id);
+        $user = User::query()->where('username', '=', $username)->firstOrFail();
 
 
         return Inertia::render('User/Show', [

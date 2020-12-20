@@ -18,27 +18,28 @@
                             </jet-secondary-button>
                         </div>
 
-                        <div class="flex items-center px-24 bg-gray-200 bg-opacity-25">
-                            <div class="mr-2">
-                                <img :src="$page.user.profile_photo_url" alt="Current Profile Photo" class="rounded-full h-10 w-10 object-cover">
+                        <div class="post-container">
+                            <div class="flex items-center bg-gray-200 bg-opacity-25">
+                                <div class="mr-2">
+                                    <img :src="$page.user.profile_photo_url" alt="Current Profile Photo" class="rounded-full h-10 w-10 object-cover">
+                                </div>
+
+                                <div class="py-6">
+                                    {{ $page.user.name }}
+                                </div>
+
+                                <jet-button class="ml-auto" @click.native.prevent="createPost">
+                                    Publish
+                                </jet-button>
                             </div>
 
-                            <div class="py-6">
-                                {{ $page.user.name }}
+
+                            <div class="pt-6">
+                                <input id="title" type="text" class="text-4xl font-bold mb-4 input" v-model="form.title" placeholder="Title" />
+                                <input id="description" type="text" class="text-2xl font-semibold mb-8 input" v-model="form.description" placeholder="Description" />
+                                <trumbowyg v-model="form.body" :config="config" class="form-control" name="content"></trumbowyg>
                             </div>
-
-                            <jet-button class="ml-auto" @click.native.prevent="createPost">
-                                Publish
-                            </jet-button>
                         </div>
-
-
-                        <div class="px-24 pt-6 pb-24">
-                            <jet-input id="title" type="text" class="text-4xl mb-2 font-bold block w-full" v-model="form.title" placeholder="Title" />
-                            <jet-input id="description" type="text" class="text-2xl mb-2 font-semibold block w-full" v-model="form.description" placeholder="Description" />
-                            <trumbowyg v-model="form.body" :config="config" class="form-control" name="content"></trumbowyg>
-                        </div>
-
                     </div>
                 </form>
             </div>
@@ -151,7 +152,7 @@ export default {
                 this.form.thumbnail = this.$refs.thumbnail.files[0]
             }
 
-            this.form.post(route('posts.store'), {
+            this.form.post(route('post.store'), {
                 preserveScroll: true
             });
         },
@@ -178,5 +179,32 @@ export default {
 </script>
 
 <style scoped>
+    .input {
+        @apply w-full;
+        @apply block;
+        @apply border-b-2;
+        @apply border-solid;
+    }
+</style>
 
+<style>
+    .trumbowyg-box, .trumbowyg-editor {
+        @apply border-t-0;
+        @apply border-l-0;
+        @apply border-r-0;
+        @apply border-b-2;
+    }
+
+    .trumbowyg-editor, .trumbowyg-textarea {
+        @apply p-0;
+        @apply pt-4;
+    }
+
+    .trumbowyg-button-pane {
+        @apply rounded;
+    }
+
+    .trumbowyg-button-pane::after {
+        @apply bg-transparent;
+    }
 </style>

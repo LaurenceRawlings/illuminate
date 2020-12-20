@@ -5,20 +5,22 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="bg-cover bg-center h-96 p-4" :style="backgroundImage(post.thumbnail_url)"></div>
 
-                    <div class="flex items-center px-24 bg-gray-200 bg-opacity-25">
-                        <div class="bg-cover bg-center w-10 h-10 rounded-full mr-3" :style="backgroundImage(post.user_photo)"></div>
+                    <div class="post-container">
+                        <div class="flex items-center px-24 bg-gray-200 bg-opacity-25">
+                            <div class="bg-cover bg-center w-10 h-10 rounded-full mr-3" :style="backgroundImage(post.user_photo)"></div>
 
-                        <div class="py-6 font-bold">
-                            {{ post.user_name }}
+                            <div class="py-6 font-bold">
+                                {{ post.user_name }}
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="px-24 pb-24 pt-6">
-                        <h2 class="text-4xl font-bold">{{ post.title }}</h2>
+                        <div class="pt-6">
+                            <h2 class="text-4xl font-bold">{{ post.title }}</h2>
 
-                        <h3 class="text-2xl font-semibold mb-4">{{ post.description }}</h3>
+                            <h3 class="text-2xl font-semibold mb-4">{{ post.description }}</h3>
 
-                        <div v-html="post.body" class="trumbowyg-editor trumbowyg-reset-css body"></div>
+                            <div v-html="post.body" class="trumbowyg-editor trumbowyg-reset-css body"></div>
+                        </div>
                     </div>
                 </div>
             </div>
