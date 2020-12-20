@@ -10,11 +10,14 @@ trait UsernameValidationRules
 {
     protected function usernameRules($user = null) {
         $forbiddenUsernames = ['read', 'write', 'news', 'dashboard'];
+        $baseRules = ['required', 'max:25', 'min:6', 'alpha_dash', Rule::notIn($forbiddenUsernames)];
 
         if ($user) {
-            return ['required', 'max:25', Rule::unique('users')->ignore($user->id), Rule::notIn($forbiddenUsernames)];
+            array_push($baseRules, Rule::unique('users')->ignore($user->id));
+        } else {
+            array_push($baseRules, 'unique:users');
         }
 
-        return ['required', 'max:25', 'unique:users', Rule::notIn($forbiddenUsernames)];
+        return $baseRules;
     }
 }
