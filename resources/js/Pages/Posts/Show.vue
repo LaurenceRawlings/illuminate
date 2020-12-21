@@ -6,12 +6,14 @@
                     <div :style="backgroundImage(post.thumbnail_url)" class="bg-cover bg-center h-96 p-4"></div>
 
                     <div class="post-container">
-                        <div class="flex items-center px-24 bg-gray-200 bg-opacity-25">
-                            <div :style="backgroundImage(post.user_photo)"
-                                 class="bg-cover bg-center w-10 h-10 rounded-full mr-3"></div>
+                        <div class="flex items-center px-24 py-4 bg-gray-200 bg-opacity-25">
+                            <profile-photo :user="post.user" class="w-10 h-10 mr-3" />
 
-                            <div class="py-6 font-bold">
-                                {{ post.user_name }}
+                            <profile-link :user="post.user" />
+
+                            <div class="flex ml-auto items-center font-bold text-lg">
+                                <zap :zapped="false" class="w-6 h-6 mr-1" />
+                                10K
                             </div>
                         </div>
 
@@ -25,7 +27,7 @@
                     </div>
                 </div>
 
-                <comment-section />
+                <comment-section :comments="post.comments" />
             </div>
         </div>
     </app-layout>
@@ -35,6 +37,9 @@
 import AppLayout from '@/Shared/Layouts/AppLayout'
 import methods from "@/Shared/methods";
 import CommentSection from "@/Shared/Components/CommentSection";
+import ProfileLink from "@/Shared/Components/ProfileLink";
+import ProfilePhoto from "@/Shared/Components/ProfilePhoto";
+import Zap from "@/Shared/Components/Zap";
 
 import 'trumbowyg/dist/ui/trumbowyg.css';
 import 'trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css';
@@ -43,8 +48,11 @@ import 'trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.min.css';
 
 export default {
     components: {
+        ProfileLink,
         AppLayout,
         CommentSection,
+        ProfilePhoto,
+        Zap,
     },
     props: {
         post: Object,

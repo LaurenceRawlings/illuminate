@@ -63,7 +63,7 @@ class PostController extends Controller
             $imageName = $thumbnail->store('post-thumbnails/' . $request->user()->id, 'public');
         }
 
-        $body = Purifier::clean($input['body']);
+        $body = Purifier::clean($input['body'], 'youtube');
 
         $request->user()->posts()->create([
             'thumbnail' => $thumbnail ? $imageName : null,
@@ -92,6 +92,8 @@ class PostController extends Controller
         $post->forceFill([
             'views' => $post->views + 1,
         ])->save();
+
+        $post->comments = $post->comments->all();
 
         return Inertia::render('Posts/Show', [
             'post' => $post,

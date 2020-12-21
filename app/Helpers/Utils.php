@@ -11,16 +11,16 @@ class Utils
         return filter_var($url, FILTER_VALIDATE_URL);
     }
 
-    public static function formatViewCount(int $views): string
+    public static function formatCount(int $count): string
     {
-        if ($views < 1000) {
-            $views_format = number_format($views);
-        } else if ($views < 1000000) {
-            $views_format = number_format($views / 1000, 1) . 'K';
-        } else if ($views < 1000000000) {
-            $views_format = number_format($views / 1000000, 2) . 'M';
+        if ($count < 1000) {
+            $views_format = number_format($count);
+        } else if ($count < 1000000) {
+            $views_format = number_format($count / 1000, 1) . 'K';
+        } else if ($count < 1000000000) {
+            $views_format = number_format($count / 1000000, 2) . 'M';
         } else {
-            $views_format = number_format($views / 1000000000, 3) . 'B';
+            $views_format = number_format($count / 1000000000, 3) . 'B';
         }
 
         return $views_format;

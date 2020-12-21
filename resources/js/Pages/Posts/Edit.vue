@@ -51,7 +51,7 @@
                                 <input id="description" v-model="form.description" class="text-2xl font-semibold mb-8 input"
                                        placeholder="Description" type="text"/>
 
-                                <trumbowyg v-model="form.body" :config="config" class="form-control"
+                                <trumbowyg v-model="form.body" :config="config" placeholder="Write your post here..." class="form-control"
                                            name="content"></trumbowyg>
                             </div>
                         </div>
@@ -154,7 +154,7 @@ export default {
                 thumbnail: null,
                 title: null,
                 description: null,
-                body: 'Write your post here...',
+                body: null,
             }, {
                 bag: 'createPost',
                 resetOnSuccess: true,

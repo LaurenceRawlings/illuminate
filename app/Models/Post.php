@@ -33,8 +33,7 @@ class Post extends Model
     protected $appends = [
         'thumbnail_url',
         'views_formatted',
-        'user_name',
-        'user_photo',
+        'user',
         'timestamp'
     ];
 
@@ -50,6 +49,6 @@ class Post extends Model
 
     public function getViewsFormattedAttribute()
     {
-        return Utils::formatViewCount($this->views);
+        return Utils::formatCount($this->views);
     }
 }

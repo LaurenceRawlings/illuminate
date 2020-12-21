@@ -3,7 +3,7 @@
 @import 'tailwindcss/utilities';
 
 *,*:focus,*:hover{
-    outline:none;
+    outline: none !important;
 }
 
 /* Scrollbar */

@@ -8,8 +8,8 @@ use App\Models\NewsPost;
 
 trait HasTimestamp
 {
-    public function getTimestampAttribute() {
-
+    public function getTimestampAttribute()
+    {
         if ($this instanceof NewsPost) {
             return $this->published_at->diffForHumans();
         }

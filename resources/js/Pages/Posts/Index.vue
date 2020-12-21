@@ -1,17 +1,25 @@
 <template>
     <app-layout>
-        <div class="my-12 max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                <inertia-link v-for="post in posts.data" :key="post.id" :href="route('read', {'p': post.id})">
-                    <post-card :post="post"/>
-                </inertia-link>
-            </div>
+        <template #header>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                Latest Posts
+            </h2>
+        </template>
 
-            <pagination-links
-                :urls_array="paginated_links"
-                :previous_page_url="posts.prev_page_url"
-                :next_page_url="posts.next_page_url">
-            </pagination-links>
+        <div class="pb-2">
+            <div class="my-12 max-w-7xl mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <inertia-link v-for="post in posts.data" :key="post.id" :href="route('read', {'p': post.id})">
+                        <post-card :post="post"/>
+                    </inertia-link>
+                </div>
+
+                <pagination-links
+                    :urls_array="paginated_links"
+                    :previous_page_url="posts.prev_page_url"
+                    :next_page_url="posts.next_page_url">
+                </pagination-links>
+            </div>
         </div>
     </app-layout>
 </template>

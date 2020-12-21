@@ -3,11 +3,12 @@
         <div class="bg-cover bg-center h-56 p-4" :style="backgroundImage(post.thumbnail_url)"></div>
         <div class="bg-white p-4 rounded-t-lg mt--10 h-full">
             <div class="flex items-center">
-                <div class="bg-cover bg-center w-10 h-10 rounded-full mr-3" :style="backgroundImage(post.user_photo)"></div>
+                <profile-photo :user="post.user" class="w-10 h-10 mr-2" />
+
                 <div>
-                    <p class="tracking-wide text-sm font-bold text-gray-700">{{ post.user_name }}</p>
+                    <profile-link :user="post.user" />
                     <p class="text-sm text-gray-700">
-                        {{ post.views }} views • {{ post.timestamp }}
+                        {{ post.views_formatted }} views • {{ post.timestamp }}
                     </p>
                 </div>
             </div>
@@ -19,8 +20,14 @@
 
 <script>
 import methods from "@/Shared/methods";
+import ProfilePhoto from "@/Shared/Components/ProfilePhoto";
+import ProfileLink from "@/Shared/Components/ProfileLink";
 
 export default {
+    components: {
+        ProfilePhoto,
+        ProfileLink,
+    },
     props: {
         post: Object,
     },
