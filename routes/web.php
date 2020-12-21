@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\NewsPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -21,10 +22,15 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/', [PostController::class, 'index'])->name('home');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/write', [PostController::class, 'create'])->name('post.create');
 Route::middleware(['auth:sanctum', 'verified'])->post('/write', [PostController::class, 'store'])->name('post.store');
 
 Route::get('/read', [PostController::class, 'show'])->name('read');
+
+Route::get('/comment', [CommentController::class, 'index'])->name('comment');
+Route::middleware(['auth:sanctum', 'verified'])->post('/comment', [CommentController::class, 'store'])->name('comment.store');
+
 Route::get('/news', [NewsPostController::class, 'index'])->name('news');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

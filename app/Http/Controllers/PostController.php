@@ -36,7 +36,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Posts/Edit', []);
+        return Inertia::render('Posts/Edit');
     }
 
     /**
@@ -72,7 +72,7 @@ class PostController extends Controller
             'body' => $body
         ]);
 
-        return Redirect::route('home');
+        return Redirect::route('home', [], 201);
     }
 
     /**
@@ -93,10 +93,11 @@ class PostController extends Controller
             'views' => $post->views + 1,
         ])->save();
 
-        $post->comments = $post->comments->all();
+        $comments = $post->comments->all();
 
         return Inertia::render('Posts/Show', [
             'post' => $post,
+            'comments' => $comments
         ]);
     }
 

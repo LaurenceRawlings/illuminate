@@ -6,7 +6,7 @@
                 <profile-link :user="comment.user" class="mr-2" />
                 <span class="text-gray-500">{{ comment.timestamp }}</span>
             </span>
-            <p>{{comment.comment}}</p>
+            <p class="break-all">{{comment.comment}}</p>
 
             <div class="flex items-center">
                 <zap class="w-4 h-4 mr-1" />

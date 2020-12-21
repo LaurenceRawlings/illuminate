@@ -27,7 +27,7 @@
                     </div>
                 </div>
 
-                <comment-section :comments="post.comments" />
+                <comment-section :comments="comments" :post-id="post.id" />
             </div>
         </div>
     </app-layout>
@@ -56,6 +56,7 @@ export default {
     },
     props: {
         post: Object,
+        comments: Array,
     },
     methods: {
         ...methods,

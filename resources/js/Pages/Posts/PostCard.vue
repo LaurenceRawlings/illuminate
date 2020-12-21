@@ -1,6 +1,6 @@
 <template>
-    <div class="overflow-hidden shadow rounded h-full">
-        <div class="bg-cover bg-center h-56 p-4" :style="backgroundImage(post.thumbnail_url)"></div>
+    <div class="overflow-hidden shadow rounded-lg h-full hover:shadow-2xl">
+        <div class="bg-cover bg-center h-56 p-4 shadow-inner" :style="backgroundImage(post.thumbnail_url)"></div>
         <div class="bg-white p-4 rounded-t-lg mt--10 h-full">
             <div class="flex items-center">
                 <profile-photo :user="post.user" class="w-10 h-10 mr-2" />

@@ -14,6 +14,7 @@ class Comment extends Model
     use HasTimestamp;
 
     protected $fillable = [
+        'post_id',
         'comment',
     ];
     /**
