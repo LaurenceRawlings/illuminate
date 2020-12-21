@@ -17,7 +17,7 @@ class NewsPostController extends Controller
         $lastUpdated = $globalSettings->has('lastUpdated') ? Carbon::parse($globalSettings->get('lastUpdated')) : null;
         $updateInterval = $globalSettings->has('updateInterval') ? intval($globalSettings->get('updateInterval')) : 3;
 
-        if (NewsPost::all()->isEmpty() || !$lastUpdated || $lastUpdated->diffInHours() > $updateInterval) {
+        if (NewsPost::all()->isEmpty() || !$lastUpdated || $lastUpdated->diffInHours() >= $updateInterval) {
             $newsRepository->update();
         }
 
