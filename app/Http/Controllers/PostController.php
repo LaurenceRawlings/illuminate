@@ -50,7 +50,7 @@ class PostController extends Controller
         $input = $request->all();
 
         Validator::make($input, [
-            'thumbnail' => ['image', 'mimes:png,jpg,jpeg', 'max:4096', 'nullable'],
+            'thumbnail' => ['image', 'mimes:png,jpg,jpeg,gif', 'max:4096', 'nullable'],
             'title' => ['required'],
             'description' => ['required'],
             'body' => ['required'],

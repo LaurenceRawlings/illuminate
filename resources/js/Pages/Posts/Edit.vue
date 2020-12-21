@@ -75,6 +75,7 @@ import 'trumbowyg/dist/ui/trumbowyg.css';
 import 'trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css';
 import 'trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css';
 import 'trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.min.css';
+import 'trumbowyg/dist/plugins/giphy/ui/trumbowyg.giphy.min.css';
 
 import 'trumbowyg/dist/plugins/history/trumbowyg.history.min.js';
 import 'jquery-resizable-dom/dist/jquery-resizable.min.js';
@@ -86,6 +87,7 @@ import 'trumbowyg/dist/plugins/pasteembed/trumbowyg.pasteembed.min.js';
 import 'trumbowyg/dist/plugins/preformatted/trumbowyg.preformatted.min.js';
 import 'trumbowyg/dist/plugins/indent/trumbowyg.indent.min.js';
 import 'trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js';
+import 'trumbowyg/dist/plugins/giphy/trumbowyg.giphy.min.js';
 
 export default {
     components: {
@@ -127,7 +129,7 @@ export default {
                         ico: 'justifyLeft'
                     },
                     image: {
-                        dropdown: ['upload', 'insertImage'],
+                        dropdown: ['upload', 'insertImage', 'giphy'],
                         ico: 'insertImage'
                     }
                 },
@@ -145,6 +147,9 @@ export default {
                             'Authorization': 'Client-ID 1478f73e0068323'
                         },
                         urlPropertyName: 'data.link'
+                    },
+                    giphy: {
+                        apiKey: '9TLYRTqXGpDQdz81QYNQBACcoYhL1tSg'
                     }
                 },
             },

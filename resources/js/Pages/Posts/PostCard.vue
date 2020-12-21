@@ -1,12 +1,17 @@
 <template>
-    <div class="overflow-hidden shadow rounded-lg h-full hover:shadow-2xl">
-        <div class="bg-cover bg-center h-56 p-4 shadow-inner" :style="backgroundImage(post.thumbnail_url)"></div>
-        <div class="bg-white p-4 rounded-t-lg mt--10 h-full">
+    <div class="bg-white overflow-hidden shadow rounded-lg h-full">
+        <vue-freezeframe v-if="post.thumbnail_url.split('.').pop() === 'gif'" :options="{ overlay: true }">
+            <img :src="post.thumbnail_url" alt="Thumbnail" class="h-56 w-full object-cover shadow-inner">
+        </vue-freezeframe>
+
+        <img v-else :src="post.thumbnail_url" alt="Thumbnail" class="h-56 w-full object-cover shadow-inner">
+
+        <div class="p-4 h-full">
             <div class="flex items-center">
-                <profile-photo :user="post.user" class="w-10 h-10 mr-2" />
+                <profile-photo :user="post.user" class="w-10 h-10 mr-2"/>
 
                 <div>
-                    <profile-link :user="post.user" />
+                    <profile-link :user="post.user"/>
                     <p class="text-sm text-gray-700">
                         {{ post.views_formatted }} views • {{ post.timestamp }}
                     </p>
@@ -22,11 +27,13 @@
 import methods from "@/Shared/methods";
 import ProfilePhoto from "@/Shared/Components/ProfilePhoto";
 import ProfileLink from "@/Shared/Components/ProfileLink";
+import {VueFreezeframe} from 'vue-freezeframe';
 
 export default {
     components: {
         ProfilePhoto,
         ProfileLink,
+        VueFreezeframe,
     },
     props: {
         post: Object,
@@ -38,7 +45,5 @@ export default {
 </script>
 
 <style scoped>
-    .mt--10 {
-        margin-top: -10px;
-    }
+
 </style>
