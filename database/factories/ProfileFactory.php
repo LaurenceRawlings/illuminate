@@ -25,9 +25,9 @@ class ProfileFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'bio' => $this->faker->sentence($nbWords = 20, $variableNbWords = true),
+            'bio' => $this->faker->realText(100),
             'featured_article' => Post::inRandomOrder()->first()->id,
-            'status_text' => $this->faker->word(),
+            'status_text' => $this->faker->realText(15),
             'status_emoji' => $this->faker->emoji(),
         ];
     }

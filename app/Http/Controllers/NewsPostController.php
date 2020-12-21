@@ -21,7 +21,7 @@ class NewsPostController extends Controller
             $newsRepository->update();
         }
 
-        $newsPosts = NewsPost::query()->orderByDesc('published_at')->paginate(12);
+        $newsPosts = NewsPost::query()->latest()->paginate(12);
         $paginatedLinks = InertiaPaginator::paginationLinks($newsPosts);
 
         return Inertia::render('News/Index', [

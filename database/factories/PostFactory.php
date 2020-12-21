@@ -5,6 +5,8 @@ namespace Database\Factories;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
+use Mews\Purifier\Facades\Purifier;
 
 class PostFactory extends Factory
 {
@@ -24,11 +26,12 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'title' => $this->faker->sentence($nbWords = 10, $variableNbWords = true),
-            'description' => $this->faker->sentence($nbWords = 15, $variableNbWords = true),
-            'body' => $this->faker->paragraphs($nb = 10, $asText = true),
-            'thumbnail' => $this->faker->imageUrl($width = 640, $height = 480),
-            'views' => $this->faker->numberBetween($min = 0, $max = 10000),
+            'title' => $this->faker->realText(50),
+            'description' => $this->faker->realText(100),
+            'body' => Purifier::clean($this->faker->randomHtml()),
+            'thumbnail' => 'https://loremflickr.com/1024/768/technology?lock=' . $this->faker->numberBetween($min = 0, $max = 10000),
+            'views' => $this->faker->numberBetween($min = 0, $max = 100000),
+            'created_at' => Carbon::parse($this->faker->dateTimeThisMonth()),
         ];
     }
 }

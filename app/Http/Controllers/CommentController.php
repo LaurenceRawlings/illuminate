@@ -2,37 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
-use Inertia\Inertia;
-use Mews\Purifier\Facades\Purifier;
-use Response;
 
 class CommentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @param Request $request
-     */
-    public function index(Request $request)
-    {
-        if (!$request->input('p')) {
-            return Response::make("Bad Request", 400);
-        }
-
-        $id = $request->input('p');
-
-        $post = Post::query()->findOrFail($id);
-        $comments = $post->comments->all();
-
-        return Response::json([
-            'comments' => $comments,
-        ]);
-    }
-
     /**
      * Store a newly created resource in storage.
      *

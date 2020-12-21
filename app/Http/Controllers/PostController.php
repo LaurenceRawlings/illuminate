@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::query()->orderByDesc('created_at')->paginate(12);
+        $posts = Post::query()->latest()->paginate(12);
 
         $paginatedLinks = InertiaPaginator::paginationLinks($posts);
 
@@ -72,7 +72,7 @@ class PostController extends Controller
             'body' => $body
         ]);
 
-        return Redirect::route('home', [], 201);
+        return Redirect::route('home');
     }
 
     /**

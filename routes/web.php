@@ -28,7 +28,6 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/write', [PostController:
 
 Route::get('/read', [PostController::class, 'show'])->name('read');
 
-Route::get('/comment', [CommentController::class, 'index'])->name('comment');
 Route::middleware(['auth:sanctum', 'verified'])->post('/comment', [CommentController::class, 'store'])->name('comment.store');
 
 Route::get('/news', [NewsPostController::class, 'index'])->name('news');

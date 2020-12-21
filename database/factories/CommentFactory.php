@@ -26,7 +26,7 @@ class CommentFactory extends Factory
         return [
             'post_id' => Post::inRandomOrder()->first()->id,
             'user_id' => User::factory(),
-            'comment' => $this->faker->sentence($nbWords = 10, $variableNbWords = true),
+            'comment' => $this->faker->realText(50),
         ];
     }
 }
