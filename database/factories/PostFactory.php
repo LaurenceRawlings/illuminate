@@ -24,6 +24,8 @@ class PostFactory extends Factory
      */
     public function definition()
     {
+        $date = Carbon::parse($this->faker->dateTimeThisMonth());
+
         return [
             'user_id' => User::factory(),
             'title' => $this->faker->realText(50),
@@ -31,7 +33,8 @@ class PostFactory extends Factory
             'body' => Purifier::clean($this->faker->randomHtml()),
             'thumbnail' => 'https://loremflickr.com/1024/768/technology?lock=' . $this->faker->numberBetween($min = 0, $max = 10000),
             'views' => $this->faker->numberBetween($min = 0, $max = 100000),
-            'created_at' => Carbon::parse($this->faker->dateTimeThisMonth()),
+            'created_at' => $date,
+            'updated_at' => $date,
         ];
     }
 }

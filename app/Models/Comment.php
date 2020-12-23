@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Editable;
 use App\Traits\HasTimestamp;
 use App\Traits\HasUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,11 +13,13 @@ class Comment extends Model
     use HasFactory;
     use HasUser;
     use HasTimestamp;
+    use Editable;
 
     protected $fillable = [
         'post_id',
         'comment',
         'created_at',
+        'updated_at',
     ];
     /**
      * The accessors to append to the model's array form.
@@ -25,7 +28,8 @@ class Comment extends Model
      */
     protected $appends = [
         'user',
-        'timestamp'
+        'timestamp',
+        'edited',
     ];
 
     public function user()

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Helpers\Utils;
+use App\Traits\Editable;
 use App\Traits\HasThumbnail;
 use App\Traits\HasTimestamp;
 use App\Traits\HasUser;
@@ -15,6 +16,7 @@ class Post extends Model
     use HasThumbnail;
     use HasUser;
     use HasTimestamp;
+    use Editable;
 
     protected $fillable = [
         'title',
@@ -22,6 +24,7 @@ class Post extends Model
         'body',
         'thumbnail',
         'created_at',
+        'updated_at',
     ];
     protected $attributes = [
         'views' => 0,
@@ -35,7 +38,8 @@ class Post extends Model
         'thumbnail_url',
         'views_formatted',
         'user',
-        'timestamp'
+        'timestamp',
+        'edited',
     ];
 
     public function user()
