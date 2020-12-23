@@ -23,12 +23,9 @@
 
                         <div class="post-container">
                             <div class="flex items-center bg-gray-200 bg-opacity-25">
-                                <div class="mr-2">
-                                    <img :src="$page.user.profile_photo_url" alt="Current Profile Photo"
-                                         class="rounded-full h-10 w-10 object-cover">
-                                </div>
+                                <profile-photo class="w-10 h-10 mr-2" :user="$page.user" />
 
-                                <div class="py-6">
+                                <div class="py-6 text-sm font-bold text-gray-700">
                                     {{ $page.user.name }}
                                 </div>
 
@@ -88,9 +85,11 @@ import 'trumbowyg/dist/plugins/preformatted/trumbowyg.preformatted.min.js';
 import 'trumbowyg/dist/plugins/indent/trumbowyg.indent.min.js';
 import 'trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js';
 import 'trumbowyg/dist/plugins/giphy/trumbowyg.giphy.min.js';
+import ProfilePhoto from "@/Shared/Components/ProfilePhoto";
 
 export default {
     components: {
+        ProfilePhoto,
         AppLayout,
         Trumbowyg,
         JetButton,
