@@ -19,8 +19,8 @@
                             </div>
 
                             <div class="flex ml-auto items-center font-bold text-lg">
-                                <zap :zapped="false" class="w-6 h-6 mr-1" />
-                                10K
+                                <zap :zapped="post.is_liked" :zappable-id="post.id" zappable-type="post" class="w-6 h-6 mr-1" />
+                                <span>{{ post.likes }}</span>
                                 <inertia-link :href="route('post.create', {'p': post.id})" class="ml-4" v-if="$page.user && $page.user.id === post.user_id">
                                     <jet-button>
                                         Edit
@@ -75,6 +75,9 @@ export default {
     methods: {
         ...methods,
     },
+    mounted() {
+        console.log(this.post)
+    }
 }
 </script>
 

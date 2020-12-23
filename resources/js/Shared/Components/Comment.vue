@@ -20,8 +20,8 @@
             <p v-else class="break-all">{{comment.comment}}</p>
 
             <div class="flex items-center">
-                <zap class="w-4 h-4 mr-1" />
-                25
+                <zap :zapped="comment.is_liked" :zappable-id="comment.id" zappable-type="comment" class="w-4 h-4 mr-1" />
+                <span>{{ comment.likes }}</span>
             </div>
         </div>
     </div>

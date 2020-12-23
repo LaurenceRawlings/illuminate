@@ -7,6 +7,7 @@ use App\Traits\Editable;
 use App\Traits\HasThumbnail;
 use App\Traits\HasTimestamp;
 use App\Traits\HasUser;
+use App\Traits\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +18,7 @@ class Post extends Model
     use HasUser;
     use HasTimestamp;
     use Editable;
+    use Likeable;
 
     protected $fillable = [
         'title',
@@ -40,6 +42,8 @@ class Post extends Model
         'user',
         'timestamp',
         'edited',
+        'likes',
+        'is_liked',
     ];
 
     public function user()

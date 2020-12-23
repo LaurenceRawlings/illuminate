@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Traits\Editable;
 use App\Traits\HasTimestamp;
 use App\Traits\HasUser;
+use App\Traits\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,6 +15,7 @@ class Comment extends Model
     use HasUser;
     use HasTimestamp;
     use Editable;
+    use Likeable;
 
     protected $fillable = [
         'post_id',
@@ -30,6 +32,8 @@ class Comment extends Model
         'user',
         'timestamp',
         'edited',
+        'likes',
+        'is_liked',
     ];
 
     public function user()

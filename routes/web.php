@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NewsPostController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
@@ -29,6 +30,9 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/write', [PostController:
 Route::get('/read', [PostController::class, 'show'])->name('read');
 
 Route::middleware(['auth:sanctum', 'verified'])->post('/comment', [CommentController::class, 'store'])->name('comment.store');
+
+Route::middleware(['auth:sanctum', 'verified'])->post('/like/post', [LikeController::class, 'likePost'])->name('like.post');
+Route::middleware(['auth:sanctum', 'verified'])->post('/like/comment', [LikeController::class, 'likeComment'])->name('like.comment');
 
 Route::get('/news', [NewsPostController::class, 'index'])->name('news');
 
