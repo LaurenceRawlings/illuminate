@@ -8,10 +8,12 @@
             <div class="flex items-center">
                 <profile-photo :user="post.user" class="w-10 h-10 mr-2"/>
 
-                <div>
+                <div class="text-sm text-gray-700">
                     <profile-link :user="post.user"/>
-                    <p class="text-sm text-gray-700">
-                        {{ post.views_formatted }} views • {{ post.timestamp }}
+                    <p>
+                        <span>{{ post.views_formatted }} views</span>
+                        <span> • {{ post.timestamp }}</span>
+                        <span class="italic" v-show="post.edited">(edited)</span>
                     </p>
                 </div>
             </div>

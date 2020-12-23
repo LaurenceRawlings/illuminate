@@ -9,7 +9,14 @@
                         <div class="flex items-center px-24 py-4 bg-gray-200 bg-opacity-25">
                             <profile-photo :user="post.user" class="w-10 h-10 mr-3" />
 
-                            <profile-link :user="post.user" />
+                            <div class="text-sm text-gray-700">
+                                <profile-link :user="post.user" />
+                                <p>
+                                    <span>{{ post.views_formatted }} views</span>
+                                    <span> • {{ post.timestamp }}</span>
+                                    <span class="italic" v-show="post.edited">(edited)</span>
+                                </p>
+                            </div>
 
                             <div class="flex ml-auto items-center font-bold text-lg">
                                 <zap :zapped="false" class="w-6 h-6 mr-1" />
