@@ -14,6 +14,11 @@
                             <div class="flex ml-auto items-center font-bold text-lg">
                                 <zap :zapped="false" class="w-6 h-6 mr-1" />
                                 10K
+                                <inertia-link :href="route('post.create', {'p': post.id})" class="ml-4" v-if="$page.user && $page.user.id === post.user_id">
+                                    <jet-button>
+                                        Edit
+                                    </jet-button>
+                                </inertia-link>
                             </div>
                         </div>
 
@@ -40,6 +45,7 @@ import CommentSection from "@/Shared/Components/CommentSection";
 import ProfileLink from "@/Shared/Components/ProfileLink";
 import ProfilePhoto from "@/Shared/Components/ProfilePhoto";
 import Zap from "@/Shared/Components/Zap";
+import JetButton from "@/Jetstream/Button";
 
 import 'trumbowyg/dist/ui/trumbowyg.css';
 import 'trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css';
@@ -53,6 +59,7 @@ export default {
         CommentSection,
         ProfilePhoto,
         Zap,
+        JetButton,
     },
     props: {
         post: Object,

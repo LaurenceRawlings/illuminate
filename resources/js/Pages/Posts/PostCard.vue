@@ -1,10 +1,8 @@
 <template>
     <div class="bg-white overflow-hidden shadow rounded-lg h-full">
-        <vue-freezeframe v-if="post.thumbnail_url.split('.').pop() === 'gif'" :options="{ overlay: true }">
-            <img :src="post.thumbnail_url" alt="Thumbnail" class="h-56 w-full object-cover shadow-inner">
-        </vue-freezeframe>
-
-        <img v-else :src="post.thumbnail_url" alt="Thumbnail" class="h-56 w-full object-cover shadow-inner">
+        <div class="h-56 w-full shadow-inner overflow-hidden" :style="post.thumbnail_url.split('.').pop() === 'gif' ? {} : backgroundImage(post.thumbnail_url)">
+            <vue-freezeframe v-if="post.thumbnail_url.split('.').pop() === 'gif'" :src="post.thumbnail_url" :options="{ overlay: true }"></vue-freezeframe>
+        </div>
 
         <div class="p-4 h-full">
             <div class="flex items-center">

@@ -33,7 +33,7 @@
                                 </div>
 
                                 <jet-button class="ml-auto" @click.native.prevent="createPost">
-                                    Publish
+                                    {{ this.post ? 'Update' : 'Publish' }}
                                 </jet-button>
                             </div>
 
@@ -156,6 +156,7 @@ export default {
             thumbnailPreview: null,
             form: this.$inertia.form({
                 '_method': 'POST',
+                postId: null,
                 thumbnail: null,
                 title: null,
                 description: null,
@@ -197,6 +198,20 @@ export default {
             this.thumbnailPreview = null;
         },
     },
+
+    props: {
+        post: Object,
+    },
+
+    mounted() {
+        if (this.post) {
+            this.form.postId = this.post.id
+            this.thumbnailPreview = this.post.thumbnail_url
+            this.form.title = this.post.title
+            this.form.description = this.post.description
+            this.form.body = this.post.body
+        }
+    }
 }
 </script>
 

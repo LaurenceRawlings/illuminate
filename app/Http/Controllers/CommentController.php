@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class CommentController extends Controller
@@ -22,6 +24,18 @@ class CommentController extends Controller
             'comment' => ['required', 'string', 'max:255'],
         ])->validateWithBag('addComment');
 
+        if (isset($input['commentId'])) {
+
+            $id = $input['commentId'];
+            $comment = Comment::query()->findOrFail($id);
+
+            if ($comment->user_id != $request->user()->id) {
+                return Redirect::route('home');
+            }
+
+            $this->update($comment, $input);
+            return back();
+        }
 
         $request->user()->comments()->create([
             'post_id' => $input['postId'],
@@ -34,13 +48,14 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Comment $comment
+     * @param array $input
      */
-    public function update(Request $request, $id)
+    public function update(Comment $comment, array $input)
     {
-        //
+        $comment->forceFill([
+            'comment' => $input['comment'],
+        ])->save();
     }
 
     /**

@@ -32,11 +32,26 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Inertia\Response
+     * @param Request $request
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function create()
+    public function create(Request $request)
     {
-        return Inertia::render('Posts/Edit');
+        if (!$request->input('p')) {
+            return Inertia::render('Posts/Edit');
+        }
+
+        $id = $request->input('p');
+
+        $post = Post::query()->findOrFail($id);
+
+        if ($request->user()->id != $post->user_id) {
+            return Redirect::route('home');
+        }
+
+        return Inertia::render('Posts/Edit', [
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -50,23 +65,37 @@ class PostController extends Controller
         $input = $request->all();
 
         Validator::make($input, [
-            'thumbnail' => ['image', 'mimes:png,jpg,jpeg,gif', 'max:4096', 'nullable'],
+            'thumbnail' => ['image', 'mimes:png,jpg,jpeg,gif', 'max:8192', 'nullable'],
             'title' => ['required'],
             'description' => ['required'],
             'body' => ['required'],
         ])->validateWithBag('createPost');
 
 
-        $thumbnail = $input['thumbnail'];
-
-        if ($thumbnail) {
-            $imageName = $thumbnail->store('post-thumbnails/' . $request->user()->id, 'public');
+        if (isset($input['thumbnail'])) {
+            $imageName = $input['thumbnail']->store('post-thumbnails/' . $request->user()->id, 'public');
+        } else {
+            $imageName = null;
         }
 
         $body = Purifier::clean($input['body'], 'youtube');
 
+        if (isset($input['postId'])) {
+            $id = $input['postId'];
+            $post = Post::query()->findOrFail($id);
+
+            if ($post->user_id != $request->user()->id) {
+                return Redirect::route('home');
+            }
+
+            $input['body'] = $body;
+            $input['thumbnail'] = $imageName;
+            $this->update($post, $input);
+            return Redirect::route('read', ['p' => $id]);
+        }
+
         $request->user()->posts()->create([
-            'thumbnail' => $thumbnail ? $imageName : null,
+            'thumbnail' => $imageName,
             'title' => $input['title'],
             'description' => $input['description'],
             'body' => $body
@@ -102,26 +131,21 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Post $post
+     * @param array $input
      */
-    public function update(Request $request, $id)
+    public function update(Post $post, array $input)
     {
-        //
+        $thumbnail = $input['thumbnail'] ? $input['thumbnail'] : $post->thumbnail;
+
+        $post->forceFill([
+            'thumbnail' => $thumbnail,
+            'title' => $input['title'],
+            'description' => $input['description'],
+            'body' => $input['body']
+        ])->save();
     }
 
     /**
