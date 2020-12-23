@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Carbon;
 
 class CommentFactory extends Factory
 {
@@ -27,6 +28,7 @@ class CommentFactory extends Factory
             'post_id' => Post::inRandomOrder()->first()->id,
             'user_id' => User::factory(),
             'comment' => $this->faker->realText(50),
+            'created_at' => Carbon::parse($this->faker->dateTimeThisMonth()),
         ];
     }
 }

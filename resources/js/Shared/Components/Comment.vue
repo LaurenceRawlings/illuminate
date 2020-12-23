@@ -5,7 +5,7 @@
             <span>
                 <profile-link :user="comment.user" class="mr-2" />
                 <span class="text-gray-500">{{ comment.timestamp }}</span>
-                <span v-if="$page.user.id === comment.user_id">
+                <span v-if="$page.user && $page.user.id === comment.user_id">
                     <span> • </span>
                     <span @click="editClicked" class="hover:underline cursor-pointer" :class="edit ? 'text-red-500 hover:text-red-800' : 'text-gray-500 hover:text-black'">{{ edit ? 'Cancel' : 'Edit' }}</span>
                 </span>
