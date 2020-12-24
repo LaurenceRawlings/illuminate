@@ -8,7 +8,12 @@ use App\Models\User;
 
 trait HasUser
 {
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function getUserAttribute() {
-        return User::query()->find($this->user_id);
+        return $this->user()->first();
     }
 }

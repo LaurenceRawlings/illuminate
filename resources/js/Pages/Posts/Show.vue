@@ -74,9 +74,6 @@ export default {
     },
     methods: {
         ...methods,
-    },
-    mounted() {
-        console.log(this.post)
     }
 }
 </script>

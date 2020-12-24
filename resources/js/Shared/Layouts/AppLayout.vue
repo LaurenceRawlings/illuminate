@@ -35,7 +35,9 @@
 
                     <!-- Settings Dropdown -->
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
-                        <div class="ml-3 relative" v-if="$page.user">
+                        <div class="ml-3 relative flex items-center" v-if="$page.user">
+                            <span class="mr-4 font-bold text-sm">Notifications: {{ $page.unreadNotificationsCount }}</span>
+
                             <jet-dropdown align="right" width="48">
                                 <template #trigger>
                                     <button v-if="$page.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
@@ -313,6 +315,15 @@
         computed: {
             hasHeaderSlot() {
                 return !!this.$slots.header
+            }
+        },
+
+        mounted() {
+            if (this.$page.user) {
+                Echo.private('App.Models.User.' + this.$page.user.id)
+                    .notification((notification) => {
+                        console.log(notification.type);
+                    });
             }
         }
     }

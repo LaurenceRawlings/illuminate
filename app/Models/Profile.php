@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\HasUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Profile extends Model
 {
     use HasFactory;
+    use HasUser;
 
     protected $fillable = [
         'bio',
@@ -20,11 +22,6 @@ class Profile extends Model
         'status_text' => 'Happy',
         'status_emoji' => '🙂',
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     public function post()
     {
