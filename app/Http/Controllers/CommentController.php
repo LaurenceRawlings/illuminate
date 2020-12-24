@@ -44,7 +44,9 @@ class CommentController extends Controller
             'comment' => $input['comment'],
         ]);
 
-        $post->user->notify(new CommentedPostNotification($comment, $post, $request->user()));
+        if ($request->user()->id != $comment->user->id) {
+            $post->user->notify(new CommentedPostNotification($comment, $post, $request->user()));
+        }
 
         return back();
     }

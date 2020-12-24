@@ -57,7 +57,7 @@ class LikeController extends Controller
                 if ($type == Post::class) {
                     $likeable->user->notify(new LikedPostNotification($likeable, $user));
                 } else if ($type == Comment::class) {
-                    $likeable->user->notify(new LikedCommentNotification($likeable, $user));
+                    $likeable->user->notify(new LikedCommentNotification($likeable, $likeable->post, $user));
                 }
             }
 

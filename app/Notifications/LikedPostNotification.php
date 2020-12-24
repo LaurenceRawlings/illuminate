@@ -69,6 +69,8 @@ class LikedPostNotification extends Notification
     {
         return [
             'user' => $this->user,
+            'message' => '{{USER}} liked your post.',
+            'link' => route('read', ['p' => $this->post->id]),
             'post' => $this->post,
         ];
     }

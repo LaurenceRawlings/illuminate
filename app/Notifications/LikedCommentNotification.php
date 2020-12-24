@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -21,6 +22,10 @@ class LikedCommentNotification extends Notification
      * @var User
      */
     private $user;
+    /**
+     * @var Post
+     */
+    private $post;
 
     /**
      * Create a new notification instance.
@@ -28,10 +33,11 @@ class LikedCommentNotification extends Notification
      * @param Comment $comment
      * @param User $user
      */
-    public function __construct(Comment $comment, User $user)
+    public function __construct(Comment $comment, Post $post, User $user)
     {
         $this->comment = $comment;
         $this->user = $user;
+        $this->post = $post;
     }
 
     /**
@@ -69,6 +75,8 @@ class LikedCommentNotification extends Notification
     {
         return [
             'user' => $this->user,
+            'message' => '{{USER}} liked your comment.',
+            'link' => route('read', ['p' => $this->post->id]),
             'comment' => $this->comment,
         ];
     }
