@@ -8,7 +8,7 @@
 
         <div class="pb-2">
             <div class="my-12 max-w-7xl mx-auto px-4">
-                <notification v-for="notification in notifications.data" :notification="notification.data" />
+                <notification v-for="notification in notifications.data" :notification="notification.data" :key="notification.id" />
 
                 <pagination-links
                     :next_page_url="notifications.next_page_url"
