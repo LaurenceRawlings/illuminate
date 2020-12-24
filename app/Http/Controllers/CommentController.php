@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Post;
+use App\Notifications\CommentedPostNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -24,10 +26,10 @@ class CommentController extends Controller
             'comment' => ['required', 'string', 'max:255'],
         ])->validateWithBag('addComment');
 
-        if (isset($input['commentId'])) {
+        $post = Post::query()->findOrFail($input['postId']);
 
-            $id = $input['commentId'];
-            $comment = Comment::query()->findOrFail($id);
+        if (isset($input['commentId'])) {
+            $comment = Comment::query()->findOrFail($input['commentId']);
 
             if ($comment->user_id != $request->user()->id) {
                 return Redirect::route('home');
@@ -37,10 +39,12 @@ class CommentController extends Controller
             return back();
         }
 
-        $request->user()->comments()->create([
-            'post_id' => $input['postId'],
+        $comment = $request->user()->comments()->create([
+            'post_id' => $post->id,
             'comment' => $input['comment'],
         ]);
+
+        $post->user->notify(new CommentedPostNotification($comment, $post, $request->user()));
 
         return back();
     }
@@ -48,10 +52,10 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Comment $comment
+     * @param $comment
      * @param array $input
      */
-    public function update(Comment $comment, array $input)
+    public function update($comment, array $input)
     {
         $comment->forceFill([
             'comment' => $input['comment'],
