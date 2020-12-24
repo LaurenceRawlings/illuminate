@@ -278,6 +278,7 @@
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
     import JetButton from "@/Jetstream/Button";
+    import { Inertia } from '@inertiajs/inertia'
 
     import AppHeader from "@/Shared/Components/HeaderGreeting";
 
@@ -320,13 +321,13 @@
             }
         },
 
-        mounted() {
+        created() {
             if (this.$page.user) {
-                Echo.private('App.Models.User.' + this.$page.user.id)
+                Echo.private(`App.Models.Users.${this.$page.user.id}`)
                     .notification((notification) => {
-                        console.log(notification.type);
+                        this.$page.unreadNotificationsCount++;
                     });
             }
-        }
+        },
     }
 </script>

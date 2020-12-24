@@ -42,7 +42,7 @@ class LikedCommentNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -71,5 +71,10 @@ class LikedCommentNotification extends Notification
             'user' => $this->user,
             'comment' => $this->comment,
         ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        return [];
     }
 }
