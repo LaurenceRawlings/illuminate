@@ -3,6 +3,7 @@
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\NewsPostController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
     Route::post('/like/post', [LikeController::class, 'likePost'])->name('like.post');
     Route::post('/like/comment', [LikeController::class, 'likeComment'])->name('like.comment');
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
     Route::get('/dashboard', function () {
         return Inertia\Inertia::render('Dashboard');
     })->name('dashboard');

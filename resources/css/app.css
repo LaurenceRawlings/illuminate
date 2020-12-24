@@ -2,6 +2,10 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+html {
+    overflow-y: scroll;
+}
+
 *,*:focus,*:hover{
     outline: none !important;
 }
@@ -12,7 +16,7 @@
 }
 
 *::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: transparent;
 }
 
 *::-webkit-scrollbar-thumb {

@@ -6,6 +6,7 @@ use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
+use App\Notifications\LikedCommentNotification;
 use App\Notifications\LikedPostNotification;
 use App\Notifications\PostLike;
 use Illuminate\Http\Request;
@@ -52,10 +53,12 @@ class LikeController extends Controller
                 'likeable_type' => $type,
             ]);
 
-            if ($type == Post::class) {
-                $likeable->user->notify(new LikedPostNotification($likeable, $user));
-            } else if ($type == Comment::class) {
-
+            if ($user->id != $likeable->user->id) {
+                if ($type == Post::class) {
+                    $likeable->user->notify(new LikedPostNotification($likeable, $user));
+                } else if ($type == Comment::class) {
+                    $likeable->user->notify(new LikedCommentNotification($likeable, $user));
+                }
             }
 
         } else {

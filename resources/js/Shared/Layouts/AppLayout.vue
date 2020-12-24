@@ -36,7 +36,9 @@
                     <!-- Settings Dropdown -->
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <div class="ml-3 relative flex items-center" v-if="$page.user">
-                            <span class="mr-4 font-bold text-sm">Notifications: {{ $page.unreadNotificationsCount }}</span>
+                            <inertia-link :href="route('notifications')">
+                                <span class="mr-4 font-bold text-sm hover:underline cursor-pointer">Notifications: {{ $page.unreadNotificationsCount }}</span>
+                            </inertia-link>
 
                             <jet-dropdown align="right" width="48">
                                 <template #trigger>
