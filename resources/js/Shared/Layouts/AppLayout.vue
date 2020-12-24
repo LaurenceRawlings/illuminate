@@ -182,6 +182,16 @@
                         </div>
 
                         <div class="mt-3 space-y-1">
+                            <jet-responsive-nav-link :href="route('notifications')" :active="route().current('notifications')">
+                                <div class="flex items-center">
+                                    <span class="mr-2">Notifications</span>
+                                    <div v-show="$page.unreadNotificationsCount > 0"
+                                        class="w-auto h-5 px-2 leading-5 rounded-full bg-red-500 text-white text-center text-sm font-bold align-middle">
+                                        {{ $page.unreadNotificationsCount }}
+                                    </div>
+                                </div>
+                            </jet-responsive-nav-link>
+
                             <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
                                 Profile
                             </jet-responsive-nav-link>
