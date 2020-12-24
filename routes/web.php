@@ -22,22 +22,18 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome');
 //});
 
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/write', [PostController::class, 'create'])->name('post.create');
+    Route::post('/write', [PostController::class, 'store'])->name('post.store');
+    Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::post('/like/post', [LikeController::class, 'likePost'])->name('like.post');
+    Route::post('/like/comment', [LikeController::class, 'likeComment'])->name('like.comment');
+    Route::get('/dashboard', function () {
+        return Inertia\Inertia::render('Dashboard');
+    })->name('dashboard');
+});
+
 Route::get('/', [PostController::class, 'index'])->name('home');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/write', [PostController::class, 'create'])->name('post.create');
-Route::middleware(['auth:sanctum', 'verified'])->post('/write', [PostController::class, 'store'])->name('post.store');
-
 Route::get('/read', [PostController::class, 'show'])->name('read');
-
-Route::middleware(['auth:sanctum', 'verified'])->post('/comment', [CommentController::class, 'store'])->name('comment.store');
-
-Route::middleware(['auth:sanctum', 'verified'])->post('/like/post', [LikeController::class, 'likePost'])->name('like.post');
-Route::middleware(['auth:sanctum', 'verified'])->post('/like/comment', [LikeController::class, 'likeComment'])->name('like.comment');
-
 Route::get('/news', [NewsPostController::class, 'index'])->name('news');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('Dashboard');
-})->name('dashboard');
-
 Route::get('/{username}', [UserController::class, 'show'])->name('user.show');
