@@ -19,7 +19,6 @@ class UserController extends Controller
 
 
         return Inertia::render('User/Show', [
-            'user' => $user,
             'profile' => $user->profile,
         ]);
     }

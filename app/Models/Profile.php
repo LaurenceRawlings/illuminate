@@ -22,6 +22,14 @@ class Profile extends Model
         'status_text' => 'Happy',
         'status_emoji' => '🙂',
     ];
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'user',
+    ];
 
     public function post()
     {
