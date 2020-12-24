@@ -118,9 +118,9 @@ class PostController extends Controller
 
         $post = Post::query()->findOrFail($id);
 
-        $post->forceFill([
-            'views' => $post->views + 1,
-        ])->save();
+        $post->views = $post->views + 1;
+        $post->timestamps = false;
+        $post->save();
 
         $comments = $post->comments->all();
 
@@ -139,6 +139,8 @@ class PostController extends Controller
     public function update(Post $post, array $input)
     {
         $thumbnail = $input['thumbnail'] ? $input['thumbnail'] : $post->thumbnail;
+
+        $post->timestamps = true;
 
         $post->forceFill([
             'thumbnail' => $thumbnail,
