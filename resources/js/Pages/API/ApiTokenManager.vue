@@ -26,7 +26,8 @@
                     <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div v-for="permission in availablePermissions" :key="permission">
                             <label class="flex items-center">
-                                <input v-model="createApiTokenForm.permissions" :value="permission" class="form-checkbox"
+                                <input v-model="createApiTokenForm.permissions" :value="permission"
+                                       class="form-checkbox"
                                        type="checkbox">
                                 <span class="ml-2 text-sm text-gray-600">{{ permission }}</span>
                             </label>
@@ -140,7 +141,8 @@
                     Nevermind
                 </jet-secondary-button>
 
-                <jet-button :class="{ 'opacity-25': updateApiTokenForm.processing }" :disabled="updateApiTokenForm.processing"
+                <jet-button :class="{ 'opacity-25': updateApiTokenForm.processing }"
+                            :disabled="updateApiTokenForm.processing"
                             class="ml-2"
                             @click.native="updateApiToken">
                     Save
@@ -163,7 +165,8 @@
                     Nevermind
                 </jet-secondary-button>
 
-                <jet-danger-button :class="{ 'opacity-25': deleteApiTokenForm.processing }" :disabled="deleteApiTokenForm.processing"
+                <jet-danger-button :class="{ 'opacity-25': deleteApiTokenForm.processing }"
+                                   :disabled="deleteApiTokenForm.processing"
                                    class="ml-2"
                                    @click.native="deleteApiToken">
                     Delete

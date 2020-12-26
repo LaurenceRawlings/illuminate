@@ -9,7 +9,8 @@
         <div class="pb-2">
             <div class="my-12 max-w-7xl mx-auto px-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <a v-for="newsPost in newsPosts.data" :key="newsPost.id" :href="newsPost.url" rel="noopener noreferrer"
+                    <a v-for="newsPost in newsPosts.data" :key="newsPost.id" :href="newsPost.url"
+                       rel="noopener noreferrer"
                        target="_blank">
                         <news-post-card :news-post="newsPost"/>
                     </a>

@@ -4,8 +4,9 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <form autocomplete="off">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                        <div :style="backgroundImage(thumbnailPreview ? thumbnailPreview : 'storage/app-images/default-thumbnail.png')"
-                             class="bg-cover bg-center h-96 p-4">
+                        <div
+                            :style="backgroundImage(thumbnailPreview ? thumbnailPreview : 'storage/app-images/default-thumbnail.png')"
+                            class="bg-cover bg-center h-96 p-4">
                             <input ref="thumbnail" class="hidden"
                                    type="file"
                                    @change="updateThumbnail">
@@ -23,7 +24,7 @@
 
                         <div class="post-container">
                             <div class="flex items-center bg-gray-200 bg-opacity-25">
-                                <profile-photo class="w-10 h-10 mr-2" :user="$page.user" />
+                                <profile-photo :user="$page.user" class="w-10 h-10 mr-2"/>
 
                                 <div class="py-6 text-sm font-bold text-gray-700">
                                     {{ $page.user.name }}
@@ -42,14 +43,17 @@
                                 <jet-input-error :message="form.error('description')"/>
                                 <jet-input-error :message="form.error('body')"/>
 
-                                <input id="title" v-model="form.title" class="text-4xl font-bold mb-4 input" placeholder="Title"
+                                <input id="title" v-model="form.title" class="text-4xl font-bold mb-4 input"
+                                       placeholder="Title"
                                        type="text"/>
 
-                                <input id="description" v-model="form.description" class="text-2xl font-semibold mb-8 input"
+                                <input id="description" v-model="form.description"
+                                       class="text-2xl font-semibold mb-8 input"
                                        placeholder="Description" type="text"/>
 
-                                <trumbowyg v-model="form.body" :config="config" placeholder="Write your post here..." class="form-control"
-                                           name="content"></trumbowyg>
+                                <trumbowyg v-model="form.body" :config="config" class="form-control"
+                                           name="content"
+                                           placeholder="Write your post here..."></trumbowyg>
                             </div>
                         </div>
                     </div>

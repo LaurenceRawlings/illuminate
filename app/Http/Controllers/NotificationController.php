@@ -8,7 +8,8 @@ use Inertia\Inertia;
 
 class NotificationController extends Controller
 {
-    public function index(Request $request) {
+    public function index(Request $request)
+    {
         $request->user()->unreadNotifications->markAsRead();
 
         $notifications = $request->user()->notifications()->latest()->paginate(12);

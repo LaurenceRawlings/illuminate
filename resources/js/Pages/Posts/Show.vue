@@ -7,21 +7,23 @@
 
                     <div class="post-container">
                         <div class="flex items-center px-24 py-4 bg-gray-200 bg-opacity-25">
-                            <profile-photo :user="post.user" class="w-10 h-10 mr-3" />
+                            <profile-photo :user="post.user" class="w-10 h-10 mr-3"/>
 
                             <div class="text-sm text-gray-700">
-                                <profile-link :user="post.user" />
+                                <profile-link :user="post.user"/>
                                 <p>
                                     <span>{{ post.views_formatted }} views</span>
                                     <span> • {{ post.timestamp }}</span>
-                                    <span class="italic" v-show="post.edited">(edited)</span>
+                                    <span v-show="post.edited" class="italic">(edited)</span>
                                 </p>
                             </div>
 
                             <div class="flex ml-auto items-center font-bold text-lg">
-                                <zap :zapped="post.is_liked" :zappable-id="post.id" zappable-type="post" class="w-6 h-6 mr-1" />
+                                <zap :zappable-id="post.id" :zapped="post.is_liked" class="w-6 h-6 mr-1"
+                                     zappable-type="post"/>
                                 <span>{{ post.likes }}</span>
-                                <inertia-link :href="route('post.create', {'p': post.id})" class="ml-4" v-if="$page.user && $page.user.id === post.user_id">
+                                <inertia-link v-if="$page.user && $page.user.id === post.user_id" :href="route('post.create', {'p': post.id})"
+                                              class="ml-4">
                                     <jet-button>
                                         Edit
                                     </jet-button>
@@ -39,7 +41,7 @@
                     </div>
                 </div>
 
-                <comment-section :comments="comments" :post-id="post.id" />
+                <comment-section :comments="comments" :post-id="post.id"/>
             </div>
         </div>
     </app-layout>

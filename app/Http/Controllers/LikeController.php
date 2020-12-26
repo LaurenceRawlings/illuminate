@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
-use App\Models\User;
 use App\Notifications\LikedCommentNotification;
 use App\Notifications\LikedPostNotification;
 use App\Notifications\PostLike;
@@ -28,28 +27,14 @@ class LikeController extends Controller
         return back();
     }
 
-    public function likeComment(Request $request)
-    {
-        $input = $request->all();
-
-        Validator::make($input, [
-            'likeableId' => ['required'],
-        ])->validateWithBag('like');
-
-        $comment = Comment::query()->findOrFail($input['likeableId']);
-
-        $this->handleLike(Comment::class, $comment, $request->user());
-        return back();
-    }
-
     public function handleLike($type, $likeable, $user)
     {
         $existing_like = Like::withTrashed()->whereLikeableType($type)->whereLikeableId($likeable->id)->whereUserId($user->id)->first();
 
         if (is_null($existing_like)) {
             Like::create([
-                'user_id'       => $user->id,
-                'likeable_id'   => $likeable->id,
+                'user_id' => $user->id,
+                'likeable_id' => $likeable->id,
                 'likeable_type' => $type,
             ]);
 
@@ -68,5 +53,19 @@ class LikeController extends Controller
                 $existing_like->restore();
             }
         }
+    }
+
+    public function likeComment(Request $request)
+    {
+        $input = $request->all();
+
+        Validator::make($input, [
+            'likeableId' => ['required'],
+        ])->validateWithBag('like');
+
+        $comment = Comment::query()->findOrFail($input['likeableId']);
+
+        $this->handleLike(Comment::class, $comment, $request->user());
+        return back();
     }
 }

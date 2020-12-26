@@ -105,6 +105,26 @@ class PostController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param Post $post
+     * @param array $input
+     */
+    public function update(Post $post, array $input)
+    {
+        $thumbnail = $input['thumbnail'] ? $input['thumbnail'] : $post->thumbnail;
+
+        $post->timestamps = true;
+
+        $post->forceFill([
+            'thumbnail' => $thumbnail,
+            'title' => $input['title'],
+            'description' => $input['description'],
+            'body' => $input['body']
+        ])->save();
+    }
+
+    /**
      * Display the specified resource.
      *
      */
@@ -128,26 +148,6 @@ class PostController extends Controller
             'post' => $post,
             'comments' => $comments
         ]);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Post $post
-     * @param array $input
-     */
-    public function update(Post $post, array $input)
-    {
-        $thumbnail = $input['thumbnail'] ? $input['thumbnail'] : $post->thumbnail;
-
-        $post->timestamps = true;
-
-        $post->forceFill([
-            'thumbnail' => $thumbnail,
-            'title' => $input['title'],
-            'description' => $input['description'],
-            'body' => $input['body']
-        ])->save();
     }
 
     /**

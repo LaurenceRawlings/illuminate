@@ -1,7 +1,9 @@
 <template>
     <div class="bg-white overflow-hidden shadow rounded-lg h-full">
-        <div class="h-56 w-full shadow-inner overflow-hidden" :style="post.thumbnail_url.split('.').pop() === 'gif' ? {} : backgroundImage(post.thumbnail_url)">
-            <vue-freezeframe v-if="post.thumbnail_url.split('.').pop() === 'gif'" :src="post.thumbnail_url" :options="{ overlay: true }"></vue-freezeframe>
+        <div :style="post.thumbnail_url.split('.').pop() === 'gif' ? {} : backgroundImage(post.thumbnail_url)"
+             class="h-56 w-full shadow-inner overflow-hidden">
+            <vue-freezeframe v-if="post.thumbnail_url.split('.').pop() === 'gif'" :options="{ overlay: true }"
+                             :src="post.thumbnail_url"></vue-freezeframe>
         </div>
 
         <div class="p-4 h-full">
@@ -13,7 +15,7 @@
                     <p>
                         <span>{{ post.views_formatted }} views</span>
                         <span> • {{ post.timestamp }}</span>
-                        <span class="italic" v-show="post.edited">(edited)</span>
+                        <span v-show="post.edited" class="italic">(edited)</span>
                     </p>
                 </div>
             </div>

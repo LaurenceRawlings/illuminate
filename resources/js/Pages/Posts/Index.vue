@@ -15,9 +15,9 @@
                 </div>
 
                 <pagination-links
-                    :urls_array="paginated_links"
+                    :next_page_url="posts.next_page_url"
                     :previous_page_url="posts.prev_page_url"
-                    :next_page_url="posts.next_page_url">
+                    :urls_array="paginated_links">
                 </pagination-links>
             </div>
         </div>
