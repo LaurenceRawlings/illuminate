@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Helpers\Utils;
 use App\Traits\HasUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,6 @@ class Profile extends Model
 
     protected $fillable = [
         'bio',
-        'featured_article',
         'status_text',
         'status_emoji',
     ];
@@ -29,10 +29,42 @@ class Profile extends Model
      */
     protected $appends = [
         'user',
+        'total_posts',
+        'total_views',
+        'total_likes',
     ];
 
     public function post()
     {
         return $this->hasOne(Post::class);
+    }
+
+    public function getTotalPostsAttribute()
+    {
+        return Utils::formatCount($this->user->posts->count());
+    }
+
+    public function getTotalViewsAttribute()
+    {
+        $views = 0;
+
+        foreach ($this->user->posts as $post)
+        {
+            $views += $post->views;
+        }
+
+        return Utils::formatCount($views);
+    }
+
+    public function getTotalLikesAttribute()
+    {
+        $likes = 0;
+
+        foreach ($this->user->posts as $post)
+        {
+            $likes += $post->likes;
+        }
+
+        return Utils::formatCount($likes);
     }
 }
