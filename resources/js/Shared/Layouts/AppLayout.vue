@@ -63,12 +63,12 @@
                                         Manage Account
                                     </div>
 
-                                    <jet-dropdown-link :href="route('profile.show')">
+                                    <jet-dropdown-link :href="`/${$page.user.username}`">
                                         Profile
                                     </jet-dropdown-link>
 
-                                    <jet-dropdown-link :href="route('dashboard')">
-                                        Dashboard
+                                    <jet-dropdown-link :href="route('profile.show')">
+                                        Settings
                                     </jet-dropdown-link>
 
                                     <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.jetstream.hasApiFeatures">

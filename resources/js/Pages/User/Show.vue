@@ -21,9 +21,11 @@
                         <div class="my-4">
                             {{ profile.bio }}
                         </div>
-                        <jet-button v-show="$page.user.id === profile.user.id" class="w-full">
-                            <span class="w-full">Edit Profile</span>
-                        </jet-button>
+                        <inertia-link :href="route('profile.show')">
+                            <jet-button v-show="$page.user.id === profile.user.id" class="w-full">
+                                <span class="w-full">Edit Profile</span>
+                            </jet-button>
+                        </inertia-link>
                     </div>
 
                     <hr class="my-4">
