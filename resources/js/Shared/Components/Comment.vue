@@ -41,7 +41,8 @@ export default {
         ProfileLink,
         ProfilePhoto,
         JetInput,
-        JetButton
+        JetButton,
+        JetInputError
     },
     props: {
         comment: Object,
@@ -64,9 +65,9 @@ export default {
         updateComment() {
             this.form.post(route('comment.store'), {
                 preserveScroll: true
+            }).then(() => {
+                this.edit = false;
             });
-
-            this.edit = false;
         },
         editClicked() {
             this.edit = !this.edit

@@ -26,13 +26,9 @@ export default {
     },
     methods: {
         like() {
-            if (this.$page.user) {
-                this.form.post(route(`like.${this.zappableType}`), {
-                    preserveScroll: true
-                });
-            } else {
-                alert("Log in to do that!")
-            }
+            this.form.post(route(`like.${this.zappableType}`), {
+                preserveScroll: true
+            });
         }
     }
 }

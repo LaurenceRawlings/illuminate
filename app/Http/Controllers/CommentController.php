@@ -24,7 +24,7 @@ class CommentController extends Controller
         Validator::make($input, [
             'postId' => ['required'],
             'comment' => ['required', 'string', 'max:255'],
-        ])->validateWithBag('addComment');
+        ])->validateWithBag(isset($input['commentId']) ? 'updateComment' : 'addComment');
 
         $post = Post::query()->findOrFail($input['postId']);
 
