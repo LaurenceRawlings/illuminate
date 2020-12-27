@@ -36,7 +36,11 @@
 
 <script>
 export default {
-    props: ['urls_array', 'previous_page_url', 'next_page_url'],
+    props: {
+      urls_array: Array,
+      previous_page_url: String,
+      next_page_url: String
+    },
 }
 </script>
 

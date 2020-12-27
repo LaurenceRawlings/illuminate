@@ -69,15 +69,16 @@ import JetButton from "@/Jetstream/Button";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import JetInput from "@/Jetstream/Input";
 import JetInputError from "@/Jetstream/InputError";
-import methods from "@/Shared/methods";
+import ProfilePhoto from "@/Shared/Components/ProfilePhoto";
+import BackgroundImage from "@/Mixins/BackgroundImage";
 
 import Trumbowyg from 'vue-trumbowyg';
 import 'trumbowyg/dist/ui/trumbowyg.css';
 import 'trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css';
 import 'trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css';
 import 'trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.min.css';
-import 'trumbowyg/dist/plugins/giphy/ui/trumbowyg.giphy.min.css';
 
+import 'trumbowyg/dist/plugins/giphy/ui/trumbowyg.giphy.min.css';
 import 'trumbowyg/dist/plugins/history/trumbowyg.history.min.js';
 import 'jquery-resizable-dom/dist/jquery-resizable.min.js';
 import 'trumbowyg/dist/plugins/resizimg/trumbowyg.resizimg.min.js';
@@ -89,9 +90,9 @@ import 'trumbowyg/dist/plugins/preformatted/trumbowyg.preformatted.min.js';
 import 'trumbowyg/dist/plugins/indent/trumbowyg.indent.min.js';
 import 'trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js';
 import 'trumbowyg/dist/plugins/giphy/trumbowyg.giphy.min.js';
-import ProfilePhoto from "@/Shared/Components/ProfilePhoto";
 
 export default {
+    mixins: [BackgroundImage],
     components: {
         ProfilePhoto,
         AppLayout,
@@ -172,7 +173,6 @@ export default {
     },
 
     methods: {
-        ...methods,
         createPost() {
             if (this.thumbnailPreview) {
                 this.form.thumbnail = this.$refs.thumbnail.files[0]
