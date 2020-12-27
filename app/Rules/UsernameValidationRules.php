@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Traits;
+namespace App\Rules;
 
 
 use Illuminate\Validation\Rule;
