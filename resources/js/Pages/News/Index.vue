@@ -12,7 +12,28 @@
                     <a v-for="newsPost in newsPosts.data" :key="newsPost.id" :href="newsPost.url"
                        rel="noopener noreferrer"
                        target="_blank">
-                        <news-post-card :news-post="newsPost"/>
+                        <post-card>
+                            <template #thumbnail>
+                                <img :src="newsPost.thumbnail_url"
+                                     alt="Thumbnail" class="h-full w-full object-cover inset-0">
+                            </template>
+                            <template #icon>
+                                <a :href="host(newsPost.url)" rel="noopener noreferrer" target="_blank">
+                                    <div class="w-10 h-10">
+                                        <img :src="newsPost.favicon"
+                                             :alt="newsPost.source" class="rounded-full h-full w-full object-cover">
+                                    </div>
+                                </a>
+                            </template>
+                            <template #user>
+                                <a :href="host(newsPost.url)" class="text-sm font-bold text-gray-700 hover:underline"
+                                   rel="noopener noreferrer"
+                                   target="_blank">{{ newsPost.source }}</a>
+                            </template>
+                            <template #details>{{ newsPost.timestamp }}</template>
+                            <template #title>{{ newsPost.title }}</template>
+                            <template #description>{{ newsPost.description }}</template>
+                        </post-card>
                     </a>
                 </div>
 
@@ -28,19 +49,25 @@
 
 <script>
 import AppLayout from '@/Shared/Layouts/AppLayout'
-import NewsPostCard from "@/Pages/News/NewsPostCard";
 import PaginationLinks from "@/Shared/Components/PaginationLinks";
+import PostCard from "@/Shared/Components/PostCard";
 
 export default {
     components: {
         AppLayout,
-        NewsPostCard,
-        PaginationLinks
+        PaginationLinks,
+        PostCard
     },
     props: {
         newsPosts: Object,
         paginated_links: Array,
     },
+    methods: {
+        host(postUrl) {
+            let url = new URL(postUrl);
+            return `${url.protocol}${url.hostname}`
+        }
+    }
 }
 </script>
 

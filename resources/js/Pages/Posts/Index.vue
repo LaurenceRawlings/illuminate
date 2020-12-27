@@ -10,7 +10,25 @@
             <div class="my-12 max-w-7xl mx-auto px-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     <inertia-link v-for="post in posts.data" :key="post.id" :href="route('read', {'p': post.id})">
-                        <post-card :post="post"/>
+                        <post-card>
+                            <template #thumbnail>
+                                <img :src="post.thumbnail_url"
+                                     alt="Thumbnail" class="h-full w-full object-cover inset-0">
+                            </template>
+                            <template #icon>
+                                <profile-photo :user="post.user" class="w-10 h-10" />
+                            </template>
+                            <template #user>
+                                <profile-link :user="post.user" />
+                            </template>
+                            <template #details>
+                                <span>{{ post.views_formatted }} views</span>
+                                <span> • {{ post.timestamp }}</span>
+                                <span v-show="post.edited" class="italic">(edited)</span>
+                            </template>
+                            <template #title>{{ post.title }}</template>
+                            <template #description>{{ post.description }}</template>
+                        </post-card>
                     </inertia-link>
                 </div>
 
@@ -26,11 +44,15 @@
 
 <script>
 import AppLayout from '@/Shared/Layouts/AppLayout'
-import PostCard from "@/Pages/Posts/PostCard";
 import PaginationLinks from "@/Shared/Components/PaginationLinks";
+import PostCard from "@/Shared/Components/PostCard";
+import ProfilePhoto from "@/Shared/Components/ProfilePhoto";
+import ProfileLink from "@/Shared/Components/ProfileLink";
 
 export default {
     components: {
+        ProfileLink,
+        ProfilePhoto,
         AppLayout,
         PostCard,
         PaginationLinks,
