@@ -2,7 +2,7 @@
     <app-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                User / {{ profile.user.username }}
+                User <span class="text-blue-500 font-black mx-2">/</span> {{ profile.user.username }}
             </h2>
         </template>
 
@@ -10,7 +10,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col lg:flex-row">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg flex-shrink p-8 h-full">
                     <div class="text-center w-72">
-                        <profile-photo :user="profile.user" class="mb-4"/>
+                        <profile-photo :user="profile.user" class="mb-4" />
                         <span class="text-2xl font-bold text-gray-700">{{ profile.user.name }}</span>
 
                         <div class="text-xl">
