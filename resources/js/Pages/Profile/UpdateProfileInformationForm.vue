@@ -61,6 +61,27 @@
                 <jet-input id="username" type="text" class="mt-1 block w-full" v-model="form.username" />
                 <jet-input-error :message="form.error('username')" class="mt-2" />
             </div>
+
+            <!-- Bio -->
+            <div class="col-span-6 sm:col-span-4">
+                <jet-label for="bio" value="Bio" />
+                <jet-input id="bio" type="text" class="mt-1 block w-full" v-model="form.bio" />
+                <jet-input-error :message="form.error('bio')" class="mt-2" />
+            </div>
+
+            <!-- Status Text -->
+            <div class="col-span-6 sm:col-span-4">
+                <jet-label for="status_text" value="Status" />
+                <jet-input id="status_text" type="text" class="mt-1 block w-full" v-model="form.status_text" />
+                <jet-input-error :message="form.error('status_text')" class="mt-2" />
+            </div>
+
+            <!-- Status Emoji -->
+            <div class="col-span-6 sm:col-span-4">
+                <jet-label for="status_emoji" value="Status Emoji" />
+                <jet-input id="status_emoji" type="text" class="mt-1 block w-full" v-model="form.status_emoji" />
+                <jet-input-error :message="form.error('status_emoji')" class="mt-2" />
+            </div>
         </template>
 
         <template #actions>
@@ -105,6 +126,9 @@
                     email: this.user.email,
                     username: this.user.username,
                     photo: null,
+                    bio: null,
+                    status_text: null,
+                    status_emoji: null,
                 }, {
                     bag: 'updateProfileInformation',
                     resetOnSuccess: false,
