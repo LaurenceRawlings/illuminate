@@ -142,7 +142,11 @@ class PostController extends Controller
 
 
         if (isset($input['thumbnail'])) {
-            $imageName = $input['thumbnail']->store('post-thumbnails/' . $request->user()->id, 'public');
+            if ($input['thumbnail'] != $post->thumbnail) {
+                $imageName = $input['thumbnail']->store('post-thumbnails/' . $request->user()->id, 'public');
+            } else {
+                $imageName = $post->thumbnail;
+            }
         } else {
             $imageName = null;
         }
@@ -152,7 +156,7 @@ class PostController extends Controller
         $post->timestamps = true;
 
         $post->forceFill([
-            'thumbnail' => $imageName ? $imageName : $post->thumbnail,
+            'thumbnail' => $imageName,
             'title' => $input['title'],
             'description' => $input['description'],
             'body' => $body

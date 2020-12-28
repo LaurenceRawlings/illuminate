@@ -179,7 +179,7 @@ export default {
 
             if (this.post) {
                 this.form._method = 'PUT';
-                this.form.put(route('posts.update', this.post.id), {
+                this.form.post(route('posts.update', this.post.id), {
                     preserveScroll: true
                 });
             } else {
