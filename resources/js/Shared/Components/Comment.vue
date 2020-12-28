@@ -50,10 +50,9 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
-                '_method': 'POST',
+                '_method': 'PUT',
                 comment: this.comment.comment,
                 commentId: this.comment.id,
-                postId: this.comment.post_id
             }, {
                 bag: 'updateComment',
                 resetOnSuccess: true,
@@ -63,7 +62,7 @@ export default {
     },
     methods: {
         updateComment() {
-            this.form.post(route('comment.store'), {
+            this.form.put(route('comment.update'), {
                 preserveScroll: true
             }).then(() => {
                 this.edit = false;

@@ -24,20 +24,9 @@ class CommentController extends Controller
         Validator::make($input, [
             'postId' => ['required'],
             'comment' => ['required', 'string', 'max:255'],
-        ])->validateWithBag(isset($input['commentId']) ? 'updateComment' : 'addComment');
+        ])->validateWithBag('addComment');
 
         $post = Post::query()->findOrFail($input['postId']);
-
-        if (isset($input['commentId'])) {
-            $comment = Comment::query()->findOrFail($input['commentId']);
-
-            if ($comment->user_id != $request->user()->id) {
-                return Redirect::route('home');
-            }
-
-            $this->update($comment, $input);
-            return back();
-        }
 
         $comment = $request->user()->comments()->create([
             'post_id' => $post->id,
@@ -57,11 +46,27 @@ class CommentController extends Controller
      * @param $comment
      * @param array $input
      */
-    public function update($comment, array $input)
+    public function update(Request $request)
     {
+        $input = $request->all();
+
+        Validator::make($input, [
+            'commentId' => ['required'],
+            'comment' => ['required', 'string', 'max:255'],
+        ])->validateWithBag('updateComment');
+
+        $comment = Comment::query()->findOrFail($input['commentId']);
+        $this->authorize('update', $comment);
+
+        if ($comment->user_id != $request->user()->id) {
+            return Redirect::route('home');
+        }
+
         $comment->forceFill([
             'comment' => $input['comment'],
         ])->save();
+
+        return back();
     }
 
     /**

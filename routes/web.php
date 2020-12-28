@@ -27,6 +27,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/write', [PostController::class, 'create'])->name('post.create');
     Route::post('/write', [PostController::class, 'store'])->name('post.store');
     Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
+    Route::put('/comment', [CommentController::class, 'update'])->name('comment.update');
     Route::post('/like/post', [LikeController::class, 'likePost'])->name('like.post');
     Route::post('/like/comment', [LikeController::class, 'likeComment'])->name('like.comment');
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
