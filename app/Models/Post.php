@@ -44,6 +44,7 @@ class Post extends Model
         'edited',
         'likes',
         'is_liked',
+        'can_edit',
     ];
 
     /**

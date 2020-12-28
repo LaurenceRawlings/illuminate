@@ -34,6 +34,7 @@ class Comment extends Model
         'edited',
         'likes',
         'is_liked',
+        'can_edit',
     ];
 
     public function post()
