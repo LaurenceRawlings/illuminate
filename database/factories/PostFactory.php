@@ -32,7 +32,7 @@ class PostFactory extends Factory
             'description' => $this->faker->realText(100),
             'body' => Purifier::clean($this->faker->randomHtml()),
             'thumbnail' => 'https://loremflickr.com/1024/768/technology?lock=' . $this->faker->numberBetween($min = 0, $max = 10000),
-            'views' => $this->faker->numberBetween($min = 0, $max = 100000),
+            'views' => $this->faker->numberBetween($min = 0, $max = 100),
             'created_at' => $date,
             'updated_at' => $date,
         ];
