@@ -10,15 +10,17 @@ class NotificationController extends Controller
 {
     public function index(Request $request)
     {
+        if ($request->wantsJson()) {
+            return [
+                'unread' => $request->user()->unreadNotifications->count()
+            ];
+        }
+
         $request->user()->unreadNotifications->markAsRead();
 
         $notifications = $request->user()->notifications()->latest()->paginate(12);
 
         $paginatedLinks = InertiaPaginator::paginationLinks($notifications);
-
-        if ($request->wantsJson()) {
-            return $notifications;
-        }
 
         return Inertia::render('Notifications/Index', [
             'notifications' => $notifications,

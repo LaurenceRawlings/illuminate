@@ -37,13 +37,20 @@
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <div class="ml-3 relative flex items-center" v-if="$page.user">
                             <inertia-link :href="route('notifications')">
-                                <span class="mr-4 font-bold text-sm hover:underline cursor-pointer">Notifications: {{ $page.unreadNotificationsCount }}</span>
+                                <div class="relative mr-4 flex">
+                                    <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                                    </svg>
+                                    <div v-show="$page.unreadNotificationsCount" class="z-1 -ml-3 -mt-1 bg-red-500 text-white text-xs px-1 rounded-full font-bold h-full">
+                                        {{ $page.unreadNotificationsCount }}
+                                    </div>
+                                </div>
                             </inertia-link>
 
                             <jet-dropdown align="right" width="48">
                                 <template #trigger>
                                     <button v-if="$page.jetstream.managesProfilePhotos" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
-                                        <img class="h-8 w-8 rounded-full object-cover" :src="$page.user.profile_photo_url" :alt="$page.user.name" />
+                                        <img class="h-10 w-10 rounded-full object-cover" :src="$page.user.profile_photo_url" :alt="$page.user.name" />
                                     </button>
 
                                     <button v-else class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
@@ -335,7 +342,9 @@
             if (this.$page.user) {
                 Echo.private(`App.Models.Users.${this.$page.user.id}`)
                     .notification((notification) => {
-                        this.$page.unreadNotificationsCount++;
+                        axios.get('/notifications').then(response => {
+                            this.$page.unreadNotificationsCount = response.data.unread;
+                        });
                     });
             }
         },
