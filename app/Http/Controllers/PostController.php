@@ -4,20 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Helpers\InertiaPaginator;
 use App\Models\Post;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
+use Inertia\Response;
 use Mews\Purifier\Facades\Purifier;
 
 class PostController extends Controller
 {
     /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Post::class, 'post');
+    }
+
+    /**
      * Display a listing of the resource.
      *
-     * @return \Inertia\Response
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
         $posts = Post::query()->latest()->paginate(12);
 
@@ -32,33 +45,21 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param Request $request
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     * @return Response
      */
-    public function create(Request $request)
+    public function create(): Response
     {
-        if (!$request->input('p')) {
-            return Inertia::render('Posts/Edit');
-        }
-
-        $id = $request->input('p');
-
-        $post = Post::query()->findOrFail($id);
-
-        $this->authorize('update', $post);
-
-        return Inertia::render('Posts/Edit', [
-            'post' => $post,
-        ]);
+        return Inertia::render('Posts/Edit');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $input = $request->all();
 
@@ -78,64 +79,24 @@ class PostController extends Controller
 
         $body = Purifier::clean($input['body'], 'youtube');
 
-        if (isset($input['postId'])) {
-            $id = $input['postId'];
-            $post = Post::query()->findOrFail($id);
-
-            if ($post->user_id != $request->user()->id) {
-                return Redirect::route('home');
-            }
-
-            $input['body'] = $body;
-            $input['thumbnail'] = $imageName;
-            $this->update($post, $input);
-            return Redirect::route('read', ['p' => $id]);
-        }
-
-        $request->user()->posts()->create([
+        $post = $request->user()->posts()->create([
             'thumbnail' => $imageName,
             'title' => $input['title'],
             'description' => $input['description'],
             'body' => $body
         ]);
 
-        return Redirect::route('home');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param Post $post
-     * @param array $input
-     */
-    public function update(Post $post, array $input)
-    {
-        $thumbnail = $input['thumbnail'] ? $input['thumbnail'] : $post->thumbnail;
-
-        $post->timestamps = true;
-
-        $post->forceFill([
-            'thumbnail' => $thumbnail,
-            'title' => $input['title'],
-            'description' => $input['description'],
-            'body' => $input['body']
-        ])->save();
+        return Redirect::route('posts.show', [$post]);
     }
 
     /**
      * Display the specified resource.
      *
+     * @param Post $post
+     * @return Response
      */
-    public function show(Request $request)
+    public function show(Post $post)
     {
-        if (!$request->input('p')) {
-            return Redirect::route('home');
-        }
-
-        $id = $request->input('p');
-
-        $post = Post::query()->findOrFail($id);
-
         $post->views = $post->views + 1;
         $post->timestamps = false;
         $post->save();
@@ -149,12 +110,64 @@ class PostController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Post $post
+     * @return Response
+     */
+    public function edit(Post $post)
+    {
+        return Inertia::render('Posts/Edit', [
+            'post' => $post,
+        ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param Request $request
+     * @param Post $post
+     * @return RedirectResponse
+     */
+    public function update(Request $request, Post $post)
+    {
+        $input = $request->all();
+
+        Validator::make($input, [
+            'thumbnail' => ['image', 'mimes:png,jpg,jpeg,gif', 'max:8192', 'nullable'],
+            'title' => ['required'],
+            'description' => ['required'],
+            'body' => ['required'],
+        ])->validateWithBag('createPost');
+
+
+        if (isset($input['thumbnail'])) {
+            $imageName = $input['thumbnail']->store('post-thumbnails/' . $request->user()->id, 'public');
+        } else {
+            $imageName = null;
+        }
+
+        $body = Purifier::clean($input['body'], 'youtube');
+
+        $post->timestamps = true;
+
+        $post->forceFill([
+            'thumbnail' => $imageName ? $imageName : $post->thumbnail,
+            'title' => $input['title'],
+            'description' => $input['description'],
+            'body' => $body
+        ])->save();
+
+        return Redirect::route('posts.show', [$post]);
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param Post $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
         //
     }
