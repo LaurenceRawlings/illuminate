@@ -45,9 +45,7 @@ class PostController extends Controller
 
         $post = Post::query()->findOrFail($id);
 
-        if ($request->user()->id != $post->user_id) {
-            return Redirect::route('home');
-        }
+        $this->authorize('update', $post);
 
         return Inertia::render('Posts/Edit', [
             'post' => $post,
