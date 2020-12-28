@@ -79,7 +79,14 @@
             <!-- Status Emoji -->
             <div class="col-span-6 sm:col-span-4">
                 <jet-label for="status_emoji" value="Status Emoji" />
-                <jet-input id="status_emoji" type="text" class="mt-1 block w-full" v-model="form.status_emoji" />
+                <div class="flex items-center">
+                    <jet-input id="status_emoji" type="text" class="mt-1 block w-15 text-center" v-model="form.status_emoji" disabled />
+                    <div class="flex items-center ml-2">
+                        <div class="absolute">
+                            <emoji-picker  @emoji:picked="selectEmoji" :data="data" />
+                        </div>
+                    </div>
+                </div>
                 <jet-input-error :message="form.error('status_emoji')" class="mt-2" />
             </div>
         </template>
@@ -104,6 +111,8 @@
     import JetLabel from '@/Jetstream/Label'
     import JetActionMessage from '@/Jetstream/ActionMessage'
     import JetSecondaryButton from '@/Jetstream/SecondaryButton'
+
+    import data from '@zaichaopan/emoji-picker/data/emojis.json';
 
     export default {
         components: {
@@ -135,10 +144,23 @@
                 }),
 
                 photoPreview: null,
+
+                data: data,
             }
         },
 
+        mounted() {
+            axios.get(`/${this.user.username}`).then(response => {
+                this.form.bio = response.data.bio;
+                this.form.status_text = response.data.status_text;
+                this.form.status_emoji = response.data.status_emoji;
+            });
+        },
+
         methods: {
+            selectEmoji(emoji) {
+                this.form.status_emoji = emoji;
+            },
             updateProfileInformation() {
                 if (this.$refs.photo) {
                     this.form.photo = this.$refs.photo.files[0]

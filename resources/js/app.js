@@ -7,11 +7,13 @@ import Vue from 'vue';
 import { InertiaApp } from '@inertiajs/inertia-vue';
 import { InertiaForm } from 'laravel-jetstream';
 import PortalVue from 'portal-vue';
+import EmojiPicker from '@zaichaopan/emoji-picker';
 
 Vue.mixin({ methods: { route } });
 Vue.use(InertiaApp);
 Vue.use(InertiaForm);
 Vue.use(PortalVue);
+Vue.use(EmojiPicker);
 
 const app = document.getElementById('app');
 

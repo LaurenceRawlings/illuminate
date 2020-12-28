@@ -3,7 +3,10 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div :style="backgroundImage(post.thumbnail_url)" class="bg-cover bg-center h-96 p-4"></div>
+                    <div class="h-full overflow-hidden" :style="{ 'max-height': '40vh' }">
+                        <img :src="post.thumbnail_url"
+                             alt="Thumbnail" class="h-full w-full object-cover inset-0">
+                    </div>
 
                     <div class="post-container">
                         <div class="flex items-center px-24 py-4 bg-gray-200 bg-opacity-25">
