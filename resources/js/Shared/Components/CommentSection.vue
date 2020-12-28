@@ -49,7 +49,7 @@ export default {
     },
     methods: {
         addComment() {
-            this.form.post(route('comment.store'), {
+            this.form.post(route('comments.store'), {
                 preserveScroll: true
             });
         }

@@ -62,7 +62,7 @@ export default {
     },
     methods: {
         updateComment() {
-            this.form.put(route('comment.update'), {
+            this.form.put(route('comments.update', this.comment.id), {
                 preserveScroll: true
             }).then(() => {
                 this.edit = false;

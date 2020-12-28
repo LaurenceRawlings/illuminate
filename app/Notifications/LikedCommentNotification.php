@@ -75,7 +75,7 @@ class LikedCommentNotification extends Notification
         return [
             'user' => $this->user,
             'message' => '{{USER}} liked your comment.',
-            'link' => route('read', ['p' => $this->post->id]),
+            'link' => route('posts.show', [$this->post]),
             'comment' => $this->comment,
         ];
     }

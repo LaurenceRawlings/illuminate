@@ -26,7 +26,12 @@ export default {
     },
     methods: {
         like() {
-            this.form.post(route(`like.${this.zappableType}`), {
+            if (!this.$page.user) {
+                window.location ='/login';
+                return;
+            }
+
+            this.form.post(route(`like.store.${this.zappableType}`), {
                 preserveScroll: true
             });
         }

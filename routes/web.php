@@ -19,24 +19,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
+Route::any('/', function () {
+    return Redirect::route('posts.index');
+})->name('home');
+
+Route::resource('posts', PostController::class);
+
+Route::resource('comments', CommentController::class)->only([
+    'store', 'update', 'destroy'
+]);
+
+Route::get('user/{username}', [UserController::class, 'show'])->name('user.show');
+Route::get('news', [NewsPostController::class, 'index'])->name('news.index');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/write', [PostController::class, 'create'])->name('post.create');
-    Route::post('/write', [PostController::class, 'store'])->name('post.store');
-    Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
-    Route::put('/comment', [CommentController::class, 'update'])->name('comment.update');
-    Route::post('/like/post', [LikeController::class, 'likePost'])->name('like.post');
-    Route::post('/like/comment', [LikeController::class, 'likeComment'])->name('like.comment');
-    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
-    Route::get('/dashboard', function () {
-        return Inertia\Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::post('like/post', [LikeController::class, 'likePost'])->name('like.store.post');
+    Route::post('like/comment', [LikeController::class, 'likeComment'])->name('like.store.comment');
+    Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');
 });
-
-Route::get('/', [PostController::class, 'index'])->name('home');
-Route::get('/read', [PostController::class, 'show'])->name('read');
-Route::get('/news', [NewsPostController::class, 'index'])->name('news');
-Route::get('/{username}', [UserController::class, 'show'])->name('user.show');

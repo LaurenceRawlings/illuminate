@@ -76,7 +76,7 @@ class CommentedPostNotification extends Notification
         return [
             'user' => $this->user,
             'message' => '{{USER}} commented on your post.',
-            'link' => route('read', ['p' => $this->post->id]),
+            'link' => route('posts.show', [$this->post]),
             'comment' => $this->comment,
             'post' => $this->post,
         ];

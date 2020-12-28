@@ -5,7 +5,7 @@
                 <form autocomplete="off">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                         <div
-                            :style="backgroundImage(thumbnailPreview ? thumbnailPreview : 'storage/app-images/default-thumbnail.png')"
+                            :style="backgroundImage(thumbnailPreview ? thumbnailPreview : '/storage/app-images/default-thumbnail.png')"
                             class="bg-cover bg-center h-96 p-4">
                             <input ref="thumbnail" class="hidden"
                                    type="file"
@@ -160,7 +160,6 @@ export default {
             thumbnailPreview: null,
             form: this.$inertia.form({
                 '_method': 'POST',
-                postId: null,
                 thumbnail: null,
                 title: null,
                 description: null,
@@ -178,9 +177,16 @@ export default {
                 this.form.thumbnail = this.$refs.thumbnail.files[0]
             }
 
-            this.form.post(route('post.store'), {
-                preserveScroll: true
-            });
+            if (this.post) {
+                this.form._method = 'PUT';
+                this.form.put(route('posts.update', this.post.id), {
+                    preserveScroll: true
+                });
+            } else {
+                this.form.post(route('posts.store'), {
+                    preserveScroll: true
+                });
+            }
         },
 
         selectNewThumbnail() {
@@ -208,7 +214,6 @@ export default {
 
     mounted() {
         if (this.post) {
-            this.form.postId = this.post.id
             this.thumbnailPreview = this.post.thumbnail_url
             this.form.title = this.post.title
             this.form.description = this.post.description

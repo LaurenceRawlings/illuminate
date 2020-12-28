@@ -65,7 +65,7 @@
                         <h1 class="text-2xl font-bold mb-2">All Posts</h1>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <inertia-link v-for="post in posts.data" :key="post.id" :href="route('read', {'p': post.id})">
+                            <inertia-link v-for="post in posts.data" :key="post.id" :href="route('posts.show', post.id)">
                                 <post-card class="max-w-sm">
                                     <template #thumbnail>
                                         <img :src="post.thumbnail_url"

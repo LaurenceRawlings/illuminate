@@ -25,7 +25,7 @@
                                 <zap :zappable-id="post.id" :zapped="post.is_liked" class="w-6 h-6 mr-1"
                                      zappable-type="post"/>
                                 <span>{{ post.likes }}</span>
-                                <inertia-link v-if="$page.user && $page.user.id === post.user_id" :href="route('post.create', {'p': post.id})"
+                                <inertia-link v-if="$page.user && $page.user.id === post.user_id" :href="route('posts.edit', post.id)"
                                               class="ml-4">
                                     <jet-button>
                                         Edit

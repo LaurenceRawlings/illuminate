@@ -21,13 +21,13 @@
                         </div>
 
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <jet-nav-link :href="route('news')" :active="route().current('news')">
+                            <jet-nav-link :href="route('news.index')" :active="route().current('news.index')">
                                 News
                             </jet-nav-link>
                         </div>
 
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" v-if="$page.user">
-                            <jet-nav-link :href="route('post.create')" :active="route().current('post.create')">
+                            <jet-nav-link :href="route('posts.create')" :active="route().current('posts.create')">
                                 Write
                             </jet-nav-link>
                         </div>
@@ -36,7 +36,7 @@
                     <!-- Settings Dropdown -->
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <div class="ml-3 relative flex items-center" v-if="$page.user">
-                            <inertia-link :href="route('notifications')">
+                            <inertia-link :href="route('notifications.index')">
                                 <div class="relative mr-4 flex">
                                     <svg class="w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
@@ -70,7 +70,7 @@
                                         Manage Account
                                     </div>
 
-                                    <jet-dropdown-link :href="`/${$page.user.username}`">
+                                    <jet-dropdown-link :href="route('user.show', $page.user.username)" :active="route().current('user.show', $page.user.username)">
                                         Profile
                                     </jet-dropdown-link>
 
@@ -163,13 +163,13 @@
                 </div>
 
                 <div class="pt-2 pb-3 space-y-1">
-                    <jet-responsive-nav-link :href="route('news')" :active="route().current('news')">
+                    <jet-responsive-nav-link :href="route('news.index')" :active="route().current('news.index')">
                         News
                     </jet-responsive-nav-link>
                 </div>
 
                 <div class="pt-2 pb-3 space-y-1" v-if="$page.user">
-                    <jet-responsive-nav-link :href="route('post.create')" :active="route().current('post.create')">
+                    <jet-responsive-nav-link :href="route('posts.create')" :active="route().current('posts.create')">
                         Write
                     </jet-responsive-nav-link>
                 </div>
@@ -189,7 +189,7 @@
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <jet-responsive-nav-link :href="route('notifications')" :active="route().current('notifications')">
+                            <jet-responsive-nav-link :href="route('notifications.index')" :active="route().current('notifications.index')">
                                 <div class="flex items-center">
                                     <span class="mr-2">Notifications</span>
                                     <div v-show="$page.unreadNotificationsCount > 0"
@@ -199,12 +199,12 @@
                                 </div>
                             </jet-responsive-nav-link>
 
-                            <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
+                            <jet-responsive-nav-link :href="route('user.show', $page.user.username)" :active="route().current('user.show', $page.user.username)">
                                 Profile
                             </jet-responsive-nav-link>
 
-                            <jet-responsive-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                                Dashboard
+                            <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
+                                Settings
                             </jet-responsive-nav-link>
 
                             <jet-responsive-nav-link :href="route('api-tokens.index')" :active="route().current('api-tokens.index')" v-if="$page.jetstream.hasApiFeatures">
