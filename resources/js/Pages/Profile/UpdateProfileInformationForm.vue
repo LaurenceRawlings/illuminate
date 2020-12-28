@@ -72,21 +72,14 @@
             <!-- Status Text -->
             <div class="col-span-6 sm:col-span-4">
                 <jet-label for="status_text" value="Status" />
-                <jet-input id="status_text" type="text" class="mt-1 block w-full" v-model="form.status_text" />
-                <jet-input-error :message="form.error('status_text')" class="mt-2" />
-            </div>
-
-            <!-- Status Emoji -->
-            <div class="col-span-6 sm:col-span-4">
-                <jet-label for="status_emoji" value="Status Emoji" />
                 <div class="flex items-center">
-                    <jet-input id="status_emoji" type="text" class="mt-1 block w-15 text-center" v-model="form.status_emoji" disabled />
-                    <div class="flex items-center ml-2">
-                        <div class="absolute">
-                            <emoji-picker  @emoji:picked="selectEmoji" :data="data" />
-                        </div>
+                    <jet-input id="status_emoji" type="text" class="mt-1 block w-15 text-center mr-2" v-model="form.status_emoji" disabled />
+                    <jet-input id="status_text" type="text" class="mt-1 block w-full" v-model="form.status_text" />
+                    <div class="absolute ml-4">
+                        <emoji-picker @emoji:picked="selectEmoji" :data="data" />
                     </div>
                 </div>
+                <jet-input-error :message="form.error('status_text')" class="mt-2" />
                 <jet-input-error :message="form.error('status_emoji')" class="mt-2" />
             </div>
         </template>
@@ -195,3 +188,9 @@
         },
     }
 </script>
+
+<style>
+    .emoji-invoker {
+        @apply opacity-0;
+    }
+</style>
