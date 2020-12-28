@@ -5,19 +5,33 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Notifications\CommentedPostNotification;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class CommentController extends Controller
 {
     /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Comment::class, 'comment');
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException|ModelNotFoundException
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $input = $request->all();
 
@@ -43,10 +57,12 @@ class CommentController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param $comment
-     * @param array $input
+     * @param Request $request
+     * @param Comment $comment
+     * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function update(Request $request)
+    public function update(Request $request, Comment $comment): RedirectResponse
     {
         $input = $request->all();
 
@@ -54,13 +70,6 @@ class CommentController extends Controller
             'commentId' => ['required'],
             'comment' => ['required', 'string', 'max:255'],
         ])->validateWithBag('updateComment');
-
-        $comment = Comment::query()->findOrFail($input['commentId']);
-        $this->authorize('update', $comment);
-
-        if ($comment->user_id != $request->user()->id) {
-            return Redirect::route('home');
-        }
 
         $comment->forceFill([
             'comment' => $input['comment'],
@@ -72,10 +81,10 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
-     * @return \Illuminate\Http\Response
+     * @param Comment $comment
+     * @return Response
      */
-    public function destroy($id)
+    public function destroy(Comment $comment): Response
     {
         //
     }
