@@ -143,7 +143,7 @@
         },
 
         mounted() {
-            axios.get(`/${this.user.username}`).then(response => {
+            axios.get(route('user.show', this.$page.user.username)).then(response => {
                 this.form.bio = response.data.bio;
                 this.form.status_text = response.data.status_text;
                 this.form.status_emoji = response.data.status_emoji;
