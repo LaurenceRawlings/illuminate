@@ -22,7 +22,7 @@
                             {{ profile.bio }}
                         </div>
                         <inertia-link :href="route('profile.show')">
-                            <jet-button v-show="$page.user.id === profile.user.id" class="w-full">
+                            <jet-button v-show="$page.user && $page.user.id === profile.user.id" class="w-full">
                                 <span class="w-full">Edit Profile</span>
                             </jet-button>
                         </inertia-link>
