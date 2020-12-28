@@ -27,7 +27,7 @@ class LikeController extends Controller
         return back();
     }
 
-    public function handleLike($type, $likeable, $user)
+    private function handleLike($type, $likeable, $user)
     {
         $existing_like = Like::withTrashed()->whereLikeableType($type)->whereLikeableId($likeable->id)->whereUserId($user->id)->first();
 
