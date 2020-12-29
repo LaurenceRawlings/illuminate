@@ -6,7 +6,7 @@
                 <profile-link :user="comment.user" class="mr-2" />
                 <span class="text-gray-500">{{ comment.timestamp }}</span>
                 <span class="text-gray-500 italic" v-show="comment.edited">(edited)</span>
-                <span v-if="comment.can_edit">
+                <span v-if="comment.can_edit || comment.can_delete">
                     <span> • </span>
                     <span @click="editClicked" class="hover:underline cursor-pointer" :class="edit ? 'text-red-500 hover:text-red-800' : 'text-gray-500 hover:text-black'">{{ edit ? 'Cancel' : 'Edit' }}</span>
                 </span>
@@ -14,12 +14,12 @@
 
             <div v-if="edit" class="flex">
                 <div class="flex items-center mr-2 relative w-full">
-                    <jet-input v-model="form.comment" class="w-full" maxlength="255" />
+                    <jet-input v-model="form.comment" class="w-full" maxlength="255" :disabled="!comment.can_edit" />
                     <div class="right-0 absolute bg-gray-200 mr-2 px-2 rounded-full font-thin">
                         {{ form.comment ? form.comment.length : 0 }} / 255
                     </div>
                 </div>
-                <jet-button @click.native.prevent="updateComment">Update</jet-button>
+                <jet-button v-if="comment.can_edit" @click.native.prevent="updateComment">Update</jet-button>
                 <jet-danger-button v-if="comment.can_delete" class="ml-2">
                     Delete
                 </jet-danger-button>

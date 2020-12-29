@@ -11,6 +11,8 @@ class CommentPolicy
 {
     use HandlesAuthorization;
 
+    private $adminAbilities = array('delete', 'restore', 'force-delete');
+
     /**
      * Perform pre-authorization checks.
      *
@@ -20,7 +22,7 @@ class CommentPolicy
      */
     public function before(User $user, $ability)
     {
-        if ($user->is_admin) {
+        if ($user->is_admin && in_array($ability, $this->adminAbilities)) {
             return true;
         }
     }
