@@ -164,6 +164,7 @@ export default {
                 title: null,
                 description: null,
                 body: null,
+                remove_thumbnail: false,
             }, {
                 bag: 'createPost',
                 resetOnSuccess: true,
@@ -173,10 +174,6 @@ export default {
 
     methods: {
         createPost() {
-            if (this.thumbnailPreview) {
-                this.form.thumbnail = this.$refs.thumbnail.files[0]
-            }
-
             if (this.post) {
                 this.form._method = 'PUT';
                 this.form.post(route('posts.update', this.post.id), {
@@ -201,10 +198,13 @@ export default {
             };
 
             reader.readAsDataURL(this.$refs.thumbnail.files[0]);
+            this.form.thumbnail = this.$refs.thumbnail.files[0]
+            this.form.remove_thumbnail = false;
         },
 
         removeThumbnail() {
             this.thumbnailPreview = null;
+            this.form.remove_thumbnail = true;
         },
     },
 

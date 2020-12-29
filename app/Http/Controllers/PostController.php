@@ -138,29 +138,32 @@ class PostController extends Controller
             'title' => ['required'],
             'description' => ['required'],
             'body' => ['required'],
+            'remove_thumbnail' => ['boolean']
         ])->validateWithBag('createPost');
 
-
         if (isset($input['thumbnail'])) {
-            if ($input['thumbnail'] != $post->thumbnail) {
-                $imageName = $input['thumbnail']->store('post-thumbnails/' . $request->user()->id, 'public');
+            $imageName = $input['thumbnail']->store('post-thumbnails/' . $request->user()->id, 'public');
+        } else {
+            if (isset($input['remove_thumbnail']) && $input['remove_thumbnail']) {
+                $imageName = null;
             } else {
                 $imageName = $post->thumbnail;
             }
-        } else {
-            $imageName = null;
         }
 
         $body = Purifier::clean($input['body'], 'youtube');
 
-        $post->timestamps = true;
+        if ($input['thumbnail'] != $post->thumbnail || $input['title'] != $post->title ||
+            $input['description'] != $post->description || $input['body'] != $post->body) {
+            $post->timestamps = true;
 
-        $post->forceFill([
-            'thumbnail' => $imageName,
-            'title' => $input['title'],
-            'description' => $input['description'],
-            'body' => $body
-        ])->save();
+            $post->forceFill([
+                'thumbnail' => $imageName,
+                'title' => $input['title'],
+                'description' => $input['description'],
+                'body' => $body
+            ])->save();
+        }
 
         return Redirect::route('posts.show', [$post]);
     }
