@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\Deletable;
 use App\Traits\Editable;
 use App\Traits\HasTimestamp;
 use App\Traits\HasUser;
@@ -15,6 +16,7 @@ class Comment extends Model
     use HasUser;
     use HasTimestamp;
     use Editable;
+    use Deletable;
     use Likeable;
 
     protected $fillable = [
@@ -35,6 +37,7 @@ class Comment extends Model
         'likes',
         'is_liked',
         'can_edit',
+        'can_delete',
     ];
 
     public function post()
