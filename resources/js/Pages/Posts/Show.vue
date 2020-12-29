@@ -26,11 +26,15 @@
                                      zappable-type="post"/>
                                 <span>{{ post.likes }}</span>
                                 <inertia-link v-if="post.can_edit" :href="route('posts.edit', post.id)"
-                                              class="ml-4">
+                                              class="ml-6">
                                     <jet-button>
                                         Edit
                                     </jet-button>
                                 </inertia-link>
+
+                                <jet-danger-button v-if="post.can_delete" class="ml-4">
+                                    Delete
+                                </jet-danger-button>
                             </div>
                         </div>
 
@@ -57,16 +61,18 @@ import ProfileLink from "@/Shared/Components/ProfileLink";
 import ProfilePhoto from "@/Shared/Components/ProfilePhoto";
 import Zap from "@/Shared/Components/Zap";
 import JetButton from "@/Jetstream/Button";
+import BackgroundImage from "@/Mixins/BackgroundImage";
+import JetDangerButton from "@/Jetstream/DangerButton";
 
 import 'trumbowyg/dist/ui/trumbowyg.css';
 import 'trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css';
 import 'trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.min.css';
 import 'trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.min.css';
-import BackgroundImage from "@/Mixins/BackgroundImage";
 
 export default {
     mixins: [BackgroundImage],
     components: {
+        JetDangerButton,
         ProfileLink,
         AppLayout,
         CommentSection,

@@ -15,6 +15,9 @@
             <div v-if="edit" class="flex">
                 <jet-input v-model="form.comment" class="mr-2 w-full" />
                 <jet-button @click.native.prevent="updateComment">Update</jet-button>
+                <jet-danger-button v-if="comment.can_delete" class="ml-2">
+                    Delete
+                </jet-danger-button>
             </div>
 
             <p v-else class="break-all">{{comment.comment}}</p>
@@ -34,9 +37,11 @@ import Zap from "@/Shared/Components/Zap";
 import JetInput from "@/Jetstream/Input";
 import JetButton from "@/Jetstream/Button";
 import JetInputError from "@/Jetstream/InputError";
+import JetDangerButton from "@/Jetstream/DangerButton";
 
 export default {
     components: {
+        JetDangerButton,
         Zap,
         ProfileLink,
         ProfilePhoto,
