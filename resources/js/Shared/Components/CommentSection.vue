@@ -3,8 +3,8 @@
         <h2 class="text-2xl my-4 font-black">{{ comments ? comments.length : 0}} Comments</h2>
 
         <div v-if="$page.user" class="flex">
-            <profile-photo :user="$page.user" class="w-10 h-10 mr-2" />
-            <div class="flex items-center mr-2 relative w-full">
+            <profile-photo :user="$page.user" class="w-12 h-10" />
+            <div class="flex items-center mx-2 relative w-full">
                 <jet-input class="w-full" v-model="form.comment" placeholder="Leave a comment..." maxlength="255" />
                 <div class="right-0 absolute bg-gray-200 mr-2 px-2 rounded-full font-thin">
                     {{ form.comment ? form.comment.length : 0 }} / 255
