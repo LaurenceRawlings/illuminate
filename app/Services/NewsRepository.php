@@ -4,9 +4,7 @@
 namespace App\Services;
 
 
-use App\Models\NewsPost;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
 
 class NewsRepository
@@ -18,36 +16,36 @@ class NewsRepository
         $this->apiKey = $apiKey;
     }
 
-    public function update()
+    public function latest(): array
     {
-        $globalSettings = App::make(GlobalSettings::class);
+        return cache()->remember('news-posts', 60*60*3, function() {
+            $response = Http::withHeaders([
+                'X-Api-Key' => $this->apiKey,
+            ])->get('https://newsapi.org/v2/top-headlines', [
+                'country' => 'gb',
+                'category' => 'technology',
+                'pageSize' => 100,
+            ]);
 
-        $response = Http::withHeaders([
-            'X-Api-Key' => $this->apiKey,
-        ])->get('https://newsapi.org/v2/top-headlines', [
-            'country' => 'gb',
-            'category' => 'technology',
-            'pageSize' => 100,
-        ]);
+            $newsPosts = [];
 
-        NewsPost::query()->whereNotNull('id')->delete();
+            foreach ($response->json('articles') as $newsPost) {
+                array_push($newsPosts, array(
+                    'source' => $newsPost['source']['name'],
+                    'title' => $newsPost['title'],
+                    'description' => $newsPost['description'],
+                    'thumbnail' => $newsPost['urlToImage'],
+                    'url' => $newsPost['url'],
+                    'timestamp' => Carbon::parse($newsPost['publishedAt'])->diffForHumans(),
+                    'favicon' => $this->favicon($newsPost['url']),
+                ));
+            }
 
-        foreach ($response->json('articles') as $newsPost) {
-            (new NewsPost())->fill(array(
-                'source' => $newsPost['source']['name'],
-                'title' => $newsPost['title'],
-                'description' => $newsPost['description'],
-                'thumbnail' => $newsPost['urlToImage'],
-                'url' => $newsPost['url'],
-                'published_at' => Carbon::parse($newsPost['publishedAt']),
-                'favicon' => $this->favicon($newsPost['url']),
-            ))->save();
-        }
-
-        $globalSettings->set('lastUpdated', now());
+            return $newsPosts;
+        });
     }
 
-    private function favicon($url)
+    private function favicon($url): string
     {
         return 'https://www.google.com/s2/favicons?sz=128&domain_url=' . $url;
     }

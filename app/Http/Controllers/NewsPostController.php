@@ -8,20 +8,25 @@ use App\Services\GlobalSettings;
 use App\Services\NewsRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Inertia\Inertia;
 
 class NewsPostController extends Controller
 {
-    public function index(Request $request, NewsRepository $newsRepository, GlobalSettings $globalSettings)
+    public function index(Request $request, NewsRepository $newsRepository)
     {
-        $lastUpdated = $globalSettings->has('lastUpdated') ? Carbon::parse($globalSettings->get('lastUpdated')) : null;
-        $updateInterval = $globalSettings->has('updateInterval') ? intval($globalSettings->get('updateInterval')) : 3;
+        $page = ($request->has('page')) ? intval($request->page) : 1;
+        $collection = collect($newsRepository->latest());
 
-        if (NewsPost::all()->isEmpty() || !$lastUpdated || $lastUpdated->diffInHours() >= $updateInterval) {
-            $newsRepository->update();
-        }
+        $newsPosts = new LengthAwarePaginator(
+            array_values($collection->forPage($page, 12)->toArray()),
+            $collection->count(),
+            12,
+            $page,
+        );
 
-        $newsPosts = NewsPost::query()->latest()->paginate(12);
+        $newsPosts->setPath(url()->current());
+
         $paginatedLinks = InertiaPaginator::paginationLinks($newsPosts);
 
         return Inertia::render('News/Index', [
