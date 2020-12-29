@@ -8,6 +8,6 @@ trait Deletable
 {
     public function getCanDeleteAttribute()
     {
-        return auth()->user()->can('delete', $this);
+        return optional(auth()->user())->can('delete', $this);
     }
 }

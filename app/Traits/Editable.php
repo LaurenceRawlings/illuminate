@@ -13,6 +13,6 @@ trait Editable
 
     public function getCanEditAttribute()
     {
-        return auth()->user()->can('update', $this);
+        return optional(auth()->user())->can('update', $this);
     }
 }
