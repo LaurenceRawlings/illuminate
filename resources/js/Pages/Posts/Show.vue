@@ -3,9 +3,9 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="h-full overflow-hidden" :style="{ 'max-height': '40vh' }">
+                    <div class="h-96 bg-black">
                         <img :src="post.thumbnail_url"
-                             alt="Thumbnail" class="h-full w-full object-cover inset-0">
+                             alt="Thumbnail" class="h-full w-full object-contain object-center inset-0">
                     </div>
 
                     <div class="post-container">
