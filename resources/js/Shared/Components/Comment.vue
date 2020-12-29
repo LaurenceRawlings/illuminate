@@ -13,7 +13,12 @@
             </span>
 
             <div v-if="edit" class="flex">
-                <jet-input v-model="form.comment" class="mr-2 w-full" />
+                <div class="flex items-center mr-2 relative w-full">
+                    <jet-input v-model="form.comment" class="w-full" maxlength="255" />
+                    <div class="right-0 absolute bg-gray-200 mr-2 px-2 rounded-full font-thin">
+                        {{ form.comment ? form.comment.length : 0 }} / 255
+                    </div>
+                </div>
                 <jet-button @click.native.prevent="updateComment">Update</jet-button>
                 <jet-danger-button v-if="comment.can_delete" class="ml-2">
                     Delete

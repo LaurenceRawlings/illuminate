@@ -65,9 +65,9 @@ class PostController extends Controller
 
         Validator::make($input, [
             'thumbnail' => ['image', 'mimes:png,jpg,jpeg,gif', 'max:8192', 'nullable'],
-            'title' => ['required'],
-            'description' => ['required'],
-            'body' => ['required'],
+            'title' => ['required', 'max:150'],
+            'description' => ['required', 'max:255'],
+            'body' => ['required', 'max:20000'],
         ])->validateWithBag('createPost');
 
 

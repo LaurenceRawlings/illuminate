@@ -43,17 +43,35 @@
                                 <jet-input-error :message="form.error('description')"/>
                                 <jet-input-error :message="form.error('body')"/>
 
-                                <input id="title" v-model="form.title" class="text-4xl font-bold mb-4 input"
-                                       placeholder="Title"
-                                       type="text"/>
+                                <div class="relative flex mb-4">
+                                    <textarea id="title" v-model="form.title" class="text-4xl font-bold input"
+                                           placeholder="Title"
+                                           type="text"
+                                           maxlength="150" rows="1" />
+                                    <div class="right-0 absolute bg-gray-200 mr-2 px-2 rounded-full font-thin">
+                                        {{ form.title ? form.title.length : 0 }} / 150
+                                    </div>
+                                </div>
 
-                                <input id="description" v-model="form.description"
-                                       class="text-2xl font-semibold mb-8 input"
-                                       placeholder="Description" type="text"/>
+                                <div class="relative flex mb-8">
+                                    <textarea id="description" v-model="form.description"
+                                           class="text-2xl font-semibold input"
+                                           placeholder="Description" type="text"
+                                           maxlength="255" rows="1" />
+
+                                    <div class="right-0 absolute bg-gray-200 mr-2 px-2 rounded-full font-thin">
+                                        {{ form.description ? form.description.length : 0 }} / 255
+                                    </div>
+                                </div>
 
                                 <trumbowyg v-model="form.body" :config="config" class="form-control"
                                            name="content"
                                            placeholder="Write your post here..."></trumbowyg>
+
+                                <div class="mt-4 text-right">
+                                    <diV class="text-md font-bold text-gray-700">{{ form.body ? form.body.length : 0 }} / 20000</diV>
+                                    <div class="italic text-xs text-gray-400">(includes html tags)</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -219,6 +237,7 @@ export default {
             this.form.description = this.post.description
             this.form.body = this.post.body
         }
+        $('textarea').autoResize();
     }
 }
 </script>
@@ -226,9 +245,10 @@ export default {
 <style scoped>
 .input {
     @apply w-full;
-    @apply block;
     @apply border-b-2;
     @apply border-solid;
+    @apply resize-none;
+    @apply h-auto;
 }
 </style>
 
