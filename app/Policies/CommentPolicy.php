@@ -41,8 +41,8 @@ class CommentPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param User $user
-     * @param  \App\Models\Comment  $comment
+     * @param User|null $user
+     * @param Comment|null $comment
      * @return mixed
      */
     public function view(?User $user, Comment $comment)

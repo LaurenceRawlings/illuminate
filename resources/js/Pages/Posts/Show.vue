@@ -84,6 +84,7 @@ import BackgroundImage from "@/Mixins/BackgroundImage";
 import JetDangerButton from "@/Jetstream/DangerButton";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import JetDialogModal from "@/Jetstream/DialogModal";
+import { Inertia } from '@inertiajs/inertia'
 
 import 'trumbowyg/dist/ui/trumbowyg.css';
 import 'trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css';
@@ -115,7 +116,7 @@ export default {
                 '_method': 'DELETE',
             }, {
                 bag: 'deletePost'
-            })
+            }),
         }
     },
     methods: {
@@ -126,8 +127,14 @@ export default {
             this.form.post(route('posts.destroy', this.post.id), {
                 preserveScroll: true
             })
-        },
-    }
+        }
+    },
+    created() {
+        Echo.private(`App.Models.Post.${this.post.id}`)
+            .notification((notification) => {
+                Inertia.reload({ only: ['comments'], preserveScroll: true })
+            });
+    },
 }
 </script>
 

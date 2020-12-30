@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
 
 class CommentController extends Controller
 {
@@ -47,8 +49,12 @@ class CommentController extends Controller
             'comment' => $input['comment'],
         ]);
 
+        $notification = new CommentedPostNotification($comment, $post, $request->user());
+
+        $post->notify($notification);
+
         if ($request->user()->id != $post->user->id) {
-            $post->user->notify(new CommentedPostNotification($comment, $post, $request->user()));
+            $post->user->notify($notification);
         }
 
         return back();

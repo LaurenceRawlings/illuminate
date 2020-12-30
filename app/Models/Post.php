@@ -11,6 +11,7 @@ use App\Traits\HasUser;
 use App\Traits\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Post extends Model
 {
@@ -21,7 +22,8 @@ class Post extends Model
     use Editable;
     use Deletable;
     use Likeable;
-
+    use Notifiable;
+    
     protected $fillable = [
         'title',
         'description',
