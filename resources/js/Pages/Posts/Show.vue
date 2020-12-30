@@ -3,13 +3,13 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <div class="h-96 bg-black">
+                    <div class="h-96 bg-gray-200">
                         <img :src="post.thumbnail_url"
-                             alt="Thumbnail" class="h-full w-full object-contain object-center inset-0">
+                             alt="Thumbnail" class="h-full w-full object-cover object-center">
                     </div>
 
                     <div class="post-container">
-                        <div class="flex items-center px-24 py-4 bg-gray-200 bg-opacity-25">
+                        <div class="flex items-center px-24 py-4 bg-gray-100">
                             <profile-photo :user="post.user" class="w-10 h-10 mr-3"/>
 
                             <div class="text-sm text-gray-700">
@@ -32,9 +32,28 @@
                                     </jet-button>
                                 </inertia-link>
 
-                                <jet-danger-button v-if="post.can_delete" class="ml-4">
+                                <jet-danger-button v-if="post.can_delete" class="ml-4" @click.native="confirmPostDeletion">
                                     Delete
                                 </jet-danger-button>
+                                <jet-dialog-modal :show="confirmingPostDeletion" @close="confirmingPostDeletion = false">
+                                    <template #title>
+                                        Delete Post
+                                    </template>
+
+                                    <template #content>
+                                        Are you sure you want to delete your post? Once your post is deleted, it will be permanently deleted.
+                                    </template>
+
+                                    <template #footer>
+                                        <jet-secondary-button @click.native="confirmingPostDeletion = false">
+                                            Nevermind
+                                        </jet-secondary-button>
+
+                                        <jet-danger-button class="ml-2" @click.native="deletePost" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                            Delete Post
+                                        </jet-danger-button>
+                                    </template>
+                                </jet-dialog-modal>
                             </div>
                         </div>
 
@@ -63,6 +82,8 @@ import Zap from "@/Shared/Components/Zap";
 import JetButton from "@/Jetstream/Button";
 import BackgroundImage from "@/Mixins/BackgroundImage";
 import JetDangerButton from "@/Jetstream/DangerButton";
+import JetSecondaryButton from "@/Jetstream/SecondaryButton";
+import JetDialogModal from "@/Jetstream/DialogModal";
 
 import 'trumbowyg/dist/ui/trumbowyg.css';
 import 'trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css';
@@ -79,11 +100,34 @@ export default {
         ProfilePhoto,
         Zap,
         JetButton,
+        JetSecondaryButton,
+        JetDialogModal,
     },
     props: {
         post: Object,
         comments: Array,
     },
+    data() {
+        return {
+            confirmingPostDeletion: false,
+
+            form: this.$inertia.form({
+                '_method': 'DELETE',
+            }, {
+                bag: 'deletePost'
+            })
+        }
+    },
+    methods: {
+        confirmPostDeletion() {
+            this.confirmingPostDeletion = true;
+        },
+        deletePost() {
+            this.form.post(route('posts.destroy', this.post.id), {
+                preserveScroll: true
+            })
+        },
+    }
 }
 </script>
 

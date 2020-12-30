@@ -82,10 +82,11 @@ class CommentController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Comment $comment
-     * @return Response
+     * @return RedirectResponse
      */
-    public function destroy(Comment $comment): Response
+    public function destroy(Comment $comment): RedirectResponse
     {
-        //
+        $comment->delete();
+        return back();
     }
 }

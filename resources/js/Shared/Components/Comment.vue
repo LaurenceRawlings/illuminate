@@ -20,9 +20,28 @@
                     </div>
                 </div>
                 <jet-button v-if="comment.can_edit" @click.native.prevent="updateComment">Update</jet-button>
-                <jet-danger-button v-if="comment.can_delete" class="ml-2">
+                <jet-danger-button v-if="comment.can_delete" class="ml-2" @click.native="confirmCommentDeletion">
                     Delete
                 </jet-danger-button>
+                <jet-dialog-modal :show="confirmingCommentDeletion" @close="confirmingCommentDeletion = false">
+                    <template #title>
+                        Delete Comment
+                    </template>
+
+                    <template #content>
+                        Are you sure you want to delete your comment? Once your comment is deleted, it will be permanently deleted.
+                    </template>
+
+                    <template #footer>
+                        <jet-secondary-button @click.native="confirmingCommentDeletion = false">
+                            Nevermind
+                        </jet-secondary-button>
+
+                        <jet-danger-button class="ml-2" @click.native="deleteComment" :class="{ 'opacity-25': deleteForm.processing }" :disabled="deleteForm.processing">
+                            Delete Comment
+                        </jet-danger-button>
+                    </template>
+                </jet-dialog-modal>
             </div>
 
             <p v-else class="break-all">{{comment.comment}}</p>
@@ -43,6 +62,8 @@ import JetInput from "@/Jetstream/Input";
 import JetButton from "@/Jetstream/Button";
 import JetInputError from "@/Jetstream/InputError";
 import JetDangerButton from "@/Jetstream/DangerButton";
+import JetSecondaryButton from "@/Jetstream/SecondaryButton";
+import JetDialogModal from "@/Jetstream/DialogModal";
 
 export default {
     components: {
@@ -52,7 +73,9 @@ export default {
         ProfilePhoto,
         JetInput,
         JetButton,
-        JetInputError
+        JetInputError,
+        JetSecondaryButton,
+        JetDialogModal,
     },
     props: {
         comment: Object,
@@ -68,6 +91,14 @@ export default {
                 resetOnSuccess: true,
             }),
             edit: false,
+
+            confirmingCommentDeletion: false,
+
+            deleteForm: this.$inertia.form({
+                '_method': 'DELETE',
+            }, {
+                bag: 'deleteComment'
+            }),
         }
     },
     methods: {
@@ -83,7 +114,15 @@ export default {
             if (this.edit) {
                 this.form.comment = this.comment.comment
             }
-        }
+        },
+        confirmCommentDeletion() {
+            this.confirmingCommentDeletion = true;
+        },
+        deleteComment() {
+            this.deleteForm.post(route('comments.destroy', this.comment.id), {
+                preserveScroll: true
+            })
+        },
     }
 }
 </script>
