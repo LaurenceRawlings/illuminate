@@ -1,9 +1,7 @@
 <template>
     <div class="bg-white overflow-hidden shadow rounded-lg h-full">
-        <div class="h-56 w-full shadow-inner overflow-hidden">
-            <vue-freezeframe class="w-full h-full overflow-hidden">
-                <slot name="thumbnail"></slot>
-            </vue-freezeframe>
+        <div class="h-56 w-full">
+            <slot name="thumbnail"></slot>
         </div>
 
         <div class="p-4 h-full">
@@ -30,12 +28,8 @@
 </template>
 
 <script>
-import {VueFreezeframe} from 'vue-freezeframe';
-
 export default {
-    components: {
-        VueFreezeframe,
-    }
+
 }
 </script>
 

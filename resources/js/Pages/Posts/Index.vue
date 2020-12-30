@@ -13,7 +13,7 @@
                         <post-card>
                             <template #thumbnail>
                                 <img :src="post.thumbnail_url"
-                                     alt="Thumbnail" class="h-full w-full object-cover inset-0">
+                                     alt="Thumbnail" class="h-full w-full object-cover object-center">
                             </template>
                             <template #icon>
                                 <profile-photo :user="post.user" class="w-10 h-10" />
