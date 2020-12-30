@@ -1,5 +1,6 @@
 <template>
     <div class="min-h-screen bg-gray-100">
+        <flash-message v-if="$page.flash.message" />
         <nav class="bg-white border-b border-gray-100">
             <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -298,9 +299,11 @@
     import { Inertia } from '@inertiajs/inertia'
 
     import AppHeader from "@/Shared/Components/HeaderGreeting";
+    import FlashMessage from "@/Shared/Components/FlashMessage";
 
     export default {
         components: {
+            FlashMessage,
             JetApplicationMark,
             JetDropdown,
             JetDropdownLink,

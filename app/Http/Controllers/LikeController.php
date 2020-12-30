@@ -23,7 +23,12 @@ class LikeController extends Controller
 
         $post = Post::query()->findOrFail($input['likeableId']);
 
-        $this->handleLike(Post::class, $post, $request->user());
+        $liked = $this->handleLike(Post::class, $post, $request->user());
+
+        if ($liked) {
+            return back()->with('message', 'Post liked!');
+        }
+
         return back();
     }
 
@@ -45,14 +50,16 @@ class LikeController extends Controller
                     $likeable->user->notify(new LikedCommentNotification($likeable, $likeable->post, $user));
                 }
             }
-
         } else {
             if (is_null($existing_like->deleted_at)) {
                 $existing_like->delete();
+                return false;
             } else {
                 $existing_like->restore();
             }
         }
+
+        return true;
     }
 
     public function likeComment(Request $request)
@@ -65,7 +72,12 @@ class LikeController extends Controller
 
         $comment = Comment::query()->findOrFail($input['likeableId']);
 
-        $this->handleLike(Comment::class, $comment, $request->user());
+        $liked = $this->handleLike(Comment::class, $comment, $request->user());
+
+        if ($liked) {
+            return back()->with('message', 'Comment liked!');
+        }
+
         return back();
     }
 }
