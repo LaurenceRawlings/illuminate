@@ -1,11 +1,12 @@
 <template>
     <div class="px-2 pt-4">
-        <h2 class="text-2xl my-4 font-black">{{ comments ? comments.length : 0}} Comments</h2>
+        <h2 class="text-2xl my-4 font-black">{{ comments ? comments.length : 0 }} Comments</h2>
 
         <div v-if="$page.user" class="flex">
-            <profile-photo :user="$page.user" class="w-12 h-10" />
+            <profile-photo :user="$page.user" class="w-12 h-10"/>
             <div class="flex items-center mx-2 relative w-full">
-                <jet-input class="w-full" v-model="form.comment" placeholder="Leave a comment..." maxlength="255" />
+                <jet-input class="w-full" v-model="form.comment" placeholder="Leave a comment..." maxlength="255"
+                           @keyup.enter.native="addComment"/>
                 <div class="right-0 absolute bg-gray-200 mr-2 px-2 rounded-full font-thin">
                     {{ form.comment ? form.comment.length : 0 }} / 255
                 </div>
@@ -14,11 +15,11 @@
             <jet-button @click.native.prevent="addComment">Comment</jet-button>
         </div>
 
-        <jet-input-error :message="form.error('comment')" class="mt-2 ml-10" />
+        <jet-input-error :message="form.error('comment')" class="mt-2 ml-10"/>
 
         <hr class="my-8"/>
 
-        <comment v-for="comment in comments" :comment="comment" :key="comment.id" />
+        <comment v-for="comment in comments" :comment="comment" :key="comment.id"/>
     </div>
 </template>
 
