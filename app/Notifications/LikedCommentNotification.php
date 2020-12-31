@@ -6,7 +6,6 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class LikedCommentNotification extends Notification
@@ -30,6 +29,7 @@ class LikedCommentNotification extends Notification
      * Create a new notification instance.
      *
      * @param Comment $comment
+     * @param Post $post
      * @param User $user
      */
     public function __construct(Comment $comment, Post $post, User $user)
@@ -45,23 +45,9 @@ class LikedCommentNotification extends Notification
      * @param mixed $notifiable
      * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['database', 'broadcast'];
-    }
-
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param mixed $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
     }
 
     /**
@@ -70,7 +56,7 @@ class LikedCommentNotification extends Notification
      * @param mixed $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             'user' => $this->user,
@@ -80,7 +66,7 @@ class LikedCommentNotification extends Notification
         ];
     }
 
-    public function toBroadcast($notifiable)
+    public function toBroadcast($notifiable): array
     {
         return [];
     }

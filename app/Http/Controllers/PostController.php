@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\InertiaPaginator;
 use App\Models\Post;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -95,7 +96,7 @@ class PostController extends Controller
      * @param Post $post
      * @return Response
      */
-    public function show(Post $post)
+    public function show(Post $post): Response
     {
         $post->views = $post->views + 1;
         $post->timestamps = false;
@@ -115,7 +116,7 @@ class PostController extends Controller
      * @param Post $post
      * @return Response
      */
-    public function edit(Post $post)
+    public function edit(Post $post): Response
     {
         return Inertia::render('Posts/Edit', [
             'post' => $post,
@@ -128,8 +129,9 @@ class PostController extends Controller
      * @param Request $request
      * @param Post $post
      * @return RedirectResponse
+     * @throws ValidationException
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Post $post): RedirectResponse
     {
         $input = $request->all();
 
@@ -173,8 +175,9 @@ class PostController extends Controller
      *
      * @param Post $post
      * @return RedirectResponse
+     * @throws Exception
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post): RedirectResponse
     {
         $post->delete();
         return Redirect::route('home');

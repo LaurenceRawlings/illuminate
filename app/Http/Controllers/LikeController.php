@@ -7,13 +7,19 @@ use App\Models\Like;
 use App\Models\Post;
 use App\Notifications\LikedCommentNotification;
 use App\Notifications\LikedPostNotification;
-use App\Notifications\PostLike;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class LikeController extends Controller
 {
-    public function likePost(Request $request)
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
+     */
+    public function likePost(Request $request): RedirectResponse
     {
         $input = $request->all();
 
@@ -32,7 +38,7 @@ class LikeController extends Controller
         return back();
     }
 
-    private function handleLike($type, $likeable, $user)
+    private function handleLike($type, $likeable, $user): bool
     {
         $existing_like = Like::withTrashed()->whereLikeableType($type)->whereLikeableId($likeable->id)->whereUserId($user->id)->first();
 
@@ -62,7 +68,12 @@ class LikeController extends Controller
         return true;
     }
 
-    public function likeComment(Request $request)
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     * @throws ValidationException
+     */
+    public function likeComment(Request $request): RedirectResponse
     {
         $input = $request->all();
 

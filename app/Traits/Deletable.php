@@ -6,7 +6,10 @@ namespace App\Traits;
 
 trait Deletable
 {
-    public function getCanDeleteAttribute()
+    /**
+     * @return bool|null
+     */
+    public function getCanDeleteAttribute(): ?bool
     {
         return optional(auth()->user())->can('delete', $this);
     }

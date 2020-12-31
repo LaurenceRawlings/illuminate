@@ -22,12 +22,12 @@ class CommentFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         $date = Carbon::parse($this->faker->dateTimeThisMonth());
 
         return [
-            'post_id' => Post::inRandomOrder()->first()->id,
+            'post_id' => Post::query()->inRandomOrder()->first()->id,
             'user_id' => User::factory(),
             'comment' => $this->faker->realText(50),
             'created_at' => $date,

@@ -36,7 +36,7 @@ class RemoveAdmin extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $user = User::query()->where('username', $this->argument('username'))->first();
 

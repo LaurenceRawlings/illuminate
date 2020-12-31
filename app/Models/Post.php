@@ -11,6 +11,7 @@ use App\Traits\HasUser;
 use App\Traits\Likeable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 
 class Post extends Model
@@ -23,7 +24,7 @@ class Post extends Model
     use Deletable;
     use Likeable;
     use Notifiable;
-    
+
     protected $fillable = [
         'title',
         'description',
@@ -61,12 +62,12 @@ class Post extends Model
         'created_at' => 'datetime',
     ];
 
-    public function comments()
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class)->latest();
     }
 
-    public function getViewsFormattedAttribute()
+    public function getViewsFormattedAttribute(): string
     {
         return Utils::formatCount($this->views);
     }

@@ -10,10 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 trait Likeable
 {
-    public function getIsLikedAttribute()
+    public function getIsLikedAttribute(): bool
     {
-        $like = $this->likes()->whereUserId(Auth::id())->first();
-        return !is_null($like);
+        return !is_null($this->likes()->whereUserId(Auth::id())->first());
     }
 
     public function likes()
@@ -21,7 +20,7 @@ trait Likeable
         return $this->morphToMany(User::class, 'likeable')->whereDeletedAt(null);
     }
 
-    public function getLikesAttribute()
+    public function getLikesAttribute(): string
     {
         return Utils::formatCount($this->likes()->count());
     }

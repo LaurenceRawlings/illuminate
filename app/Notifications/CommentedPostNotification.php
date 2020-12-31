@@ -46,23 +46,9 @@ class CommentedPostNotification extends Notification
      * @param mixed $notifiable
      * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['database', 'broadcast'];
-    }
-
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param mixed $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
-    public function toMail($notifiable)
-    {
-        return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
     }
 
     /**
@@ -71,7 +57,7 @@ class CommentedPostNotification extends Notification
      * @param mixed $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             'user' => $this->user,
@@ -82,7 +68,7 @@ class CommentedPostNotification extends Notification
         ];
     }
 
-    public function toBroadcast($notifiable)
+    public function toBroadcast($notifiable): array
     {
         return [];
     }

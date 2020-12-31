@@ -6,6 +6,7 @@ use App\Helpers\Utils;
 use App\Traits\HasUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Profile extends Model
 {
@@ -34,17 +35,17 @@ class Profile extends Model
         'total_likes',
     ];
 
-    public function post()
+    public function post(): HasOne
     {
         return $this->hasOne(Post::class);
     }
 
-    public function getTotalPostsAttribute()
+    public function getTotalPostsAttribute(): string
     {
         return Utils::formatCount($this->user->posts->count());
     }
 
-    public function getTotalViewsAttribute()
+    public function getTotalViewsAttribute(): string
     {
         $views = 0;
 
@@ -56,7 +57,7 @@ class Profile extends Model
         return Utils::formatCount($views);
     }
 
-    public function getTotalLikesAttribute()
+    public function getTotalLikesAttribute(): string
     {
         $likes = 0;
 

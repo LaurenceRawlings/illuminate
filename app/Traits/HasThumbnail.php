@@ -9,7 +9,10 @@ use Illuminate\Support\Facades\Storage;
 
 trait HasThumbnail
 {
-    public function getThumbnailUrlAttribute()
+    /**
+     * @return string
+     */
+    public function getThumbnailUrlAttribute(): string
     {
         if (Utils::isValidUrl($this->thumbnail)) {
             return $this->thumbnail;

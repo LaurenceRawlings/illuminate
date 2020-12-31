@@ -23,7 +23,7 @@ class LikeFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         $likeableType = $this->faker->randomElement(array(Post::class, Comment::class));
         $likeableId = 0;

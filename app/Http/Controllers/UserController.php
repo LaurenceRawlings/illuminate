@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Helpers\InertiaPaginator;
 use App\Models\User;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class UserController extends Controller
 {
@@ -14,8 +16,8 @@ class UserController extends Controller
      *
      * @param Request $request
      * @param $username
-     * @return array|\Inertia\Response
-     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     * @return array|Response
+     * @throws ModelNotFoundException
      */
     public function show(Request $request, $username)
     {
@@ -27,7 +29,7 @@ class UserController extends Controller
             ];
         }
 
-        $user = User::query()->where('username', '=', $username)->firstOrFail();
+        $user = User::query()->where('username', $username)->firstOrFail();
 
         $posts = $user->posts()->latest()->paginate(4);
 

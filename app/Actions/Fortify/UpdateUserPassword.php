@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 
 class UpdateUserPassword implements UpdatesUserPasswords
@@ -16,6 +17,7 @@ class UpdateUserPassword implements UpdatesUserPasswords
      * @param mixed $user
      * @param array $input
      * @return void
+     * @throws ValidationException
      */
     public function update($user, array $input)
     {

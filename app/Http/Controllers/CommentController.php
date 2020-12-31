@@ -5,14 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Notifications\CommentedPostNotification;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
-use Inertia\Inertia;
 
 class CommentController extends Controller
 {
@@ -89,6 +87,7 @@ class CommentController extends Controller
      *
      * @param Comment $comment
      * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(Comment $comment): RedirectResponse
     {

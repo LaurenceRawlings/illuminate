@@ -6,6 +6,7 @@ use App\Rules\UsernameValidationRules;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
@@ -18,6 +19,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      * @param mixed $user
      * @param array $input
      * @return void
+     * @throws ValidationException
      */
     public function update($user, array $input)
     {

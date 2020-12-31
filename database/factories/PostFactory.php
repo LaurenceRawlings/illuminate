@@ -22,7 +22,7 @@ class PostFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         $date = Carbon::parse($this->faker->dateTimeThisMonth());
 

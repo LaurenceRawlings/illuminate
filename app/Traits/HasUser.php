@@ -5,6 +5,7 @@ namespace App\Traits;
 
 
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait HasUser
 {
@@ -13,7 +14,10 @@ trait HasUser
         return $this->user()->first();
     }
 
-    public function user()
+    /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

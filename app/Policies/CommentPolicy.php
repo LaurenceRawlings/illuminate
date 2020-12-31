@@ -17,20 +17,18 @@ class CommentPolicy
      * Perform pre-authorization checks.
      *
      * @param User $user
-     * @param  string  $ability
-     * @return void|bool
+     * @param string $ability
+     * @return bool|null
      */
-    public function before(User $user, $ability)
+    public function before(User $user, string $ability): ?bool
     {
-        if ($user->is_admin && in_array($ability, $this->adminAbilities)) {
-            return true;
-        }
+        return $user->is_admin && in_array($ability, $this->adminAbilities) ? true : null;
     }
 
     /**
      * Determine whether the user can view any models.
      *
-     * @param User $user
+     * @param User|null $user
      * @return mixed
      */
     public function viewAny(?User $user)
@@ -65,7 +63,7 @@ class CommentPolicy
      * Determine whether the user can update the model.
      *
      * @param User $user
-     * @param  \App\Models\Comment  $comment
+     * @param Comment $comment
      * @return mixed
      */
     public function update(User $user, Comment $comment)
@@ -79,7 +77,7 @@ class CommentPolicy
      * Determine whether the user can delete the model.
      *
      * @param User $user
-     * @param  \App\Models\Comment  $comment
+     * @param Comment $comment
      * @return mixed
      */
     public function delete(User $user, Comment $comment)
@@ -93,7 +91,7 @@ class CommentPolicy
      * Determine whether the user can restore the model.
      *
      * @param User $user
-     * @param  \App\Models\Comment  $comment
+     * @param Comment $comment
      * @return mixed
      */
     public function restore(User $user, Comment $comment)
@@ -107,7 +105,7 @@ class CommentPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param User $user
-     * @param  \App\Models\Comment  $comment
+     * @param Comment $comment
      * @return mixed
      */
     public function forceDelete(User $user, Comment $comment)
