@@ -9,6 +9,7 @@
                             class="bg-cover bg-center h-96 p-4">
                             <input ref="thumbnail" class="hidden"
                                    type="file"
+                                   accept=".jpg,.jpeg,.png,.gif"
                                    @change="updateThumbnail">
 
                             <jet-secondary-button class="ml-2 mt-2" type="button"
