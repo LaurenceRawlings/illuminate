@@ -132,7 +132,7 @@
                         </div>
 
                         <div class="ml-3 relative" v-else>
-                            <a href="/login" class="mr-4">
+                            <a href="/login" class="mr-4 font-semibold text-xs uppercase tracking-widest">
                                 Login
                             </a>
                             <a href="/register">
@@ -258,7 +258,7 @@
                     </div>
 
                     <div class="ml-3 relative" v-else>
-                        <a href="/login" class="mr-4">
+                        <a href="/login" class="mr-4 font-semibold text-xs uppercase tracking-widest">
                             Login
                         </a>
                         <a href="/register">
