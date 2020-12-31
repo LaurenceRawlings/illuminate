@@ -87,7 +87,7 @@ class PostController extends Controller
             'body' => $body
         ]);
 
-        return Redirect::route('posts.show', [$post]);
+        return Redirect::route('posts.show', [$post])->with('message', 'Post created!')->with('colour', 'blue-500');;
     }
 
     /**
@@ -167,7 +167,7 @@ class PostController extends Controller
             ])->save();
         }
 
-        return Redirect::route('posts.show', [$post]);
+        return Redirect::route('posts.show', [$post])->with('message', 'Post updated!')->with('colour', 'blue-500');;
     }
 
     /**
@@ -180,6 +180,6 @@ class PostController extends Controller
     public function destroy(Post $post): RedirectResponse
     {
         $post->delete();
-        return Redirect::route('home');
+        return Redirect::route('posts.index')->with('message', 'Post deleted')->with('colour', 'red-500');
     }
 }

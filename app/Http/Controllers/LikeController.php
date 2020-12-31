@@ -32,7 +32,7 @@ class LikeController extends Controller
         $liked = $this->handleLike(Post::class, $post, $request->user());
 
         if ($liked) {
-            return back()->with('message', 'Post liked!');
+            return back()->with('message', 'Post liked!')->with('colour', 'blue-500');
         }
 
         return back();
@@ -86,7 +86,7 @@ class LikeController extends Controller
         $liked = $this->handleLike(Comment::class, $comment, $request->user());
 
         if ($liked) {
-            return back()->with('message', 'Comment liked!');
+            return back()->with('message', 'Comment liked!')->with('colour', 'blue-500');
         }
 
         return back();

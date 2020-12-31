@@ -55,7 +55,7 @@ class CommentController extends Controller
             $post->user->notify($notification);
         }
 
-        return back();
+        return back()->with('message', 'Comment added!')->with('colour', 'blue-500');
     }
 
     /**
@@ -79,7 +79,7 @@ class CommentController extends Controller
             'comment' => $input['comment'],
         ])->save();
 
-        return back();
+        return back()->with('message', 'Comment updated!')->with('colour', 'blue-500');
     }
 
     /**
@@ -92,6 +92,6 @@ class CommentController extends Controller
     public function destroy(Comment $comment): RedirectResponse
     {
         $comment->delete();
-        return back();
+        return back()->with('message', 'Comment deleted')->with('colour', 'red-500');
     }
 }
