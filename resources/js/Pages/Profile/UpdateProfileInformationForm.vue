@@ -118,7 +118,12 @@
             JetSecondaryButton,
         },
 
-        props: ['user'],
+        props: {
+            user: Object,
+            bio: String,
+            status_text: String,
+            status_emoji: String
+        },
 
         data() {
             return {
@@ -128,9 +133,9 @@
                     email: this.user.email,
                     username: this.user.username,
                     photo: null,
-                    bio: null,
-                    status_text: null,
-                    status_emoji: null,
+                    bio: this.bio,
+                    status_text: this.status_text,
+                    status_emoji: this.status_emoji,
                 }, {
                     bag: 'updateProfileInformation',
                     resetOnSuccess: false,
@@ -140,14 +145,6 @@
 
                 data: data,
             }
-        },
-
-        mounted() {
-            axios.get(route('user.show', this.$page.user.username)).then(response => {
-                this.form.bio = response.data.bio;
-                this.form.status_text = response.data.status_text;
-                this.form.status_emoji = response.data.status_emoji;
-            });
         },
 
         methods: {

@@ -21,14 +21,6 @@ class UserController extends Controller
      */
     public function show(Request $request, $username)
     {
-        if ($request->wantsJson()) {
-            return [
-                'bio' => $request->user()->profile->bio,
-                'status_text' => $request->user()->profile->status_text,
-                'status_emoji' => $request->user()->profile->status_emoji
-            ];
-        }
-
         $user = User::query()->where('username', $username)->firstOrFail();
 
         $posts = $user->posts()->latest()->paginate(4);
