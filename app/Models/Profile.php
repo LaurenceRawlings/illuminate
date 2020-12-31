@@ -49,8 +49,7 @@ class Profile extends Model
     {
         $views = 0;
 
-        foreach ($this->user->posts as $post)
-        {
+        foreach ($this->user->posts as $post) {
             $views += $post->views;
         }
 
@@ -61,8 +60,7 @@ class Profile extends Model
     {
         $likes = 0;
 
-        foreach ($this->user->posts as $post)
-        {
+        foreach ($this->user->posts as $post) {
             $likes += $post->likes;
         }
 

@@ -49,7 +49,7 @@ class AddAdmin extends Command
             'is_admin' => true,
         ])->save();
 
-        $this->info($user->username.' is now an admin!');
+        $this->info($user->username . ' is now an admin!');
 
         return 0;
     }

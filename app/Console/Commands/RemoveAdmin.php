@@ -54,7 +54,7 @@ class RemoveAdmin extends Command
             'is_admin' => false,
         ])->save();
 
-        $this->info($user->username.' is no longer an admin!');
+        $this->info($user->username . ' is no longer an admin!');
 
         return 0;
     }
