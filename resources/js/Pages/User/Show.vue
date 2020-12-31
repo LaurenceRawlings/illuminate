@@ -60,7 +60,7 @@
                             </div>
                         </div>
 
-                        <div class="mt-8 flex flex-col">
+                        <div v-show="profile.user.is_admin" class="mt-8 flex flex-col">
                             <h2 class="text-2xl mb-2">Badges</h2>
                             <admin-badge class="text-lg self-start" v-show="profile.user.is_admin" />
                         </div>
