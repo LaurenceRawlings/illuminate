@@ -14,8 +14,9 @@
                        target="_blank">
                         <post-card>
                             <template #thumbnail>
-                                <img :src="newsPost.thumbnail"
-                                     alt="Thumbnail" class="h-full w-full object-cover inset-0">
+                                <img
+                                    :src="newsPost.thumbnail ? newsPost.thumbnail : '/storage/app-images/default-thumbnail.png'"
+                                    alt="Thumbnail" class="h-full w-full object-cover inset-0">
                             </template>
                             <template #icon>
                                 <a :href="host(newsPost.url)" rel="noopener noreferrer" target="_blank">
