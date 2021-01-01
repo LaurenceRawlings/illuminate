@@ -56,6 +56,7 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'member_since'
     ];
 
     /**
@@ -96,5 +97,10 @@ class User extends Authenticatable
     public function likedComments()
     {
         return $this->morphedByMany(Comment::class, 'likeable')->whereDeletedAt(null);
+    }
+
+    public function getMemberSinceAttribute()
+    {
+        return $this->created_at->format('d M Y');
     }
 }

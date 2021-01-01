@@ -71,12 +71,16 @@
                                         Manage Account
                                     </div>
 
-                                    <jet-dropdown-link :href="route('user.show', $page.user.username)" :active="route().current('user.show', $page.user.username)">
+                                    <jet-dropdown-link :href="route('user.show', $page.user.username)">
                                         Profile
                                     </jet-dropdown-link>
 
                                     <jet-dropdown-link :href="route('profile.show')">
                                         Settings
+                                    </jet-dropdown-link>
+
+                                    <jet-dropdown-link v-if="$page.user.is_admin" :href="route('users.index')">
+                                        Admin
                                     </jet-dropdown-link>
 
                                     <jet-dropdown-link :href="route('api-tokens.index')" v-if="$page.jetstream.hasApiFeatures">
@@ -206,6 +210,10 @@
 
                             <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
                                 Settings
+                            </jet-responsive-nav-link>
+
+                            <jet-responsive-nav-link v-if="$page.user.is_admin" :href="route('users.index')" :active="route().current('users.index')">
+                                Admin
                             </jet-responsive-nav-link>
 
                             <jet-responsive-nav-link :href="route('api-tokens.index')" :active="route().current('api-tokens.index')" v-if="$page.jetstream.hasApiFeatures">

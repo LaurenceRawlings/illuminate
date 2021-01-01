@@ -29,11 +29,14 @@ Route::resource('comments', CommentController::class)->only([
     'store', 'update', 'destroy'
 ]);
 
-Route::get('user/{username}', [UserController::class, 'show'])->name('user.show');
+Route::get('users/{username}', [UserController::class, 'show'])->name('user.show');
 Route::get('news', [NewsPostController::class, 'index'])->name('news.index');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('like/post', [LikeController::class, 'likePost'])->name('like.store.post');
     Route::post('like/comment', [LikeController::class, 'likeComment'])->name('like.store.comment');
     Route::get('notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::resource('users', UserController::class)->only([
+        'index', 'destroy'
+    ]);
 });
