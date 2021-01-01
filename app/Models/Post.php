@@ -30,8 +30,6 @@ class Post extends Model
         'description',
         'body',
         'thumbnail',
-        'created_at',
-        'updated_at',
     ];
     protected $attributes = [
         'views' => 0,

@@ -23,8 +23,6 @@ class Comment extends Model
     protected $fillable = [
         'post_id',
         'comment',
-        'created_at',
-        'updated_at',
     ];
     /**
      * The accessors to append to the model's array form.
