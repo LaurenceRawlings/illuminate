@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Http;
 class NewsRepository
 {
     private $apiKey;
+    private $sourceBlacklist = array('Daily Mail');
 
     public function __construct($apiKey)
     {
@@ -32,15 +33,17 @@ class NewsRepository
                 $newsPosts = [];
 
                 foreach ($response->json('articles') as $newsPost) {
-                    array_push($newsPosts, array(
-                        'source' => $newsPost['source']['name'],
-                        'title' => $newsPost['title'],
-                        'description' => $newsPost['description'],
-                        'thumbnail' => $newsPost['urlToImage'],
-                        'url' => $newsPost['url'],
-                        'timestamp' => Carbon::parse($newsPost['publishedAt'])->diffForHumans(),
-                        'favicon' => $this->favicon($newsPost['url']),
-                    ));
+                    if (!in_array($newsPost['source']['name'], $this->sourceBlacklist)) {
+                        array_push($newsPosts, array(
+                            'source' => $newsPost['source']['name'],
+                            'title' => $newsPost['title'],
+                            'description' => $newsPost['description'],
+                            'thumbnail' => $newsPost['urlToImage'],
+                            'url' => $newsPost['url'],
+                            'timestamp' => Carbon::parse($newsPost['publishedAt'])->diffForHumans(),
+                            'favicon' => $this->favicon($newsPost['url']),
+                        ));
+                    }
                 }
 
                 return $newsPosts;
