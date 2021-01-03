@@ -30,8 +30,7 @@ class LikeFactory extends Factory
 
         if ($likeableType == Post::class) {
             $likeableId = Post::query()->inRandomOrder()->first()->id;
-        }
-        else if ($likeableType == Comment::class) {
+        } else if ($likeableType == Comment::class) {
             $likeableId = Comment::query()->inRandomOrder()->first()->id;
         }
 

@@ -6,7 +6,7 @@ html {
     overflow-y: scroll;
 }
 
-*,*:focus,*:hover{
+*, *:focus, *:hover {
     outline: none !important;
 }
 
@@ -57,7 +57,7 @@ html {
     }
 }
 
-@media  (min-width: 768px) {
+@media (min-width: 768px) {
     .post-container > div {
         @apply px-14;
     }

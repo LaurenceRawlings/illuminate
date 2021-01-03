@@ -16,10 +16,10 @@
                                      alt="Thumbnail" class="h-full w-full object-cover object-center">
                             </template>
                             <template #icon>
-                                <profile-photo :user="post.user" class="w-10 h-10" />
+                                <profile-photo :user="post.user" class="w-10 h-10"/>
                             </template>
                             <template #user>
-                                <profile-link :user="post.user" />
+                                <profile-link :user="post.user"/>
                             </template>
                             <template #details>
                                 <span>{{ post.views_formatted }} views</span>

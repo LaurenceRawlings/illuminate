@@ -1,7 +1,7 @@
 <template>
     <span>
         <span @click="startConfirmingPassword">
-            <slot />
+            <slot/>
         </span>
 
         <jet-dialog-modal :show="confirmingPassword" @close="confirmingPassword = false">
@@ -13,12 +13,12 @@
                 {{ content }}
 
                 <div class="mt-4">
-                    <jet-input type="password" class="mt-1 block w-3/4" placeholder="Password"
-                                ref="password"
-                                v-model="form.password"
-                                @keyup.enter.native="confirmPassword" />
+                    <jet-input ref="password" v-model="form.password" class="mt-1 block w-3/4"
+                               placeholder="Password"
+                               type="password"
+                               @keyup.enter.native="confirmPassword"/>
 
-                    <jet-input-error :message="form.error" class="mt-2" />
+                    <jet-input-error :message="form.error" class="mt-2"/>
                 </div>
             </template>
 
@@ -27,7 +27,8 @@
                     Nevermind
                 </jet-secondary-button>
 
-                <jet-button class="ml-2" @click.native="confirmPassword" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing" class="ml-2"
+                            @click.native="confirmPassword">
                     {{ button }}
                 </jet-button>
             </template>
@@ -36,81 +37,81 @@
 </template>
 
 <script>
-    import JetButton from './Button'
-    import JetDialogModal from './DialogModal'
-    import JetInput from './Input'
-    import JetInputError from './InputError'
-    import JetSecondaryButton from './SecondaryButton'
+import JetButton from './Button'
+import JetDialogModal from './DialogModal'
+import JetInput from './Input'
+import JetInputError from './InputError'
+import JetSecondaryButton from './SecondaryButton'
 
-    export default {
-        props: {
-            title: {
-                default: 'Confirm Password',
-            },
-            content: {
-                default: 'For your security, please confirm your password to continue.',
-            },
-            button: {
-                default: 'Confirm',
-            }
+export default {
+    props: {
+        title: {
+            default: 'Confirm Password',
         },
-
-        components: {
-            JetButton,
-            JetDialogModal,
-            JetInput,
-            JetInputError,
-            JetSecondaryButton,
+        content: {
+            default: 'For your security, please confirm your password to continue.',
         },
+        button: {
+            default: 'Confirm',
+        }
+    },
 
-        data() {
-            return {
-                confirmingPassword: false,
+    components: {
+        JetButton,
+        JetDialogModal,
+        JetInput,
+        JetInputError,
+        JetSecondaryButton,
+    },
 
-                form: this.$inertia.form({
-                    password: '',
-                    error: '',
-                }, {
-                    bag: 'confirmPassword',
-                })
-            }
-        },
+    data() {
+        return {
+            confirmingPassword: false,
 
-        methods: {
-            startConfirmingPassword() {
-                this.form.error = '';
+            form: this.$inertia.form({
+                password: '',
+                error: '',
+            }, {
+                bag: 'confirmPassword',
+            })
+        }
+    },
 
-                axios.get(route('password.confirmation').url()).then(response => {
-                    if (response.data.confirmed) {
-                        this.$emit('confirmed');
-                    } else {
-                        this.confirmingPassword = true;
-                        this.form.password = '';
+    methods: {
+        startConfirmingPassword() {
+            this.form.error = '';
 
-                        setTimeout(() => {
-                            this.$refs.password.focus()
-                        }, 250)
-                    }
-                })
-            },
-
-            confirmPassword() {
-                this.form.processing = true;
-
-                axios.post(route('password.confirm').url(), {
-                    password: this.form.password,
-                }).then(response => {
-                    this.confirmingPassword = false;
+            axios.get(route('password.confirmation').url()).then(response => {
+                if (response.data.confirmed) {
+                    this.$emit('confirmed');
+                } else {
+                    this.confirmingPassword = true;
                     this.form.password = '';
-                    this.form.error = '';
-                    this.form.processing = false;
 
-                    this.$nextTick(() => this.$emit('confirmed'));
-                }).catch(error => {
-                    this.form.processing = false;
-                    this.form.error = error.response.data.errors.password[0];
-                });
-            }
+                    setTimeout(() => {
+                        this.$refs.password.focus()
+                    }, 250)
+                }
+            })
+        },
+
+        confirmPassword() {
+            this.form.processing = true;
+
+            axios.post(route('password.confirm').url(), {
+                password: this.form.password,
+            }).then(response => {
+                this.confirmingPassword = false;
+                this.form.password = '';
+                this.form.error = '';
+                this.form.processing = false;
+
+                this.$nextTick(() => this.$emit('confirmed'));
+            }).catch(error => {
+                this.form.processing = false;
+                this.form.error = error.response.data.errors.password[0];
+            });
         }
     }
+}
 </script>

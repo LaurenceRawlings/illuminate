@@ -8,8 +8,9 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col lg:flex-row">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg flex items-center flex-col flex-shrink p-8 h-full">
-                    <profile-photo :user="profile.user" class="mb-4 w-64 h-64" />
+                <div
+                    class="bg-white overflow-hidden shadow-xl sm:rounded-lg flex items-center flex-col flex-shrink p-8 h-full">
+                    <profile-photo :user="profile.user" class="mb-4 w-64 h-64"/>
                     <div class="w-72">
                         <div class="text-2xl font-bold text-gray-700 text-center">{{ profile.user.name }}</div>
 
@@ -34,27 +35,30 @@
                         <div>
                             <h2 class="text-2xl mb-2">Statistics</h2>
                             <div class="flex items-center mb-2">
-                                <svg class="w-8 mr-2 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                <svg class="w-8 mr-2 text-blue-500" fill="none" stroke="currentColor"
+                                     viewBox="0 0 24 24"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-width="2"/>
                                 </svg>
                                 <span>{{ profile.total_posts }} posts</span>
                             </div>
                             <div class="flex items-center mb-2">
-                                <svg class="w-8 mr-2 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                <svg class="w-8 mr-2 text-blue-500" fill="none" stroke="currentColor"
+                                     viewBox="0 0 24 24"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-width="2"/>
                                 </svg>
                                 <span>{{ profile.total_views }} views</span>
                             </div>
 
                             <div class="flex items-center mb-2">
-                                <svg class="w-8 mr-2 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                <svg class="w-8 mr-2 text-blue-500" fill="none" stroke="currentColor"
+                                     viewBox="0 0 24 24"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"
+                                          stroke-width="2"/>
                                 </svg>
                                 <span>{{ profile.total_likes }} zaps</span>
                             </div>
@@ -62,7 +66,7 @@
 
                         <div v-show="profile.user.is_admin" class="mt-8 flex flex-col">
                             <h2 class="text-2xl mb-2">Badges</h2>
-                            <admin-badge class="text-lg self-start" v-show="profile.user.is_admin" />
+                            <admin-badge v-show="profile.user.is_admin" class="text-lg self-start"/>
                         </div>
                     </div>
                 </div>
@@ -72,17 +76,18 @@
                         <h1 class="text-2xl font-bold mb-2">All Posts</h1>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <inertia-link v-for="post in posts.data" :key="post.id" :href="route('posts.show', post.id)">
+                            <inertia-link v-for="post in posts.data" :key="post.id"
+                                          :href="route('posts.show', post.id)">
                                 <post-card class="max-w-sm">
                                     <template #thumbnail>
                                         <img :src="post.thumbnail_url"
                                              alt="Thumbnail" class="h-full w-full object-cover inset-0">
                                     </template>
                                     <template #icon>
-                                        <profile-photo :user="post.user" class="w-10 h-10" />
+                                        <profile-photo :user="post.user" class="w-10 h-10"/>
                                     </template>
                                     <template #user>
-                                        <profile-link :user="post.user" />
+                                        <profile-link :user="post.user"/>
                                     </template>
                                     <template #details>
                                         <span>{{ post.views_formatted }} views</span>

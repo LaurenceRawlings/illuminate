@@ -5,7 +5,7 @@
         <div v-if="$page.user" class="flex">
             <profile-photo :user="$page.user" class="w-12 h-10"/>
             <div class="flex items-center mx-2 relative w-full">
-                <jet-input class="w-full" v-model="form.comment" placeholder="Leave a comment..." maxlength="255"
+                <jet-input v-model="form.comment" class="w-full" maxlength="255" placeholder="Leave a comment..."
                            @keyup.enter.native="addComment"/>
                 <div class="right-0 absolute bg-gray-200 mr-2 px-2 rounded-full font-thin">
                     {{ form.comment ? form.comment.length : 0 }} / 255
@@ -19,7 +19,7 @@
 
         <hr class="my-8"/>
 
-        <comment v-for="comment in comments" :comment="comment" :key="comment.id"/>
+        <comment v-for="comment in comments" :key="comment.id" :comment="comment"/>
     </div>
 </template>
 

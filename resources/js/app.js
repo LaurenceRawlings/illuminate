@@ -4,12 +4,12 @@ require('moment');
 
 import Vue from 'vue';
 
-import { InertiaApp } from '@inertiajs/inertia-vue';
-import { InertiaForm } from 'laravel-jetstream';
+import {InertiaApp} from '@inertiajs/inertia-vue';
+import {InertiaForm} from 'laravel-jetstream';
 import PortalVue from 'portal-vue';
 import EmojiPicker from '@zaichaopan/emoji-picker';
 
-Vue.mixin({ methods: { route } });
+Vue.mixin({methods: {route}});
 Vue.use(InertiaApp);
 Vue.use(InertiaForm);
 Vue.use(PortalVue);
@@ -33,39 +33,41 @@ new Vue({
  * @version 1.04
  */
 
-(function($){
+(function ($) {
 
-    $.fn.autoResize = function(options) {
+    $.fn.autoResize = function (options) {
 
         // Just some abstracted details,
         // to make plugin users happy:
         var settings = $.extend({
-            onResize : function(){},
-            animate : true,
-            animateDuration : 150,
-            animateCallback : function(){},
-            extraSpace : 20,
+            onResize: function () {
+            },
+            animate: true,
+            animateDuration: 150,
+            animateCallback: function () {
+            },
+            extraSpace: 20,
             limit: 1000
         }, options);
 
         // Only textarea's auto-resize:
-        this.filter('textarea').each(function(){
+        this.filter('textarea').each(function () {
 
             // Get rid of scrollbars and disable WebKit resizing:
-            var textarea = $(this).css({resize:'none','overflow-y':'hidden'}),
+            var textarea = $(this).css({resize: 'none', 'overflow-y': 'hidden'}),
 
                 // Cache original height, for use later:
                 origHeight = textarea.height(),
 
                 // Need clone of textarea, hidden off screen:
-                clone = (function(){
+                clone = (function () {
 
                     // Properties which may effect space taken up by chracters:
-                    var props = ['height','width','lineHeight','textDecoration','letterSpacing'],
+                    var props = ['height', 'width', 'lineHeight', 'textDecoration', 'letterSpacing'],
                         propOb = {};
 
                     // Create object of styles to apply:
-                    $.each(props, function(i, prop){
+                    $.each(props, function (i, prop) {
                         propOb[prop] = textarea.css(prop);
                     });
 
@@ -75,11 +77,11 @@ new Vue({
                         position: 'absolute',
                         top: 0,
                         left: -9999
-                    }).css(propOb).attr('tabIndex','-1').insertBefore(textarea);
+                    }).css(propOb).attr('tabIndex', '-1').insertBefore(textarea);
 
                 })(),
                 lastScrollTop = null,
-                updateSize = function() {
+                updateSize = function () {
 
                     // Prepare the clone:
                     clone.height(0).val($(this).val()).scrollTop(10000);
@@ -89,12 +91,14 @@ new Vue({
                         toChange = $(this).add(clone);
 
                     // Don't do anything if scrollTip hasen't changed:
-                    if (lastScrollTop === scrollTop) { return; }
+                    if (lastScrollTop === scrollTop) {
+                        return;
+                    }
                     lastScrollTop = scrollTop;
 
                     // Check for limit:
-                    if ( scrollTop >= settings.limit ) {
-                        $(this).css('overflow-y','');
+                    if (scrollTop >= settings.limit) {
+                        $(this).css('overflow-y', '');
                         return;
                     }
                     // Fire off callback:
@@ -102,7 +106,7 @@ new Vue({
 
                     // Either animate or directly apply height:
                     settings.animate && textarea.css('display') === 'block' ?
-                        toChange.stop().animate({height:scrollTop}, settings.animateDuration, settings.animateCallback)
+                        toChange.stop().animate({height: scrollTop}, settings.animateDuration, settings.animateCallback)
                         : toChange.height(scrollTop);
                 };
 
@@ -119,7 +123,6 @@ new Vue({
         return this;
 
     };
-
 
 
 })(jQuery);

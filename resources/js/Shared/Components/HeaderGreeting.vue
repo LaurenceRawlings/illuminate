@@ -1,7 +1,7 @@
 <template>
     <div class="grid gap-4 grid-cols-2 divide-x-2 divide-gray-300 place-items-center">
         <div>
-            <application-mark />
+            <application-mark/>
         </div>
 
         <div class="text-xl font-black align-middle pl-4 mt-3">{{ greeting() }}</div>

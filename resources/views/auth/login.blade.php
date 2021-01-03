@@ -1,10 +1,10 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <x-jet-authentication-card-logo/>
         </x-slot>
 
-        <x-jet-validation-errors class="mb-4" />
+        <x-jet-validation-errors class="mb-4"/>
 
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
@@ -16,13 +16,15 @@
             @csrf
 
             <div>
-                <x-jet-label for="identity" value="{{ __('Username or Email') }}" />
-                <x-jet-input id="identity" class="block mt-1 w-full" type="text" name="identity" :value="old('identity')" required autofocus />
+                <x-jet-label for="identity" value="{{ __('Username or Email') }}"/>
+                <x-jet-input id="identity" class="block mt-1 w-full" type="text" name="identity"
+                             :value="old('identity')" required autofocus/>
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+                <x-jet-label for="password" value="{{ __('Password') }}"/>
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                             autocomplete="current-password"/>
             </div>
 
             <div class="block mt-4">
@@ -38,7 +40,8 @@
                 </a>
 
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900"
+                       href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif

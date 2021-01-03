@@ -32,16 +32,19 @@
                                     </jet-button>
                                 </inertia-link>
 
-                                <jet-danger-button v-if="post.can_delete" class="ml-4" @click.native="confirmPostDeletion">
+                                <jet-danger-button v-if="post.can_delete" class="ml-4"
+                                                   @click.native="confirmPostDeletion">
                                     Delete
                                 </jet-danger-button>
-                                <jet-dialog-modal :show="confirmingPostDeletion" @close="confirmingPostDeletion = false">
+                                <jet-dialog-modal :show="confirmingPostDeletion"
+                                                  @close="confirmingPostDeletion = false">
                                     <template #title>
                                         Delete Post
                                     </template>
 
                                     <template #content>
-                                        Are you sure you want to delete your post? Once your post is deleted, it will be permanently deleted.
+                                        Are you sure you want to delete your post? Once your post is deleted, it will be
+                                        permanently deleted.
                                     </template>
 
                                     <template #footer>
@@ -49,7 +52,9 @@
                                             Nevermind
                                         </jet-secondary-button>
 
-                                        <jet-danger-button class="ml-2" @click.native="deletePost" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                        <jet-danger-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing"
+                                                           class="ml-2"
+                                                           @click.native="deletePost">
                                             Delete Post
                                         </jet-danger-button>
                                     </template>
@@ -84,7 +89,7 @@ import BackgroundImage from "@/Mixins/BackgroundImage";
 import JetDangerButton from "@/Jetstream/DangerButton";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import JetDialogModal from "@/Jetstream/DialogModal";
-import { Inertia } from '@inertiajs/inertia'
+import {Inertia} from '@inertiajs/inertia'
 
 import 'trumbowyg/dist/ui/trumbowyg.css';
 import 'trumbowyg/dist/plugins/table/ui/trumbowyg.table.min.css';
@@ -132,7 +137,7 @@ export default {
     created() {
         Echo.private(`App.Models.Post.${this.post.id}`)
             .notification((notification) => {
-                Inertia.reload({ only: ['comments'], preserveScroll: true })
+                Inertia.reload({only: ['comments'], preserveScroll: true})
             });
     },
 }

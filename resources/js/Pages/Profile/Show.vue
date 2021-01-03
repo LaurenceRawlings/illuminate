@@ -9,8 +9,8 @@
         <div>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
                 <div v-if="$page.jetstream.canUpdateProfileInformation">
-                    <update-profile-information-form :user="$page.user" :bio="bio" :status_text="status_text"
-                                                     :status_emoji="status_emoji"/>
+                    <update-profile-information-form :bio="bio" :status_emoji="status_emoji" :status_text="status_text"
+                                                     :user="$page.user"/>
 
                     <jet-section-border/>
                 </div>

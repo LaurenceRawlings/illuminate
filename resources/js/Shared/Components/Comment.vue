@@ -5,11 +5,11 @@
             <span>
                 <profile-link :user="comment.user" class="mr-2"/>
                 <span class="text-gray-500">{{ comment.timestamp }}</span>
-                <span class="text-gray-500 italic" v-show="comment.edited">(edited)</span>
+                <span v-show="comment.edited" class="text-gray-500 italic">(edited)</span>
                 <span v-if="comment.can_edit || comment.can_delete">
                     <span> • </span>
-                    <span @click="editClicked" class="hover:underline cursor-pointer"
-                          :class="edit ? 'text-red-500 hover:text-red-800' : 'text-gray-500 hover:text-black'">{{
+                    <span :class="edit ? 'text-red-500 hover:text-red-800' : 'text-gray-500 hover:text-black'" class="hover:underline cursor-pointer"
+                          @click="editClicked">{{
                             edit ? 'Cancel' : 'Edit'
                         }}</span>
                 </span>
@@ -17,7 +17,7 @@
 
             <div v-if="edit" class="flex">
                 <div class="flex items-center mr-2 relative w-full">
-                    <jet-input v-model="form.comment" class="w-full" maxlength="255" :disabled="!comment.can_edit"
+                    <jet-input v-model="form.comment" :disabled="!comment.can_edit" class="w-full" maxlength="255"
                                @keyup.enter.native="updateComment"/>
                     <div class="right-0 absolute bg-gray-200 mr-2 px-2 rounded-full font-thin">
                         {{ form.comment ? form.comment.length : 0 }} / 255
@@ -42,9 +42,9 @@
                             Nevermind
                         </jet-secondary-button>
 
-                        <jet-danger-button class="ml-2" @click.native="deleteComment"
-                                           :class="{ 'opacity-25': deleteForm.processing }"
-                                           :disabled="deleteForm.processing">
+                        <jet-danger-button :class="{ 'opacity-25': deleteForm.processing }" :disabled="deleteForm.processing"
+                                           class="ml-2"
+                                           @click.native="deleteComment">
                             Delete Comment
                         </jet-danger-button>
                     </template>
@@ -54,7 +54,7 @@
             <p v-else class="break-all">{{ comment.comment }}</p>
 
             <div class="flex items-center">
-                <zap :zapped="comment.is_liked" :zappable-id="comment.id" zappable-type="comment" class="w-4 h-4 mr-1"/>
+                <zap :zappable-id="comment.id" :zapped="comment.is_liked" class="w-4 h-4 mr-1" zappable-type="comment"/>
                 <span>{{ comment.likes }}</span>
             </div>
         </div>

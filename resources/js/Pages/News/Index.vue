@@ -21,8 +21,8 @@
                             <template #icon>
                                 <a :href="host(newsPost.url)" rel="noopener noreferrer" target="_blank">
                                     <div class="w-10 h-10">
-                                        <img :src="newsPost.favicon"
-                                             :alt="newsPost.source" class="rounded-full h-full w-full object-cover">
+                                        <img :alt="newsPost.source"
+                                             :src="newsPost.favicon" class="rounded-full h-full w-full object-cover">
                                     </div>
                                 </a>
                             </template>
