@@ -73,7 +73,7 @@ class PostController extends Controller
 
 
         if (isset($input['thumbnail'])) {
-            $imageName = $input['thumbnail']->store('post-thumbnails/' . $request->user()->id, config('app.env') == 'production' ? 's3' : 'public');
+            $imageName = $input['thumbnail']->storePublicly('post-thumbnails/' . $request->user()->id, ['disk' => config('app.env') == 'production' ? 's3' : 'public']);
         } else {
             $imageName = null;
         }
@@ -144,7 +144,7 @@ class PostController extends Controller
         ])->validateWithBag('createPost');
 
         if (isset($input['thumbnail'])) {
-            $imageName = $input['thumbnail']->store('post-thumbnails/' . $request->user()->id, config('app.env') == 'production' ? 's3' : 'public');
+            $imageName = $input['thumbnail']->storePublicly('post-thumbnails/' . $request->user()->id, ['disk' => config('app.env') == 'production' ? 's3' : 'public']);
         } else {
             if (isset($input['remove_thumbnail']) && $input['remove_thumbnail']) {
                 $imageName = null;
