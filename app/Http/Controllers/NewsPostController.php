@@ -6,6 +6,7 @@ use App\Helpers\InertiaPaginator;
 use App\Services\NewsRepository;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -29,7 +30,8 @@ class NewsPostController extends Controller
 
         return Inertia::render('News/Index', [
             'newsPosts' => $newsPosts,
-            'paginated_links' => $paginatedLinks
+            'paginated_links' => $paginatedLinks,
+            'defaultThumbnail' => Storage::disk(config('app.env') == 'production' ? 's3' : 'public')->url('app-images/default-thumbnail.png')
         ]);
     }
 }

@@ -15,7 +15,7 @@
                         <post-card>
                             <template #thumbnail>
                                 <img
-                                    :src="newsPost.thumbnail ? newsPost.thumbnail : '/storage/app-images/default-thumbnail.png'"
+                                    :src="newsPost.thumbnail ? newsPost.thumbnail : defaultThumbnail"
                                     alt="Thumbnail" class="h-full w-full object-cover inset-0">
                             </template>
                             <template #icon>
@@ -62,6 +62,7 @@ export default {
     props: {
         newsPosts: Object,
         paginated_links: Array,
+        defaultThumbnail: String,
     },
     methods: {
         host(postUrl) {
