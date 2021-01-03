@@ -18,6 +18,16 @@ trait HasThumbnail
             return $this->thumbnail;
         }
 
-        return Storage::disk('public')->url($this->thumbnail ? $this->thumbnail : 'app-images/default-thumbnail.png');
+        return Storage::disk($this->thumbnailsDisk())->url($this->thumbnail ? $this->thumbnail : 'app-images/default-thumbnail.png');
+    }
+
+    /**
+     * Get the disk that thumbnails should be stored on.
+     *
+     * @return string
+     */
+    protected function thumbnailsDisk(): string
+    {
+        return isset($_ENV['VAPOR_ARTIFACT_NAME']) ? 's3' : 'public';
     }
 }
