@@ -28,6 +28,6 @@ trait HasThumbnail
      */
     protected function thumbnailsDisk(): string
     {
-        return isset($_ENV['VAPOR_ARTIFACT_NAME']) ? 's3' : 'public';
+        return config('app.env') == 'production' ? 's3' : 'public';
     }
 }
