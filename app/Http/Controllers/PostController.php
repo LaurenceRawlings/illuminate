@@ -171,7 +171,7 @@ class PostController extends Controller
             ])->save();
         }
 
-        return Redirect::route('posts.show', [$post])->with('message', 'Post updated!')->with('colour', 'blue-500');;
+        return Redirect::route('posts.show', [$post])->with('message', 'Post updated!')->with('colour', 'blue-500');
     }
 
     /**
