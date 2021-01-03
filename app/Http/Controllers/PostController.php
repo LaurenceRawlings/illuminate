@@ -8,6 +8,7 @@ use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
@@ -50,7 +51,9 @@ class PostController extends Controller
      */
     public function create(): Response
     {
-        return Inertia::render('Posts/Edit');
+        return Inertia::render('Posts/Edit', [
+            'defaultThumbnail' => Storage::disk(config('app.env') == 'production' ? 's3' : 'public')->url('app-images/default-thumbnail.png')
+        ]);
     }
 
     /**
@@ -120,6 +123,7 @@ class PostController extends Controller
     {
         return Inertia::render('Posts/Edit', [
             'post' => $post,
+            'defaultThumbnail' => Storage::disk(config('app.env') == 'production' ? 's3' : 'public')->url('app-images/default-thumbnail.png')
         ]);
     }
 

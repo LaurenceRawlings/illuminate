@@ -5,7 +5,7 @@
                 <form autocomplete="off">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                         <div
-                            :style="backgroundImage(thumbnailPreview ? thumbnailPreview : '/storage/app-images/default-thumbnail.png')"
+                            :style="backgroundImage(thumbnailPreview ? thumbnailPreview : defaultThumbnail)"
                             class="bg-cover bg-center h-96 p-4">
                             <input ref="thumbnail" class="hidden"
                                    type="file"
@@ -229,6 +229,7 @@ export default {
 
     props: {
         post: Object,
+        defaultThumbnail: String,
     },
 
     mounted() {
