@@ -22,10 +22,11 @@ window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: process.env.MIX_PUSHER_APP_KEY,
-    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+    key: '0ef48b8cd94d6789b950', //process.env.MIX_PUSHER_APP_KEY,
+    cluster: 'eu', //process.env.MIX_PUSHER_APP_CLUSTER,
     wsHost: window.location.hostname,
     wsPort: 80,
     wssPort: 443,
     disabledStats: true,
+    forceTLS: true
 });
